@@ -168,6 +168,8 @@
     enable = true;
     userName = "Coca";
     userEmail = "coca16622@gmail.com";
+    signing.key = "0x03282DF88179AB19";
+    signing.signByDefault = true;
   };
 
   programs.gpg = {
