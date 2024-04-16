@@ -21,6 +21,7 @@
     nil
     tokei
     eza
+    cascadia-code
     monocraft
     killall
     ripgrep
