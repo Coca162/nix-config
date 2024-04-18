@@ -101,6 +101,8 @@
     qbittorrent
     qt6.qtimageformats
     wl-clipboard-rs
+    nvd
+    nix-output-monitor
   ];
 
   programs.fish.enable = true;
