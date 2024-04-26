@@ -23,6 +23,9 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  virtualisation.libvirtd.enable = true;
+  boot.kernelModules = ["kvm-amd" "kvm-intel"];
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -64,7 +67,6 @@
 
   # Enable sound.
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = lib.mkForce false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -73,6 +75,8 @@
     jack.enable = true;
   };
   sound.enable = true;
+
+  hardware.pulseaudio.enable = lib.mkForce false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.coca = {
