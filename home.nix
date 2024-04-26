@@ -33,6 +33,8 @@
     jq
     tldr
     fastfetch
+    filezilla
+    grex
     (import ./spawn-terminal.nix pkgs)
   ];
 
