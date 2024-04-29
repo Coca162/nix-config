@@ -107,6 +107,7 @@
     wl-clipboard-rs
     nvd
     nix-output-monitor
+    cargo
   ];
 
   programs.fish.enable = true;
