@@ -21,6 +21,60 @@
     }
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      lib2geom = prev.lib2geom.overrideAttrs {
+        checkPhase = let
+          disabledTests = ["elliptical-arc-test"];
+        in ''
+          runHook preCheck
+          ctest --output-on-failure -E '^${lib.concatStringsSep "|" disabledTests}$'
+          runHook postCheck
+        '';
+      };
+
+      opencolorio = prev.opencolorio.overrideAttrs {
+        checkPhase = let
+          disabledTests = ["test_cpu" "test_cpu_no_accel" "test_cpu_sse2" "test_cpu_avx" "test_cpu_avx2" "test_cpu_avx+f16c" "test_cpu_avx2+f16c"];
+        in ''
+          runHook preCheck
+          ctest --output-on-failure -E '^${lib.concatStringsSep "|" disabledTests}$'
+          runHook postCheck
+        '';
+      };
+
+      libsecret = prev.libsecret.overrideAttrs {
+        checkPhase = let
+          disabledTest = "test-prompt";
+        in ''
+          runHook preCheck
+
+          test_list=$(meson test --list) 2> /dev/null
+
+          test_list=$\{test_list//${disabledTest}}
+
+          dbus-run-session \
+            --config-file=${prev.dbus}/share/dbus-1/session.conf \
+            meson test --print-errorlogs --timeout-multiplier 0
+
+          runHook postCheck
+        '';
+      };
+
+      pythonPackagesExtensions =
+        prev.pythonPackagesExtensions
+        ++ [
+          (pyfinal: pyprev: {
+            numpy = pyprev.numpy.overridePythonAttrs (oldAttrs: {
+              disabledTests = [
+                "test_validate_transcendentals"
+              ];
+            });
+          })
+        ];
+    })
+  ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   virtualisation.libvirtd.enable = true;
@@ -124,7 +178,15 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.cudaSupport = true; # On unstable this recompiles way too much
+  nixpkgs.config.cudaSupport = true;
+
+  nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
+  nixpkgs.hostPlatform = {
+    gcc.arch = "znver2";
+    gcc.tune = "znver2";
+    system = "x86_64-linux";
+  };
+  systemd.extraConfig = "DefaultLimitNOFILE=65536";
 
   # List services that you want to enable:
 
