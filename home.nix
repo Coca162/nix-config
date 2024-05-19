@@ -23,6 +23,7 @@
     eza
     cascadia-code
     monocraft
+    miracode
     killall
     ripgrep
     wget
