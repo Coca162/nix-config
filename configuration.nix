@@ -162,6 +162,20 @@
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
   services.dbus.packages = [pkgs.pinentry-qt];
+  programs.git = {
+    enable = true;
+    config = {
+      init.defaultBranch = "main";
+      aliases = {
+        url = {
+          "https://codeberg.org/".insteadOf = ["cb:" "codeberg:"];
+          "https://github.com/".insteadOf = ["gh:" "github:"];
+          "https://gitlab.com/".insteadOf = ["gl:" "gitlab:"];
+          "https://git.lix.systems/".insteadOf = "lix:";
+        };
+      };
+    };
+  };
 
   programs.steam = {
     enable = true;
