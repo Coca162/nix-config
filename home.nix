@@ -26,6 +26,7 @@
     miracode
     killall
     ripgrep
+    ffmpeg
     wget
     yt-dlp
     inetutils
