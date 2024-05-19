@@ -37,7 +37,6 @@
     lix-module,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     lanzaboote = inputs.lanzaboote or null;
     nix-gaming = inputs.nix-gaming or null;
     nix-minecraft = inputs.nix-minecraft or null;
@@ -45,8 +44,6 @@
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-
         specialArgs = {inherit lanzaboote nix-gaming nix-minecraft nixos-cosmic;};
 
         modules = [

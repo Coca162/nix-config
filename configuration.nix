@@ -12,15 +12,6 @@
     ./hardware-configuration.nix
   ];
 
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "16384";
-    }
-  ];
-
   nixpkgs.overlays = [
     (final: prev: {
       lib2geom = prev.lib2geom.overrideAttrs {
