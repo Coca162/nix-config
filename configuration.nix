@@ -200,6 +200,14 @@
     system = "x86_64-linux";
   };
   systemd.extraConfig = "DefaultLimitNOFILE=65536";
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "16384";
+    }
+  ];
 
   # List services that you want to enable:
 
