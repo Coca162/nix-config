@@ -10,16 +10,8 @@
     lanzaboote.url = "github:nix-community/lanzaboote/v0.3.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
-      flake = false;
-    };
-
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix-gaming.url = "github:fufexan/nix-gaming";
     # nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
