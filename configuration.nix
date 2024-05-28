@@ -148,6 +148,7 @@
     nvd
     nix-output-monitor
     cargo
+    aseprite
     blender
   ];
 
