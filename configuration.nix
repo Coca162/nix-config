@@ -22,6 +22,11 @@
         });
       });
 
+      # Gets very grumpy compiling under znver2 and x86-64-v3
+      embree = prev.embree.overrideAttrs {
+        NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
+      };
+
       lib2geom = prev.lib2geom.overrideAttrs {
         checkPhase = let
           disabledTests = ["elliptical-arc-test"];
@@ -143,6 +148,7 @@
     nvd
     nix-output-monitor
     cargo
+    blender
   ];
 
   programs.fish.enable = true;
