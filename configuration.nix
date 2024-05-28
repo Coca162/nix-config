@@ -14,6 +14,14 @@
 
   nixpkgs.overlays = [
     (final: prev: {
+      # Fixed by https://github.com/NixOS/nixpkgs/pull/314691
+      kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
+        spectacle = kprev.spectacle.overrideAttrs (oldAttrs: {
+          buildInputs =
+            lib.lists.remove prev.opencv oldAttrs.buildInputs ++ [(prev.opencv.override {enableCuda = false;})];
+        });
+      });
+
       lib2geom = prev.lib2geom.overrideAttrs {
         checkPhase = let
           disabledTests = ["elliptical-arc-test"];
