@@ -42,24 +42,6 @@
         '';
       };
 
-      libsecret = prev.libsecret.overrideAttrs {
-        checkPhase = let
-          disabledTest = "test-prompt";
-        in ''
-          runHook preCheck
-
-          test_list=$(meson test --list) 2> /dev/null
-
-          test_list=$\{test_list//${disabledTest}}
-
-          dbus-run-session \
-            --config-file=${prev.dbus}/share/dbus-1/session.conf \
-            meson test --print-errorlogs --timeout-multiplier 0
-
-          runHook postCheck
-        '';
-      };
-
       pythonPackagesExtensions =
         prev.pythonPackagesExtensions
         ++ [
