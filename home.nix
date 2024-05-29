@@ -22,6 +22,7 @@
     tokei
     eza
     cascadia-code
+    miracode
     monocraft
     miracode
     killall
