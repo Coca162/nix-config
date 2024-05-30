@@ -147,7 +147,6 @@
     wl-clipboard-rs
     nvd
     nix-output-monitor
-    cargo
     aseprite
     blender
   ];
