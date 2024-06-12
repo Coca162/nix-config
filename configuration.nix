@@ -14,17 +14,17 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      # Fixed by https://github.com/NixOS/nixpkgs/pull/314691
-      kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
-        spectacle = kprev.spectacle.overrideAttrs (oldAttrs: {
-          buildInputs =
-            lib.lists.remove prev.opencv oldAttrs.buildInputs ++ [(prev.opencv.override {enableCuda = false;})];
-        });
-      });
-
       # Gets very grumpy compiling under znver2 and x86-64-v3
       embree = prev.embree.overrideAttrs {
         NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
+      };
+
+      haskellPackages = prev.haskellPackages.override {
+        overrides = finalHaskell: prevHaskell: {
+          crypton = prevHaskell.crypton.overrideAttrs {
+            NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
+          };
+        };
       };
 
       lib2geom = prev.lib2geom.overrideAttrs {
@@ -183,6 +183,7 @@
 
   nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
   nixpkgs.hostPlatform = {
+    # https://github.com/NixOS/nixpkgs/blob/57d6973abba7ea108bac64ae7629e7431e0199b6/lib/systems/architectures.nix
     gcc.arch = "znver2";
     gcc.tune = "znver2";
     system = "x86_64-linux";

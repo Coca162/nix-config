@@ -165,10 +165,10 @@
       "}" = "multiply speed 2.0";
     };
     config.screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
-    package =
-      pkgs.wrapMpv
-      (pkgs.mpv-unwrapped.override {sixelSupport = true;})
-      {scripts = with pkgs.mpvScripts; [sponsorblock thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];};
+    package = pkgs.mpv-unwrapped.wrapper {
+      mpv = pkgs.mpv-unwrapped;
+      scripts = with pkgs.mpvScripts; [sponsorblock thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
+    };
   };
 
   programs.direnv.enable = true;
