@@ -149,6 +149,7 @@
     nix-output-monitor
     aseprite
     blender
+    bitwarden-desktop
   ];
 
   programs.fish.enable = true;
