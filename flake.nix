@@ -36,7 +36,14 @@
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit lanzaboote nix-gaming nix-minecraft nixos-cosmic;};
+        specialArgs = {
+          inherit lanzaboote nix-gaming nix-minecraft nixos-cosmic;
+
+          untuned-pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+        };
 
         modules = [
           lix-module.nixosModules.default

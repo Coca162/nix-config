@@ -13,7 +13,6 @@
   home.packages = with pkgs; [
     firefox
     vscodium-fhs
-    obsidian
     reaper
     audacity
     tree

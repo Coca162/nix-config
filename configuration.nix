@@ -5,6 +5,7 @@
   config,
   pkgs,
   lib,
+  untuned-pkgs,
   ...
 }: {
   imports = [
@@ -148,8 +149,9 @@
     nvd
     nix-output-monitor
     aseprite
-    blender
-    bitwarden-desktop
+    untuned-pkgs.blender
+    untuned-pkgs.bitwarden-desktop
+    untuned-pkgs.obsidian
   ];
 
   programs.fish.enable = true;
