@@ -149,6 +149,8 @@
     nvd
     nix-output-monitor
     aseprite
+    lsof
+    fatrace
     untuned-pkgs.blender
     untuned-pkgs.bitwarden-desktop
     untuned-pkgs.obsidian
