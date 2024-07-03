@@ -188,6 +188,12 @@
   nixpkgs.config.cudaSupport = true;
 
   nix.settings.system-features = ["benchmark" "big-parallel" "kvm" "nixos-test" "gccarch-znver2"];
+
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  ''; # Keeps the build outputs, means we don't have to rebuild them after gc
+
   nixpkgs.hostPlatform = {
     # https://github.com/NixOS/nixpkgs/blob/57d6973abba7ea108bac64ae7629e7431e0199b6/lib/systems/architectures.nix
     gcc.arch = "znver2";
