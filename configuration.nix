@@ -141,6 +141,7 @@
     pinta
     gimp
     krita
+    kdePackages.kdenlive
     inkscape
     prismlauncher
     qbittorrent
