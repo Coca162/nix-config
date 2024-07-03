@@ -18,6 +18,7 @@
     tree
     alejandra
     nil
+    nixd # Gonna try it out over nil
     tokei
     eza
     cascadia-code
