@@ -21,6 +21,7 @@
     nixd # Gonna try it out over nil
     tokei
     eza
+    yazi
     cascadia-code
     miracode
     monocraft
@@ -32,6 +33,7 @@
     yt-dlp
     inetutils
     du-dust
+    nix-du
     dig
     jq
     tldr
