@@ -88,7 +88,9 @@
     "net.ipv4.tcp_wmem" = "4096 87380 838900000"; # 0.1 GiB max
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
+  # Change back to zen when it gets updated for 6.10
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
 
   networking.hostName = "nixos";
 
