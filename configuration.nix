@@ -15,6 +15,9 @@
 
   nixpkgs.overlays = [
     (final: prev: {
+      # Used by coolercontrol-gui, not worth compiling
+      webkitgtk = untuned-pkgs.webkitgtk;
+
       # Gets very grumpy compiling under znver2 and x86-64-v3
       embree = prev.embree.overrideAttrs {
         NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
