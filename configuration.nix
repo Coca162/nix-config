@@ -155,6 +155,7 @@
     aseprite
     lsof
     fatrace
+    nvtopPackages.nvidia
     untuned-pkgs.blender
     untuned-pkgs.bitwarden-desktop
     untuned-pkgs.obsidian
