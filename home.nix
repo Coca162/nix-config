@@ -31,6 +31,7 @@
     ffmpeg
     wget
     yt-dlp
+    scdl
     inetutils
     du-dust
     nix-du
