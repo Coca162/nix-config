@@ -15,7 +15,6 @@
     vscodium-fhs
     reaper
     audacity
-    tree
     alejandra
     nil
     nixd # Gonna try it out over nil
@@ -54,11 +53,12 @@
       end
     '';
     functions.trash = "function trash; mv $argv /tmp/$argv; end";
-    shellAliases = {
+    shellAliases = rec {
       ls = "eza -a";
-      lsa = "eza -ambhlU";
-      dir = "eza --only-dirs";
+      lsa = "eza -ambhlU --icons";
+      tree = "eza --tree -mbhlu --icons";
       dirs = "eza --only-dirs";
+      dir = dirs;
       nano = "nano -c";
       grep = "rg";
       loc = "tokei";
