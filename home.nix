@@ -21,7 +21,6 @@
     nixd # Gonna try it out over nil
     tokei
     eza
-    yazi
     cascadia-code
     miracode
     monocraft
@@ -95,6 +94,11 @@
       then pkgs.btop.override {cudaSupport = true;}
       else pkgs.btop;
     settings.theme_background = false;
+  };
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.hyfetch = {
