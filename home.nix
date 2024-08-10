@@ -35,6 +35,7 @@
     inetutils
     du-dust
     nix-du
+    graphviz
     dig
     jq
     tldr
