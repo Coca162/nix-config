@@ -118,8 +118,8 @@
     };
   };
 
-  xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON {
-    "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+  programs.fastfetch.enable = true;
+  programs.fastfetch.settings = {
     modules = [
       "title"
       "separator"
