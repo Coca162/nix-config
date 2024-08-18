@@ -10,7 +10,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote/v0.3.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix-gaming.url = "github:fufexan/nix-gaming";
