@@ -23,6 +23,10 @@
         NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
       };
 
+      opencolorio = prev.opencolorio.overrideAttrs {
+        NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
+      };
+
       haskellPackages = prev.haskellPackages.override {
         overrides = finalHaskell: prevHaskell: {
           crypton = prevHaskell.crypton.overrideAttrs {
@@ -31,6 +35,7 @@
         };
       };
 
+      # Test is fine to skip https://gitlab.com/inkscape/lib2geom/-/issues/63
       lib2geom = prev.lib2geom.overrideAttrs {
         checkPhase = let
           disabledTests = ["elliptical-arc-test"];
@@ -41,16 +46,7 @@
         '';
       };
 
-      opencolorio = prev.opencolorio.overrideAttrs {
-        checkPhase = let
-          disabledTests = ["test_cpu" "test_cpu_no_accel" "test_cpu_sse2" "test_cpu_avx" "test_cpu_avx2" "test_cpu_avx+f16c" "test_cpu_avx2+f16c"];
-        in ''
-          runHook preCheck
-          ctest --output-on-failure -E '^${lib.concatStringsSep "|" disabledTests}$'
-          runHook postCheck
-        '';
-      };
-
+      # From searching people have disabled this one without issues
       pythonPackagesExtensions =
         prev.pythonPackagesExtensions
         ++ [
@@ -183,10 +179,7 @@
     };
   };
 
-  programs.steam = {
-    enable = true;
-    # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  };
+  programs.steam.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
@@ -204,7 +197,9 @@
     gcc.tune = "znver2";
     system = "x86_64-linux";
   };
+
   systemd.extraConfig = "DefaultLimitNOFILE=65536";
+
   security.pam.loginLimits = [
     {
       domain = "*";
@@ -213,32 +208,6 @@
       value = "16384";
     }
   ];
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall = {
-  #   enable = true;
-  #   allowedTCPPorts = [5201];
-  #   allowedUDPPorts = [5201];
-
-  #   allowedTCPPortRanges = [
-  #     {
-  #       from = 7000;
-  #       to = 7999;
-  #     }
-  #   ];
-
-  #   allowedUDPPortRanges = [
-  #     {
-  #       from = 7000;
-  #       to = 7999;
-  #     }
-  #   ];
-  # };
 
   programs.coolercontrol = {
     enable = true;
@@ -257,31 +226,14 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    # Modesetting is required.
+    # Enables proprietary drivers
     modesetting.enable = true;
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # This is the new default for 560 drivers
+    # Open is the new default for 560 (beta) drivers
     open = true;
 
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
+    # Enables nvidia-settings which barely works
+    nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
