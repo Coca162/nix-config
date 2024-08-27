@@ -209,11 +209,6 @@
     }
   ];
 
-  programs.coolercontrol = {
-    enable = true;
-    nvidiaSupport = true;
-  };
-
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
