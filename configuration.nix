@@ -15,7 +15,7 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      # Used by coolercontrol-gui, not worth compiling
+      # Not worth compiling
       webkitgtk = untuned-pkgs.webkitgtk;
 
       # Gets very grumpy compiling under znver2 and x86-64-v3
