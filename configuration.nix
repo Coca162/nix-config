@@ -152,6 +152,7 @@
     nvd
     nix-output-monitor
     aseprite
+    obs-studio
     lsof
     fatrace
     nvtopPackages.nvidia
