@@ -76,7 +76,7 @@
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
-    "vm.swappiness" = 2;
+    "vm.swappiness" = 5;
 
     # Networking
     "net.ipv4.tcp_congestion_control" = "bbr";
