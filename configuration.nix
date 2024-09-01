@@ -66,6 +66,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
   boot.kernelModules = ["kvm-amd" "kvm-intel"];
 
   # Bootloader
