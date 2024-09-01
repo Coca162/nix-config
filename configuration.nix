@@ -15,6 +15,8 @@
 
   nixpkgs.overlays = [
     (final: prev: {
+      nbd = untuned-pkgs.webkitgtk;
+
       # Not worth compiling
       webkitgtk = untuned-pkgs.webkitgtk;
 
