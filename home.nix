@@ -37,6 +37,7 @@
     dig
     jq
     tldr
+    bat
     fastfetch
     filezilla
     grex
