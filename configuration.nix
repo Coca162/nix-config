@@ -15,7 +15,14 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      nbd = untuned-pkgs.webkitgtk;
+      # opencv fails and I need to fucking do this shit to make it work
+      # https://github.com/NixOS/nixpkgs/issues/338315
+      glaxnimate = untuned-pkgs.glaxnimate;
+      mlt = untuned-pkgs.mlt;
+      frei0r = untuned-pkgs.frei0r;
+
+      # Bugged currently
+      nbd = untuned-pkgs.nbd;
 
       # Not worth compiling
       webkitgtk = untuned-pkgs.webkitgtk;
