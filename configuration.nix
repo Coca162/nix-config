@@ -191,6 +191,10 @@
     };
   };
 
+  programs.ssh.enableAskPassword = true;
+  programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+  environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
+
   programs.steam.enable = true;
 
   nixpkgs.config.allowUnfree = true;
