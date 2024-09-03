@@ -200,25 +200,7 @@
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
-  ''; # Keeps the build outputs, means we don't have to rebuild everything again after gc
-
-  nixpkgs.hostPlatform = {
-    # https://github.com/NixOS/nixpkgs/blob/57d6973abba7ea108bac64ae7629e7431e0199b6/lib/systems/architectures.nix
-    gcc.arch = "znver2";
-    gcc.tune = "znver2";
-    system = "x86_64-linux";
-  };
-
-  systemd.extraConfig = "DefaultLimitNOFILE=65536";
-
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "16384";
-    }
-  ];
+  ''; # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
 
   # Enable OpenGL
   hardware.graphics = {
