@@ -163,6 +163,7 @@
     lsof
     fatrace
     nvtopPackages.nvidia
+    google-fonts # EVER FONT IN EXISTENCE!!!
     untuned-pkgs.blender
     untuned-pkgs.bitwarden-desktop
     untuned-pkgs.obsidian
