@@ -226,6 +226,22 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz"
       }
     },
+    "nixos-unstable-small": {
+      "locked": {
+        "lastModified": 1725448034,
+        "narHash": "sha256-YWbVeDERbIHAEQCtDtUunHYUNH31ReIdJIP8juXfdpM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9b40840066f93767bb528810ea7dc9caacd8997f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1725103162,
@@ -239,22 +255,6 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-firefox": {
-      "locked": {
-        "lastModified": 1725408614,
-        "narHash": "sha256-e5sTuSII9hzydmAOe+/ClIF31h6jGoyOPYqO5hb5JOE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1f7e8091666d506cec7a1384cbbc5f018f2174cb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1f7e8091666d506cec7a1384cbbc5f018f2174cb",
         "type": "github"
       }
     },
@@ -310,8 +310,8 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-firefox": "nixpkgs-firefox"
+        "nixos-unstable-small": "nixos-unstable-small",
+        "nixpkgs": "nixpkgs"
       }
     },
     "rust-overlay": {
