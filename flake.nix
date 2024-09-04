@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs-firefox.url = "github:NixOS/nixpkgs?ref=1f7e8091666d506cec7a1384cbbc5f018f2174cb";
+
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -27,6 +29,7 @@
     nixpkgs,
     home-manager,
     lix-module,
+    nixpkgs-firefox,
     ...
   } @ inputs: let
     lanzaboote = inputs.lanzaboote or null;
@@ -41,7 +44,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nix-gaming nix-minecraft nixos-cosmic untuned-pkgs;
+          inherit lanzaboote nix-gaming nix-minecraft nixos-cosmic untuned-pkgs nixpkgs-firefox;
         };
 
         modules = [

@@ -21,6 +21,8 @@
       mlt = untuned-pkgs.mlt;
       frei0r = untuned-pkgs.frei0r;
 
+      firefox = nixpkgs-firefox.legacyPackages."x86_64-linux".firefox;
+
       # Bugged currently
       nbd = untuned-pkgs.nbd;
 

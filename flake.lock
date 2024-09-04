@@ -242,6 +242,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-firefox": {
+      "locked": {
+        "lastModified": 1725408614,
+        "narHash": "sha256-e5sTuSII9hzydmAOe+/ClIF31h6jGoyOPYqO5hb5JOE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f7e8091666d506cec7a1384cbbc5f018f2174cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f7e8091666d506cec7a1384cbbc5f018f2174cb",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1678872516,
@@ -294,7 +310,8 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-firefox": "nixpkgs-firefox"
       }
     },
     "rust-overlay": {
