@@ -38,7 +38,6 @@
     jq
     tldr
     bat
-    fastfetch
     filezilla
     grex
     (import ./spawn-terminal.nix pkgs)
