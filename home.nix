@@ -89,10 +89,7 @@
 
   programs.btop = {
     enable = true;
-    package =
-      if osConfig.hardware.nvidia.modesetting.enable or false
-      then pkgs.btop.override {cudaSupport = true;}
-      else pkgs.btop;
+    package = pkgs.btop.override {cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;};
     settings.theme_background = false;
   };
 
