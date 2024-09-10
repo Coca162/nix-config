@@ -21,50 +21,6 @@
 
       # Software not worth compiling for cuda
       inherit (untuned-pkgs) blender;
-
-      # Libraries not worth compiling for cuda
-      inherit (untuned-pkgs) webkitgtk electron electron_31;
-
-      # Gets very grumpy compiling under znver2 and x86-64-v3
-      embree = prev.embree.overrideAttrs {
-        NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
-      };
-
-      opencolorio = prev.opencolorio.overrideAttrs {
-        NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
-      };
-
-      haskellPackages = prev.haskellPackages.override {
-        overrides = finalHaskell: prevHaskell: {
-          crypton = prevHaskell.crypton.overrideAttrs {
-            NIX_CFLAGS_COMPILE = "-march=x86-64-v2";
-          };
-        };
-      };
-
-      # Test is fine to skip https://gitlab.com/inkscape/lib2geom/-/issues/63
-      lib2geom = prev.lib2geom.overrideAttrs {
-        checkPhase = let
-          disabledTests = ["elliptical-arc-test"];
-        in ''
-          runHook preCheck
-          ctest --output-on-failure -E '^${lib.concatStringsSep "|" disabledTests}$'
-          runHook postCheck
-        '';
-      };
-
-      # From searching people have disabled this one without issues
-      pythonPackagesExtensions =
-        prev.pythonPackagesExtensions
-        ++ [
-          (pyfinal: pyprev: {
-            numpy = pyprev.numpy.overridePythonAttrs (oldAttrs: {
-              disabledTests = [
-                "test_validate_transcendentals"
-              ];
-            });
-          })
-        ];
     })
   ];
 
