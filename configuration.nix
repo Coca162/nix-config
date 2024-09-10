@@ -17,15 +17,13 @@
     (final: prev: {
       # opencv fails and I need to fucking do this shit to make it work
       # https://github.com/NixOS/nixpkgs/issues/338315
-      glaxnimate = untuned-pkgs.glaxnimate;
-      mlt = untuned-pkgs.mlt;
-      frei0r = untuned-pkgs.frei0r;
+      inherit (untuned-pkgs) glaxnimate mlt frei0r;
 
-      # Bugged currently
-      nbd = untuned-pkgs.nbd;
+      # Software not worth compiling for cuda
+      inherit (untuned-pkgs) blender;
 
-      # Not worth compiling
-      webkitgtk = untuned-pkgs.webkitgtk;
+      # Libraries not worth compiling for cuda
+      inherit (untuned-pkgs) webkitgtk electron electron_31;
 
       # Gets very grumpy compiling under znver2 and x86-64-v3
       embree = prev.embree.overrideAttrs {
@@ -164,9 +162,9 @@
     fatrace
     nvtopPackages.nvidia
     google-fonts # EVER FONT IN EXISTENCE!!!
-    untuned-pkgs.blender
-    untuned-pkgs.bitwarden-desktop
-    untuned-pkgs.obsidian
+    blender
+    bitwarden-desktop
+    obsidian
   ];
 
   programs.fish.enable = true;
