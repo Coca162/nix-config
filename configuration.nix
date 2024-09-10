@@ -6,7 +6,6 @@
   pkgs,
   lib,
   untuned-pkgs,
-  nixos-unstable-small,
   ...
 }: {
   imports = [
