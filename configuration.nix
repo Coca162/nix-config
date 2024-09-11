@@ -109,6 +109,7 @@
     nix-output-monitor
     aseprite
     obs-studio
+    wayfarer # Spectacle recording is broken for regions/windows
     lsof
     fatrace
     nvtopPackages.nvidia
