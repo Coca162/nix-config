@@ -53,12 +53,11 @@
 
       nicetop = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nixos-cosmic untuned-pkgs;
+          inherit nixos-cosmic untuned-pkgs;
         };
 
         modules = [
           lix-module.nixosModules.default
-          ./modules/secureboot.nix
           ./configuration.nix
           ./nicetop
           home-manager.nixosModules.home-manager
