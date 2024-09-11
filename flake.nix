@@ -50,6 +50,25 @@
           }
         ];
       };
+
+      nicetop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit lanzaboote nixos-cosmic untuned-pkgs;
+        };
+
+        modules = [
+          lix-module.nixosModules.default
+          ./modules/secureboot.nix
+          ./configuration.nix
+          ./nicetop
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.coca = import ./home.nix;
+          }
+        ];
+      };
     };
   };
 }
