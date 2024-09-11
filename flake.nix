@@ -13,9 +13,6 @@
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nix-gaming.url = "github:fufexan/nix-gaming";
-    # nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
-
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     # nixos-cosmic.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -27,7 +24,6 @@
     ...
   } @ inputs: let
     lanzaboote = inputs.lanzaboote or null;
-    nix-gaming = inputs.nix-gaming or null;
     nixos-cosmic = inputs.nixos-cosmic or null;
     untuned-pkgs = import nixpkgs {
       system = "x86_64-linux";
@@ -37,14 +33,13 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nix-gaming nixos-cosmic untuned-pkgs;
+          inherit lanzaboote nixos-cosmic untuned-pkgs;
         };
 
         modules = [
           lix-module.nixosModules.default
           ./modules/cosmic.nix
           ./modules/secureboot.nix
-          ./modules/osu-lazer.nix
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
