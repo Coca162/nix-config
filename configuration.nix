@@ -89,12 +89,6 @@
     shell = pkgs.fish;
   };
 
-  users.users.testing = {
-    isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-  };
-
   environment.systemPackages = with pkgs; [
     gparted
     qdirstat

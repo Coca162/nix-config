@@ -56,7 +56,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.coca = import ./home.nix;
-            home-manager.users.testing = import ./home.nix;
           }
         ];
       };
