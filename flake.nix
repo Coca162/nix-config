@@ -41,6 +41,7 @@
           ./modules/cosmic.nix
           ./modules/secureboot.nix
           ./configuration.nix
+          ./main
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
