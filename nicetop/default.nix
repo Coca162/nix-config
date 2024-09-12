@@ -15,7 +15,7 @@
   hardware.bluetooth.enable = true;
 
   # WHY GOD WHY DOES PULSEAUDIO WORK BUT NOT PIPEWIRE
-  services.pipewire.enable = lib.mkForce false;
+  services.pipewire.enable = false;
   hardware.pulseaudio.enable = true;
 
   # Configure keymap in X11
