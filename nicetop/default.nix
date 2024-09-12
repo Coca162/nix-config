@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -10,6 +11,12 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  hardware.bluetooth.enable = true;
+
+  # WHY GOD WHY DOES PULSEAUDIO WORK BUT NOT PIPEWIRE
+  services.pipewire.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

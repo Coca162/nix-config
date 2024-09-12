@@ -48,8 +48,6 @@
     jack.enable = true;
   };
 
-  hardware.pulseaudio.enable = lib.mkForce false;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.coca = {
     isNormalUser = true;
