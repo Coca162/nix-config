@@ -65,6 +65,7 @@
     gimp
     krita
     kdePackages.kdenlive
+    kdePackages.kclock
     kdePackages.kruler
     inkscape
     prismlauncher
