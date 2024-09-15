@@ -65,6 +65,7 @@
     gimp
     krita
     kdePackages.kdenlive
+    kdePackages.kruler
     inkscape
     prismlauncher
     qbittorrent
