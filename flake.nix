@@ -52,10 +52,6 @@
       };
 
       nicetop = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit nixos-cosmic untuned-pkgs;
-        };
-
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix
