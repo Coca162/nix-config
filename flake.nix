@@ -13,6 +13,9 @@
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.flake = false;
+
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     # nixos-cosmic.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -21,6 +24,7 @@
     nixpkgs,
     home-manager,
     lix-module,
+    rust-overlay,
     ...
   } @ inputs: let
     lanzaboote = inputs.lanzaboote or null;
@@ -33,7 +37,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nixos-cosmic untuned-pkgs;
+          inherit lanzaboote nixos-cosmic untuned-pkgs nixpkgs rust-overlay;
         };
 
         modules = [
@@ -52,6 +56,10 @@
       };
 
       nicetop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit nixpkgs rust-overlay;
+        };
+
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix

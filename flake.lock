@@ -294,7 +294,8 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay_2"
       }
     },
     "rust-overlay": {
@@ -314,6 +315,22 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "2c417c0460b788328220120c698630947547ee83",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726799228,
+        "narHash": "sha256-wn1leQyMAc/TrLRKcPc0GX6YtoziKQpc/MtZjPNiJ2Q=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "ab150c7412db7bea5879ce2776718f53fba37aa2",
         "type": "github"
       },
       "original": {
