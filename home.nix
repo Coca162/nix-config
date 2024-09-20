@@ -175,7 +175,11 @@
     scripts = with pkgs.mpvScripts; [sponsorblock thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
   };
 
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  xdg.configFile."direnv/direnvrc".source = ./tmpfs_direnvrc.sh;
 
   services.ssh-agent.enable = true;
 
