@@ -54,10 +54,9 @@
     # Open is the new default for 560 (beta) drivers
     open = true;
 
-    # Enables nvidia-settings which barely works
+    # Enables settings gui which barely works
     nvidiaSettings = false;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
