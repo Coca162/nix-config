@@ -33,6 +33,7 @@
     inetutils
     du-dust
     nix-du
+    nix-inspect
     graphviz
     dig
     jq
