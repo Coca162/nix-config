@@ -20,6 +20,7 @@
     nixd # Gonna try it out over nil
     tokei
     eza
+    kondo
     cascadia-code
     miracode
     monocraft
