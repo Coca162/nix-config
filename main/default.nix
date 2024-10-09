@@ -11,6 +11,8 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
+  time.timeZone = "Europe/Sofia";
+
   environment.systemPackages = with pkgs; [nvtopPackages.nvidia virtiofsd];
 
   # Cuda

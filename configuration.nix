@@ -32,8 +32,6 @@
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
-  time.timeZone = "Europe/Sofia";
-
   i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
     LC_MEASUREMENT = "bg_BG.UTF-8"; # Imperial metrics?! Couldn't be me.

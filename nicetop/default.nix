@@ -28,6 +28,8 @@
 
   networking.hostName = "nicetop"; # Define your hostname.
 
+  time.timeZone = "Europe/Vienna";
+
   services.thermald.enable = true;
 
   environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
