@@ -41,6 +41,7 @@
     tldr
     bat
     file
+    openssl
     filezilla
     grex
     (import ./spawn-terminal.nix pkgs)
