@@ -40,6 +40,7 @@
     jq
     tldr
     bat
+    file
     filezilla
     grex
     (import ./spawn-terminal.nix pkgs)
