@@ -12,7 +12,6 @@
 
   home.packages = with pkgs; [
     firefox
-    vscodium-fhs
     reaper
     audacity
     alejandra
@@ -42,6 +41,58 @@
     grex
     (import ./spawn-terminal.nix pkgs)
   ];
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    mutableExtensionsDir = false;
+    extensions = with pkgs.vscode-extensions; [
+      kamadorueda.alejandra
+      serayuzgur.crates
+      mkhl.direnv
+      tamasfe.even-better-toml
+      ecmel.vscode-html-css
+      jnoortheen.nix-ide
+      rust-lang.rust-analyzer
+      gruntfuggly.todo-tree
+    ];
+    userSettings = {
+      "diffEditor.ignoreTrimWhitespace" = false;
+      "editor.fontFamily" = "Cascadia Code";
+      "editor.fontLigatures" = "'zero'";
+      "editor.fontSize" = 15;
+      "editor.inlayHints.enabled" = "onUnlessPressed";
+      "git.autofetch" = true;
+      "nix.enableLanguageServer" = true;
+      "nix.formatterPath" = "";
+      "nix.serverPath" = "nil";
+      "rust-analyzer.check.command" = "clippy";
+      "terminal.integrated.fontFamily" = "Monocraft";
+      "todo-tree.general.tags" = [
+        "BUG"
+        "HACK"
+        "FIXME"
+        "TODO"
+        "XXX"
+        "[ ]"
+        "[x]"
+        "todo!"
+      ];
+      "window.customTitleBarVisibility" = "auto";
+    };
+    keybindings = [
+      {
+        key = "ctrl+r";
+        command = "editor.action.rename";
+        when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
+      }
+      {
+        key = "f2";
+        command = "-editor.action.rename";
+        when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
+      }
+    ];
+  };
 
   programs.fish = {
     enable = true;
