@@ -19,10 +19,6 @@
   nixpkgs.config.cudaSupport = true;
   nixpkgs.overlays = [
     (final: prev: {
-      # opencv fails and I need to fucking do this shit to make it work
-      # https://github.com/NixOS/nixpkgs/issues/338315
-      inherit (untuned-pkgs) glaxnimate mlt frei0r;
-
       # Software not worth compiling for cuda
       inherit (untuned-pkgs) blender;
     })
