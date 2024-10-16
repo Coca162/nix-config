@@ -21,10 +21,6 @@
     tokei
     eza
     kondo
-    cascadia-code
-    miracode
-    monocraft
-    miracode
     killall
     ripgrep
     ffmpeg

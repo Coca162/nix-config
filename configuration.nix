@@ -89,10 +89,16 @@
     wayfarer # Spectacle recording is broken for regions/windows
     lsof
     fatrace
-    google-fonts # EVER FONT IN EXISTENCE!!!
     blender
     bitwarden-desktop
     obsidian
+  ];
+
+  fonts.packages = with pkgs; [
+    google-fonts # EVER FONT IN EXISTENCE!!!
+    cascadia-code
+    monocraft
+    miracode
   ];
 
   programs.fish.enable = true;
