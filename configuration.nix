@@ -91,6 +91,7 @@
     lsof
     fatrace
     blender
+    libreoffice-qt6
     nixpkgs-small.legacyPackages.${pkgs.system}.bitwarden-desktop
     obsidian
   ];
