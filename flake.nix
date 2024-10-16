@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -22,6 +24,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-small,
     home-manager,
     lix-module,
     rust-overlay,
@@ -37,7 +40,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nixos-cosmic untuned-pkgs nixpkgs rust-overlay;
+          inherit nixpkgs-small lanzaboote nixos-cosmic untuned-pkgs nixpkgs rust-overlay;
         };
 
         modules = [

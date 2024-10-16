@@ -242,6 +242,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-small": {
+      "locked": {
+        "lastModified": 1729077633,
+        "narHash": "sha256-6sIuRVqVMHq9ZwcEVdpf2BuZeuLIUgvFznhIfsc75Jo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8f1d45587bd9af3dbf5146aa8a1347e20421597b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1678872516,
@@ -295,6 +311,7 @@
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-small": "nixpkgs-small",
         "rust-overlay": "rust-overlay_2"
       }
     },

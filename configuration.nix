@@ -5,6 +5,7 @@
   pkgs,
   lib,
   nixpkgs,
+  nixpkgs-small,
   rust-overlay,
   ...
 }: {
@@ -90,7 +91,7 @@
     lsof
     fatrace
     blender
-    bitwarden-desktop
+    nixpkgs-small.legacyPackages.${pkgs.system}.bitwarden-desktop
     obsidian
   ];
 
