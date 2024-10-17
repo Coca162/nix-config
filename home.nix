@@ -47,7 +47,6 @@
     package = pkgs.vscodium;
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
-      kamadorueda.alejandra
       serayuzgur.crates
       mkhl.direnv
       tamasfe.even-better-toml
@@ -64,8 +63,9 @@
       "editor.inlayHints.enabled" = "onUnlessPressed";
       "git.autofetch" = true;
       "nix.enableLanguageServer" = true;
-      "nix.formatterPath" = "";
-      "nix.serverPath" = "nil";
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverSettings".nil.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--"];
+      "[nix]"."editor.formatOnSave" = true;
       "rust-analyzer.check.command" = "clippy";
       "terminal.integrated.fontFamily" = "Monocraft";
       "todo-tree.general.tags" = [
