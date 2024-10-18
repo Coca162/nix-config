@@ -60,7 +60,7 @@
 
       nicetop = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit nixpkgs rust-overlay;
+          inherit nixpkgs nixpkgs-small rust-overlay;
         };
 
         modules = [
