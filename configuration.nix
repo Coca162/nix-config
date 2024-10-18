@@ -5,7 +5,6 @@
   pkgs,
   lib,
   nixpkgs,
-  nixpkgs-small,
   rust-overlay,
   ...
 }: {
@@ -92,7 +91,7 @@
     fatrace
     blender
     libreoffice-qt6
-    nixpkgs-small.legacyPackages.${pkgs.system}.bitwarden-desktop
+    bitwarden-desktop
     obsidian
   ];
 
