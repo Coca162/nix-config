@@ -128,7 +128,7 @@
         ZELLIJ_AUTO_ATTACH = "true";
         ENABLE_ZELLIJ = "true";
       };
-      shell.program = "${pkgs.fish}/bin/fish";
+      terminal.shell.program = "${pkgs.fish}/bin/fish";
       window.opacity = 0.85;
     };
   };
