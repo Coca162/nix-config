@@ -221,6 +221,8 @@
       "Ctrl+]" = "add speed 0.25";
       "{" = "multiply speed 0.5";
       "}" = "multiply speed 2.0";
+      "9" = "add volume -5";
+      "0" = "add volume 5";
     };
     config.screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
     scripts = with pkgs.mpvScripts; [sponsorblock thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
