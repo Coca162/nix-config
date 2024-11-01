@@ -115,13 +115,12 @@
     enable = true;
     config = {
       init.defaultBranch = "main";
-      aliases = {
-        url = {
-          "https://codeberg.org/".insteadOf = ["cb:" "codeberg:"];
-          "https://github.com/".insteadOf = ["gh:" "github:"];
-          "https://gitlab.com/".insteadOf = ["gl:" "gitlab:"];
-          "https://git.lix.systems/".insteadOf = "lix:";
-        };
+      aliases.url = {
+        "https://codeberg.org/".insteadOf = ["cb:" "codeberg:"];
+        "https://github.com/".insteadOf = ["gh:" "github:"];
+        "https://gitlab.com/".insteadOf = ["gl:" "gitlab:"];
+        "https://git.lix.systems/".insteadOf = "lix:";
+        "https://git.coca.codes/".insteadOf = "coca:";
       };
     };
   };
