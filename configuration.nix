@@ -20,6 +20,8 @@
     "rust-overlay=${rust-overlay}"
   ];
 
+  system.tools.nixos-option.enable = false; # Complains about Lix or something
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
