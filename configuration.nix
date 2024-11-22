@@ -45,9 +45,6 @@
   environment.plasma6.excludePackages = [pkgs.kdePackages.elisa];
   programs.xwayland.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   # Enable sound.
   security.rtkit.enable = true;
   services.pipewire = lib.mkDefault {
