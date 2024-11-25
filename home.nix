@@ -32,7 +32,6 @@
     graphviz
     dig
     jq
-    tldr
     bat
     file
     openssl
@@ -138,6 +137,11 @@
   };
 
   programs.lazygit.enable = true;
+
+  programs.tealdeer = {
+    enable = true;
+    settings.updates.auto_update = true;
+  };
 
   programs.btop = {
     enable = true;
