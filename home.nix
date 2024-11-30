@@ -95,6 +95,13 @@
     ];
   };
 
+  programs.micro.enable = true;
+  programs.micro.package = pkgs.micro-with-wl-clipboard;
+  xdg.configFile."micro/bindings.json".text = builtins.toJSON {
+    "Alt-s" = "Save";
+    "Alt-q" = "Quit";
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
