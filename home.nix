@@ -37,6 +37,8 @@
     openssl
     filezilla
     grex
+    nushell
+    nushellPlugins.query
     (import ./spawn-terminal.nix pkgs)
   ];
 
@@ -52,6 +54,7 @@
       jnoortheen.nix-ide
       rust-lang.rust-analyzer
       gruntfuggly.todo-tree
+      thenuprojectcontributors.vscode-nushell-lang
     ];
     userSettings = {
       "diffEditor.ignoreTrimWhitespace" = false;
