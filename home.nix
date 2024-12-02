@@ -46,16 +46,25 @@
     enable = true;
     package = pkgs.vscodium;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions; [
-      serayuzgur.crates
-      mkhl.direnv
-      tamasfe.even-better-toml
-      ecmel.vscode-html-css
-      jnoortheen.nix-ide
-      rust-lang.rust-analyzer
-      gruntfuggly.todo-tree
-      thenuprojectcontributors.vscode-nushell-lang
-    ];
+    extensions = with pkgs.vscode-extensions;
+      [
+        serayuzgur.crates
+        mkhl.direnv
+        tamasfe.even-better-toml
+        ecmel.vscode-html-css
+        jnoortheen.nix-ide
+        rust-lang.rust-analyzer
+        gruntfuggly.todo-tree
+        thenuprojectcontributors.vscode-nushell-lang
+      ]
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "ayu-one-dark";
+          publisher = "faceair";
+          version = "1.1.1";
+          sha256 = "sha256-HOqfEHskNYg8452EXZdt62ch1Yn9xM6tFXEBiw5aioA=";
+        }
+      ];
     userSettings = {
       "diffEditor.ignoreTrimWhitespace" = false;
       "editor.fontFamily" = "Cascadia Code";
@@ -80,6 +89,21 @@
         "todo!"
       ];
       "window.customTitleBarVisibility" = "auto";
+      "workbench.colorTheme" = "Ayu One Dark";
+      "editor.semanticTokenColorCustomizations"."[Ayu One Dark]" = {
+        enabled = true;
+        rules = let
+          gray = {
+            italic = false;
+            foreground = "#ABB2BF";
+          };
+        in {
+          "property:nix" = gray;
+          "parameter:nix" = gray;
+          "variable:nix" = gray;
+          "function:nix".italic = false;
+        };
+      };
     };
     keybindings = [
       {
