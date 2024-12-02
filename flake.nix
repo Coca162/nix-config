@@ -34,11 +34,22 @@
       system = "x86_64-linux";
       config.allowUnfree = true;
     };
+    flake-only = {
+      # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+      nix.registry.nixpkgs.flake = nixpkgs;
+      nix.channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
+
+      # Keep nixPath so we don't have to use flakes for projects
+      nix.nixPath = [
+        "nixpkgs=${nixpkgs}"
+        "rust-overlay=${rust-overlay}"
+      ];
+    };
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nixos-cosmic untuned-pkgs nixpkgs rust-overlay;
+          inherit lanzaboote nixos-cosmic untuned-pkgs;
         };
 
         modules = [
@@ -47,6 +58,7 @@
           ./modules/secureboot.nix
           ./configuration.nix
           ./main
+          flake-only
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -57,14 +69,11 @@
       };
 
       nicetop = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit nixpkgs rust-overlay;
-        };
-
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix
           ./nicetop
+          flake-only
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
