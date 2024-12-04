@@ -11,7 +11,7 @@
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
 
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
