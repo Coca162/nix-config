@@ -56,7 +56,7 @@
       };
     };
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # This value determines the NixOS release from which the default
