@@ -80,6 +80,7 @@
     libreoffice-qt6
     bitwarden-desktop
     obsidian
+    waypipe
   ];
 
   fonts.packages = with pkgs; [
