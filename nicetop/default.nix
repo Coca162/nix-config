@@ -28,7 +28,7 @@
 
   networking.hostName = "nicetop"; # Define your hostname.
 
-  time.timeZone = "Europe/Sofia";
+  time.timeZone = "Europe/London";
 
   services.thermald.enable = true;
 
