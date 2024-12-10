@@ -262,7 +262,7 @@
       "0" = "add volume 5";
     };
     config.screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
-    scripts = with pkgs.mpvScripts; [sponsorblock thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
+    scripts = with pkgs.mpvScripts; [thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
   };
 
   programs.direnv = {
