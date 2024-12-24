@@ -57,6 +57,7 @@
         vadimcn.vscode-lldb
         gruntfuggly.todo-tree
         thenuprojectcontributors.vscode-nushell-lang
+        mhutchie.git-graph
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
