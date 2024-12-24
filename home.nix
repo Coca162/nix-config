@@ -48,7 +48,7 @@
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions;
       [
-        serayuzgur.crates
+        fill-labs.dependi
         mkhl.direnv
         tamasfe.even-better-toml
         ecmel.vscode-html-css
