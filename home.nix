@@ -21,7 +21,7 @@
     kondo
     killall
     ripgrep
-    ffmpeg
+    ffmpeg-full
     wget
     yt-dlp
     scdl
