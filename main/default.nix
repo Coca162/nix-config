@@ -20,7 +20,7 @@
   nixpkgs.overlays = [
     (final: prev: {
       # Software not worth compiling for cuda
-      inherit (untuned-pkgs) blender;
+      inherit (untuned-pkgs) blender krita gimp;
     })
   ];
 
