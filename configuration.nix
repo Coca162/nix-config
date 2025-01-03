@@ -38,7 +38,7 @@
 
   # Enable sound.
   security.rtkit.enable = true;
-  services.pipewire = lib.mkDefault {
+  services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
