@@ -15,6 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/boot".options = ["umask=0077"]; # Make random seed file not world accessible
 
+  boot.supportedFilesystems = ["ntfs"];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
     "vm.swappiness" = 5;
