@@ -39,6 +39,8 @@
     grex
     nushell
     nushellPlugins.query
+    opustags
+    opusTools
     (import ./spawn-terminal.nix pkgs)
   ];
 
