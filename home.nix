@@ -265,7 +265,11 @@
       "9" = "add volume -5";
       "0" = "add volume 5";
     };
-    config.screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
+    config = {
+      screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
+      screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
+      screenshot-format = "png";
+    };
     scripts = with pkgs.mpvScripts; [thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
   };
 
