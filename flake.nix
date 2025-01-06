@@ -30,10 +30,6 @@
   } @ inputs: let
     lanzaboote = inputs.lanzaboote or null;
     nixos-cosmic = inputs.nixos-cosmic or null;
-    untuned-pkgs = import nixpkgs {
-      system = "x86_64-linux";
-      config.allowUnfree = true;
-    };
     flake-only = {
       # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
       nix.registry.nixpkgs.flake = nixpkgs;
@@ -49,7 +45,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lanzaboote nixos-cosmic untuned-pkgs;
+          inherit lanzaboote nixos-cosmic;
         };
 
         modules = [

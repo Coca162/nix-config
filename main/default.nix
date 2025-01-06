@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  untuned-pkgs,
   ...
 }: {
   imports = [
@@ -18,7 +17,11 @@
   # Cuda
   nixpkgs.config.cudaSupport = true;
   nixpkgs.overlays = [
-    (final: prev: {
+    (final: prev: let
+      untuned-pkgs = import pkgs.path {
+        system = "x86_64-linux";
+      };
+    in {
       # Software not worth compiling for cuda
       inherit (untuned-pkgs) blender krita gimp;
     })
