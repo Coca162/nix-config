@@ -169,10 +169,45 @@
     };
   };
 
-  programs.zellij = {
-    enable = true;
-    settings.default_layout = "compact";
-  };
+  programs.zellij.enable = true;
+  xdg.configFile."zellij/layouts/default.kdl".text = ''
+    layout {
+        default_tab_template {
+            children
+            pane size=1 borderless=true {
+                plugin location="compact-bar"
+            }
+        }
+
+        tab focus=true name="Main" { pane; }
+
+        swap_tiled_layout name="horizontal extra" {
+            tab {
+                pane {
+                    pane stacked=true { children; }
+                    pane; pane; pane;
+                }
+                pane
+            }
+        }
+
+        swap_tiled_layout name="horizontal" {
+            tab {
+                pane stacked=true { children; }
+                pane; pane;
+            }
+        }
+
+        swap_tiled_layout name="vertical" {
+            tab max_panes=9 {
+                pane split_direction="vertical" { pane; pane; }
+                pane split_direction="vertical" { pane; pane; }
+                pane split_direction="vertical" { pane; pane; }
+                pane split_direction="vertical" { pane; pane; }
+            }
+        }
+    }
+  '';
 
   programs.lazygit.enable = true;
 
