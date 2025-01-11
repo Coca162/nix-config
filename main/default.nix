@@ -12,6 +12,17 @@
 
   time.timeZone = "Europe/Sofia";
 
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  users.users.coca.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbKRrvV2yAvqGGMb314npHVbof1wy20ZrIxYXDPmgoD"
+  ];
+  services.fail2ban = {
+    enable = true;
+    maxretry = 4;
+    bantime-increment.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [nvtopPackages.nvidia virtiofsd];
 
   # Cuda
