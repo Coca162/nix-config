@@ -15,7 +15,6 @@
     reaper
     audacity
     alejandra
-    nil
     tokei
     eza
     kondo
@@ -77,8 +76,8 @@
       "editor.inlayHints.enabled" = "onUnlessPressed";
       "git.autofetch" = true;
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
-      "nix.serverSettings".nil.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--"];
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+      "nix.serverSettings".nixd.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--"];
       "[nix]"."editor.formatOnSave" = true;
       "rust-analyzer.check.command" = "clippy";
       "terminal.integrated.fontFamily" = "Monocraft";
