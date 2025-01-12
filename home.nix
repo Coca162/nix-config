@@ -36,8 +36,6 @@
     openssl
     filezilla
     grex
-    nushell
-    nushellPlugins.query
     opustags
     opusTools
     (import ./spawn-terminal.nix pkgs)
@@ -150,6 +148,11 @@
       loc = "tokei";
       neofetch = "hyfetch";
     };
+  };
+
+  programs.nushell = {
+    enable = true;
+    plugins = with pkgs.nushellPlugins; [query];
   };
 
   programs.alacritty = {
