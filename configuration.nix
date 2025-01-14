@@ -82,6 +82,7 @@
     bitwarden-desktop
     obsidian
     waypipe
+    sshfs
   ];
 
   fonts.packages = with pkgs; [
