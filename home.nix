@@ -21,6 +21,7 @@
     killall
     ripgrep
     ffmpeg-full
+    ab-av1
     wget
     yt-dlp
     scdl
