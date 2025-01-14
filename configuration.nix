@@ -116,7 +116,10 @@
 
   programs.ssh.enableAskPassword = true;
   programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
-  environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
+  environment.variables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+    MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
+  };
 
   programs.steam.enable = true;
 
