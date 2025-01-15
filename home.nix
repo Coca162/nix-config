@@ -148,6 +148,7 @@
       grep = "rg";
       loc = "tokei";
       neofetch = "hyfetch";
+      qdl = ''yt-dlp --cookies-from-browser firefox -o "$XDG_RUNTIME_DIR/yt-dlp-audio/%(title)s" --exec "wl-copy -t text/uri-list file://%(filepath)s"'';
     };
   };
 
