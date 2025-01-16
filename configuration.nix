@@ -79,6 +79,7 @@
     fatrace
     blender
     libreoffice-qt6
+    onlyoffice-bin
     bitwarden-desktop
     obsidian
     waypipe
