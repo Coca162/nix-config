@@ -4,9 +4,7 @@
   pkgs,
   lanzaboote ? null,
   ...
-}:
-if lanzaboote != null
-then {
+}: {
   imports = [lanzaboote.nixosModules.lanzaboote];
 
   environment.systemPackages = [
@@ -25,4 +23,3 @@ then {
     pkiBundle = "/etc/secureboot";
   };
 }
-else {}
