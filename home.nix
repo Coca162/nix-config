@@ -151,7 +151,7 @@ in {
       grep = "rg";
       loc = "tokei";
       neofetch = "hyfetch";
-      qdl = ''yt-dlp --cookies-from-browser firefox -o "$XDG_RUNTIME_DIR/yt-dlp-audio/%(title)s" --exec "wl-copy -t text/uri-list file://%(filepath)s"'';
+      qdl = ''yt-dlp --cookies-from-browser firefox -o "$XDG_RUNTIME_DIR/yt-dlp-audio/%(title)s.%(ext)s" --exec "nu -c 'wl-copy -t text/uri-list (\"file://%(filepath)s\" | url encode)'"'';
     };
   };
 
