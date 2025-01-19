@@ -53,6 +53,10 @@
     shell = pkgs.fish;
   };
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.coca = import ./home.nix;
+
   environment.systemPackages = with pkgs; [
     gparted
     qdirstat

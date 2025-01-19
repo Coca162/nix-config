@@ -28,55 +28,37 @@
     rust-overlay,
     ...
   } @ inputs: let
-    lanzaboote = inputs.lanzaboote or null;
-    nixos-cosmic = inputs.nixos-cosmic or null;
-    flake-only = {
-      # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
-      nix.registry.nixpkgs.flake = nixpkgs;
-      nix.channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
-
-      # Keep nixPath so we don't have to use flakes for projects
-      nix.nixPath = [
-        "nixpkgs=${nixpkgs}"
-        "rust-overlay=${rust-overlay}"
-      ];
+    specialArgs = {
+      lanzaboote = inputs.lanzaboote or null;
+      nixos-cosmic = inputs.nixos-cosmic or null;
     };
+    shared-modules = [
+      ./configuration.nix
+      lix-module.nixosModules.default
+      home-manager.nixosModules.home-manager
+      {
+        # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+        nix.registry.nixpkgs.flake = nixpkgs;
+        nix.channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
+
+        # Keep nixPath so we don't have to use flakes for projects
+        nix.nixPath = [
+          "nixpkgs=${nixpkgs}"
+          "rust-overlay=${rust-overlay}"
+        ];
+      }
+      ./modules/cosmic.nix
+    ];
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit lanzaboote nixos-cosmic;
-        };
-
-        modules = [
-          lix-module.nixosModules.default
-          ./modules/cosmic.nix
-          ./modules/secureboot.nix
-          ./configuration.nix
-          ./main
-          flake-only
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.coca = import ./home.nix;
-          }
-        ];
+        inherit specialArgs;
+        modules = [./main ./modules/secureboot.nix] ++ shared-modules;
       };
 
       nicetop = nixpkgs.lib.nixosSystem {
-        modules = [
-          lix-module.nixosModules.default
-          ./configuration.nix
-          ./nicetop
-          flake-only
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.coca = import ./home.nix;
-          }
-        ];
+        inherit specialArgs;
+        modules = [./nicetop] ++ shared-modules;
       };
     };
   };
