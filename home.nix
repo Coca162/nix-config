@@ -4,43 +4,46 @@
   lib,
   osConfig ? null,
   ...
-}: {
+}: let
+  local-pkgs = pkgs.callPackage ./packages {};
+in {
   /*
   The home.stateVersion option does not have a default and must be set, DO NOT CHANGE WITHOUT CARE
   */
   home.stateVersion = "23.11";
 
-  home.packages = with pkgs; [
-    firefox
-    reaper
-    audacity
-    alejandra
-    tokei
-    eza
-    kondo
-    killall
-    ripgrep
-    ffmpeg-full
-    ab-av1
-    wget
-    yt-dlp
-    scdl
-    inetutils
-    du-dust
-    nix-du
-    nix-inspect
-    graphviz
-    dig
-    jq
-    bat
-    file
-    openssl
-    filezilla
-    grex
-    opustags
-    opusTools
-    (import ./spawn-terminal.nix pkgs)
-  ];
+  home.packages = with pkgs;
+    [
+      firefox
+      reaper
+      audacity
+      alejandra
+      tokei
+      eza
+      kondo
+      killall
+      ripgrep
+      ffmpeg-full
+      ab-av1
+      wget
+      yt-dlp
+      scdl
+      inetutils
+      du-dust
+      nix-du
+      nix-inspect
+      graphviz
+      dig
+      jq
+      bat
+      file
+      openssl
+      filezilla
+      grex
+      opustags
+      opusTools
+    ]
+    ++ local-pkgs.scripts;
 
   programs.vscode = {
     enable = true;
@@ -309,7 +312,7 @@
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
       screenshot-format = "png";
     };
-    scripts = with pkgs.mpvScripts; [thumbfast (import ./thumbfast-osc.nix pkgs) visualizer];
+    scripts = with pkgs.mpvScripts; [visualizer thumbfast local-pkgs.thumbfast-osc];
   };
 
   programs.direnv = {
