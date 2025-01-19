@@ -7,4 +7,5 @@
   scripts = [spawn-terminal];
 
   thumbfast-osc = import ./thumbfast-osc.nix pkgs;
+  pguint = callPackage ./pguint.nix {};
 }
