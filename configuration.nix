@@ -120,6 +120,7 @@
     };
   };
 
+  programs.ssh.package = pkgs.openssh_hpn;
   programs.ssh.enableAskPassword = true;
   programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
   environment.variables = {
