@@ -206,11 +206,17 @@ in {
         }
 
         swap_tiled_layout name="vertical" {
-            tab max_panes=9 {
-                pane split_direction="vertical" { pane; pane; }
-                pane split_direction="vertical" { pane; pane; }
-                pane split_direction="vertical" { pane; pane; }
-                pane split_direction="vertical" { pane; pane; }
+            tab max_panes=4 {
+                pane split_direction="vertical" {
+                  pane
+                  pane { pane; pane; }
+                }
+            }
+            tab {
+                pane split_direction="vertical" {
+                  pane
+                  pane stacked=true { children; }
+                }
             }
         }
     }
