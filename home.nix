@@ -177,6 +177,14 @@ in {
   };
 
   programs.zellij.enable = true;
+  xdg.configFile."zellij/config.kdl".text = ''
+    keybinds {
+        unbind "Ctrl q"
+        shared_except "locked" {
+            bind "Ctrl Alt q" { Quit; }
+        }
+    }
+  '';
   xdg.configFile."zellij/layouts/default.kdl".text = ''
     layout {
         default_tab_template {
