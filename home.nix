@@ -42,6 +42,7 @@ in {
       grex
       opustags
       opusTools
+      trashy
     ]
     ++ local-pkgs.scripts;
 
@@ -140,7 +141,6 @@ in {
         eval (zellij setup --generate-auto-start fish | string collect)
       end
     '';
-    functions.trash = "function trash; mv $argv /tmp/$argv; end";
     shellAliases = rec {
       ls = "eza -a";
       lsa = "eza -ambhlU --icons";
