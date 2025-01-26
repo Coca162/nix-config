@@ -88,6 +88,7 @@
     obsidian
     waypipe
     sshfs
+    btrfs-progs
   ];
 
   fonts.packages = with pkgs; [
