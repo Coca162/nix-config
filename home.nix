@@ -358,10 +358,4 @@ in {
   programs.fzf = {
     enable = true;
   };
-
-  home.file.".cargo/config.toml".text = ''
-    [target.x86_64-unknown-linux-gnu]
-    linker = "${pkgs.llvmPackages.clangUseLLVM}/bin/clang"
-    rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold", "-C", "target-cpu=native"]
-  '';
 }
