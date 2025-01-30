@@ -8,6 +8,12 @@
     ./hardware-configuration.nix
   ];
 
+  fileSystems."/home/coca" = {
+    device = "/dev/disk/by-uuid/a0e08bb3-18b0-4ee8-a402-0e00f9220a68";
+    fsType = "btrfs";
+    options = ["subvol=nixos-home"];
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
 
   time.timeZone = "Europe/Sofia";
