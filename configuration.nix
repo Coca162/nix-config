@@ -138,6 +138,8 @@
     keep-derivations = true
   ''; # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
 
+  system.rebuild.enableNg = true;
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
