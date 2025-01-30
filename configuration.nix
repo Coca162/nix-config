@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
 {
   pkgs,
   lib,
@@ -28,24 +25,6 @@
     LC_MEASUREMENT = "bg_BG.UTF-8"; # Imperial metrics?! Couldn't be me.
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = [pkgs.kdePackages.elisa];
-  programs.xwayland.enable = true;
-
-  # Enable sound.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.coca = {
     isNormalUser = true;
@@ -55,58 +34,24 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.coca = import ./home.nix;
+  home-manager.users.coca = lib.mkDefault (import ./home.nix);
 
   environment.systemPackages = with pkgs; [
-    gparted
-    qdirstat
-    kate
-    osu-lazer-bin
-    bitwig-studio
-    pinta
-    gimp
-    krita
-    kdePackages.kdenlive
-    kdePackages.kclock
-    kdePackages.kruler
-    inkscape
-    prismlauncher
-    qbittorrent
-    qt6.qtimageformats
     wl-clipboard-rs
     nvd
     nix-output-monitor
-    aseprite
-    obs-studio
-    wayfarer # Spectacle recording is broken for regions/windows
     lsof
     fatrace
-    blender
-    libreoffice-qt6
-    onlyoffice-bin
-    bitwarden-desktop
-    obsidian
     waypipe
     sshfs
     btrfs-progs
   ];
 
-  fonts.packages = with pkgs; [
-    google-fonts # EVER FONT IN EXISTENCE!!!
-    cascadia-code
-    monocraft
-    miracode
-  ];
-
   programs.fish.enable = true;
   programs.nix-index.enable = true;
   programs.command-not-found.enable = false;
+  environment.variables.MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
 
-  programs.kdeconnect.enable = true;
-
-  programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
-  services.dbus.packages = [pkgs.pinentry-qt];
   programs.git = {
     enable = true;
     config = {
@@ -122,14 +67,6 @@
   };
 
   programs.ssh.package = pkgs.openssh_hpn;
-  programs.ssh.enableAskPassword = true;
-  programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
-  environment.variables = {
-    SSH_ASKPASS_REQUIRE = "prefer";
-    MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
-  };
-
-  programs.steam.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -139,10 +76,4 @@
   ''; # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
 
   system.rebuild.enableNg = true;
-
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 }

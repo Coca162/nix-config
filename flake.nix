@@ -47,18 +47,23 @@
           "rust-overlay=${rust-overlay}"
         ];
       }
-      ./modules/cosmic.nix
     ];
+    shared-graphical =
+      [
+        ./modules/cosmic.nix
+        ./graphical.nix
+      ]
+      ++ shared-modules;
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = [./main ./modules/secureboot.nix] ++ shared-modules;
+        modules = [./main ./modules/secureboot.nix] ++ shared-graphical;
       };
 
       nicetop = nixpkgs.lib.nixosSystem {
         inherit specialArgs;
-        modules = [./nicetop] ++ shared-modules;
+        modules = [./nicetop] ++ shared-graphical;
       };
     };
   };

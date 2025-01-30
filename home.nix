@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   osConfig ? null,
   ...
 }: let
@@ -15,8 +14,6 @@ in {
   home.packages = with pkgs;
     [
       firefox
-      reaper
-      audacity
       alejandra
       tokei
       eza
@@ -38,92 +35,12 @@ in {
       bat
       file
       openssl
-      filezilla
       grex
       opustags
       opusTools
       trashy
     ]
     ++ local-pkgs.scripts;
-
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions;
-      [
-        fill-labs.dependi
-        mkhl.direnv
-        tamasfe.even-better-toml
-        ecmel.vscode-html-css
-        jnoortheen.nix-ide
-        rust-lang.rust-analyzer
-        vadimcn.vscode-lldb
-        gruntfuggly.todo-tree
-        thenuprojectcontributors.vscode-nushell-lang
-        mhutchie.git-graph
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "ayu-one-dark";
-          publisher = "faceair";
-          version = "1.1.1";
-          sha256 = "sha256-HOqfEHskNYg8452EXZdt62ch1Yn9xM6tFXEBiw5aioA=";
-        }
-      ];
-    userSettings = {
-      "diffEditor.ignoreTrimWhitespace" = false;
-      "editor.fontFamily" = "Cascadia Code";
-      "editor.fontLigatures" = "'zero'";
-      "editor.fontSize" = 15;
-      "editor.inlayHints.enabled" = "onUnlessPressed";
-      "git.autofetch" = true;
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-      "nix.serverSettings".nixd.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--"];
-      "[nix]"."editor.formatOnSave" = true;
-      "rust-analyzer.check.command" = "clippy";
-      "terminal.integrated.fontFamily" = "Monocraft";
-      "todo-tree.general.tags" = [
-        "BUG"
-        "HACK"
-        "FIXME"
-        "TODO"
-        "XXX"
-        "[ ]"
-        "[x]"
-        "todo!"
-      ];
-      "window.customTitleBarVisibility" = "auto";
-      "workbench.colorTheme" = "Ayu One Dark";
-      "editor.semanticTokenColorCustomizations"."[Ayu One Dark]" = {
-        enabled = true;
-        rules = let
-          gray = {
-            italic = false;
-            foreground = "#ABB2BF";
-          };
-        in {
-          "property:nix" = gray;
-          "parameter:nix" = gray;
-          "variable:nix" = gray;
-          "function:nix".italic = false;
-        };
-      };
-    };
-    keybindings = [
-      {
-        key = "ctrl+r";
-        command = "editor.action.rename";
-        when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
-      }
-      {
-        key = "f2";
-        command = "-editor.action.rename";
-        when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
-      }
-    ];
-  };
 
   programs.micro.enable = true;
   programs.micro.package = pkgs.micro-with-wl-clipboard;
@@ -158,22 +75,6 @@ in {
   programs.nushell = {
     enable = true;
     plugins = with pkgs.nushellPlugins; [query];
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        size = 11;
-        normal.family = "monocraft";
-      };
-      env = {
-        ZELLIJ_AUTO_ATTACH = "true";
-        ENABLE_ZELLIJ = "true";
-      };
-      terminal.shell.program = "${pkgs.fish}/bin/fish";
-      window.opacity = 0.85;
-    };
   };
 
   programs.zellij.enable = true;
