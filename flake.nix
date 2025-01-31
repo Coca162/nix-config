@@ -60,6 +60,11 @@
         inherit specialArgs;
         modules = [./nicetop] ++ shared-graphical;
       };
+
+      tiberius = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = [./tiberius] ++ shared-modules;
+      };
     };
   };
 }
