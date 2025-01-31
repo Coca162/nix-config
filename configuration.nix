@@ -7,11 +7,6 @@
 
   system.tools.nixos-option.enable = false; # Complains about Lix or something
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  fileSystems."/boot".options = ["umask=0077"]; # Make random seed file not world accessible
-
   boot.supportedFilesystems = ["ntfs"];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;

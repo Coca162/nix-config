@@ -9,6 +9,11 @@
     ./hardware-configuration.nix
   ];
 
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  fileSystems."/boot".options = ["umask=0077"]; # Make random seed file not world accessible
+
   # Enable networking
   networking.networkmanager.enable = true;
 
