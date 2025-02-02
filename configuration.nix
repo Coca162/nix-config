@@ -66,9 +66,11 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.extraOptions = ''
+    trusted-users = @wheel
+    # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
     keep-outputs = true
     keep-derivations = true
-  ''; # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
+  '';
 
   system.rebuild.enableNg = true;
 }
