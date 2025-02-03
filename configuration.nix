@@ -2,7 +2,24 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  sources = import ./npins;
+in {
+  imports = [
+    "${sources.home-manager}/nixos"
+    (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
+  ];
+
+  # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this config.
+  nix.registry.nixpkgs.flake = sources.nixpkgs;
+
+  # remove nix-channel related tools & configs, we use system-wide npins instead.
+  nix.channel.enable = false;
+  nix.nixPath = [
+    "nixpkgs=${sources.nixpkgs}"
+    "rust-overlay=${sources.rust-overlay}"
+  ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   system.tools.nixos-option.enable = false; # Complains about Lix or something
@@ -40,6 +57,7 @@
     waypipe
     sshfs
     btrfs-progs
+    npins
   ];
 
   programs.fish.enable = true;
