@@ -61,7 +61,7 @@
     aseprite
     obs-studio
     wayfarer # Spectacle recording is a bit unreliable
-    blender
+    # blender BROKEN
     libreoffice-qt6
     onlyoffice-bin
     bitwarden-desktop
@@ -86,7 +86,7 @@
           ecmel.vscode-html-css
           jnoortheen.nix-ide
           rust-lang.rust-analyzer
-          vadimcn.vscode-lldb
+          # vadimcn.vscode-lldb BROKEN
           gruntfuggly.todo-tree
           thenuprojectcontributors.vscode-nushell-lang
           mhutchie.git-graph
