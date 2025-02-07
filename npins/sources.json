@@ -63,6 +63,18 @@
       "revision": "347fb01821c3cd8d54e563d244a599c1e27a393d",
       "url": "https://github.com/oxalica/rust-overlay/archive/347fb01821c3cd8d54e563d244a599c1e27a393d.tar.gz",
       "hash": "1xmad7a483sp7xn1z957acicv8jizdl565caipm50hc850l74x8c"
+    },
+    "unpins": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Coca162",
+        "repo": "npins"
+      },
+      "branch": "main",
+      "revision": "df0580db49da2849f1fa7165cd80e910cc0ff9fe",
+      "url": "https://github.com/Coca162/npins/archive/df0580db49da2849f1fa7165cd80e910cc0ff9fe.tar.gz",
+      "hash": "03hpvjn3xclz1wxbhq17acn6igqqz13fck239ljmxrgmdgbpxvb5"
     }
   },
   "version": 3
