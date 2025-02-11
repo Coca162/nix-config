@@ -78,6 +78,7 @@ in {
   };
 
   programs.zellij.enable = true;
+  programs.zellij.enableFishIntegration = false;
   xdg.configFile."zellij/config.kdl".text = ''
     keybinds {
         unbind "Ctrl q"
