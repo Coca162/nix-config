@@ -50,6 +50,10 @@
     variant = "";
   };
 
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  # virtualisation.spiceUSBRedirection.enable = true;
+
   users.users.coca.extraGroups = ["networkmanager"];
 
   networking.hostName = "nicetop"; # Define your hostname.
@@ -58,7 +62,7 @@
 
   services.thermald.enable = true;
 
-  environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
+  environment.systemPackages = with pkgs; [nvtopPackages.nvidia virtiofsd];
 
   services.xserver.videoDrivers = ["nvidia"];
 
