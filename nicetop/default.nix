@@ -2,8 +2,11 @@
   config,
   pkgs,
   lib,
+  sources,
   ...
-}: {
+}: let
+  diski = import sources.diski {inherit pkgs;};
+in {
   imports = [
     ../configuration.nix
     ../graphical.nix
@@ -27,7 +30,7 @@
   ];
 
   services.udev.extraRules = ''
-    SUBSYSTEM=="block", ENV{ID_FS_UUID}=="a0e08bb3-18b0-4ee8-a402-0e00f9220a68", ENV{UDISKS_IGNORE}="1"
+    ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="a0e08bb3-18b0-4ee8-a402-0e00f9220a68", ENV{UDISKS_IGNORE}="1", ENV{SYSTEMD_USER_WANTS}+="disk_status_external.service"
   '';
 
   systemd.automounts = [
@@ -35,9 +38,17 @@
       description = "Automount for btrfs 2TB external drive";
       where = "/data/btrfs-external";
       wantedBy = ["multi-user.target"];
-      automountConfig.TimeoutIdleSec = 10;
+      automountConfig.TimeoutIdleSec = 5;
     }
   ];
+
+  systemd.user.services.disk_status_external = {
+    bindsTo = [''dev-disk-by\x2duuid-a0e08bb3\x2d18b0\x2d4ee8\x2da402\x2d0e00f9220a68.device''];
+    after = [''dev-disk-by\x2duuid-a0e08bb3\x2d18b0\x2d4ee8\x2da402\x2d0e00f9220a68.device''];
+    unitConfig.ConditionUser = "coca";
+    serviceConfig.ExecStart = ''${lib.getExe diski} data-btrfs\\x2dexternal "Btrfs External"'';
+    serviceConfig.KillSignal = "SIGINT";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;

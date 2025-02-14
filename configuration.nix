@@ -10,6 +10,8 @@ in {
     (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
   ];
 
+  _module.args = {inherit sources;};
+
   # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this config.
   nix.registry.nixpkgs.flake = sources.nixpkgs;
 
