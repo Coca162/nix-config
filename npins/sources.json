@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "4a535f624d79585765e07e6df938167d4582cd31",
-      "url": "https://github.com/Coca162/diski/archive/4a535f624d79585765e07e6df938167d4582cd31.tar.gz",
-      "hash": "1lch2bzi86srjz1mmq94dmsmrnyrglckpzvslnjayq8kvfyfapd7"
+      "revision": "2c955c6ac7859d6f0a5b735bb98de5c4e85e82eb",
+      "url": "https://github.com/Coca162/diski/archive/2c955c6ac7859d6f0a5b735bb98de5c4e85e82eb.tar.gz",
+      "hash": "0xds7yr0gnfccnxw4iryg3fjak4r6knpbyz13vmdxf5lhzmmlrvm"
     },
     "home-manager": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5031c6d2978109336637977c165f82aa49fa16a7",
-      "url": "https://github.com/nix-community/home-manager/archive/5031c6d2978109336637977c165f82aa49fa16a7.tar.gz",
-      "hash": "03kh8hmdqjvawxngxbvr9js21dvyi2lv1sw5qhzp5qa1cpgmw4rp"
+      "revision": "9daae9a67af7b4d341e2c806fa274a9c0925d7cf",
+      "url": "https://github.com/nix-community/home-manager/archive/9daae9a67af7b4d341e2c806fa274a9c0925d7cf.tar.gz",
+      "hash": "1966fbgi0yvk7cf1r1myjwsyhphy0lwn2b5bxxg7a3bfvrf43bl8"
     },
     "lix": {
       "type": "GitRelease",
