@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -117,8 +121,8 @@
         "editor.inlayHints.enabled" = "onUnlessPressed";
         "git.autofetch" = true;
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-        "nix.serverSettings".nixd.formatting.command = ["${pkgs.alejandra}/bin/alejandra" "--"];
+        "nix.serverPath" = "${lib.getExe pkgs.nil}";
+        "nix.serverSettings".nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
         "[nix]"."editor.formatOnSave" = true;
         "rust-analyzer.check.command" = "clippy";
         "terminal.integrated.fontFamily" = "Monocraft";
