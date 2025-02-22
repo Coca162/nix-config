@@ -73,17 +73,6 @@
     reaper
     audacity
     filezilla
-    (let
-      pkgs = import (builtins.fetchTarball {
-        # Descriptive name to make the store path easier to identify
-        name = "nixos-24.11";
-        # Commit hash for nixos-unstable as of 2018-09-12
-        url = "https://github.com/nixos/nixpkgs/archive/d9d87c51960050e89c79e4025082ed965e770d68.tar.gz";
-        # Hash obtained using `nix-prefetch-url --unpack <url>`
-        sha256 = "1na5ljrqhbq7x7zln7gi8588nwwnsgb8qlid2z9zckjpsyjipy3c";
-      }) {};
-    in
-      pkgs.termusic)
   ];
 
   home-manager.users.coca = {
