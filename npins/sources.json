@@ -69,6 +69,19 @@
       "url": "https://github.com/NixOS/nixpkgs/archive/8bb37161a0488b89830168b81c48aed11569cb93.tar.gz",
       "hash": "03p2nvghih37xm5v8v5wlcsilpx0xdi21v7iyfrvlm80h77x5xpv"
     },
+    "fix-rust-analyzer": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "DarkKirb",
+        "repo": "nixpkgs"
+      },
+      "branch": "fix-rust-analyzer",
+      "submodules": false,
+      "revision": "e5719fa13af464ec21c2d7eb57efd86cb6e2d015",
+      "url": "https://github.com/DarkKirb/nixpkgs/archive/e5719fa13af464ec21c2d7eb57efd86cb6e2d015.tar.gz",
+      "hash": "1ckd4hrp10fg5mwwj20k2wml86ssa1ka9swv2i2vbsakf97m2chm"
+    },
     "rust-overlay": {
       "type": "Git",
       "repository": {

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  sources,
   ...
 }: {
   services.displayManager.sddm = {
@@ -99,7 +100,7 @@
           tamasfe.even-better-toml
           ecmel.vscode-html-css
           jnoortheen.nix-ide
-          rust-lang.rust-analyzer
+          ((import sources.fix-rust-analyzer {}).vscode-extensions.rust-lang.rust-analyzer)
           # vadimcn.vscode-lldb BROKEN
           gruntfuggly.todo-tree
           thenuprojectcontributors.vscode-nushell-lang
