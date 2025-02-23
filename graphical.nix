@@ -82,6 +82,9 @@
       enable = true;
       package = pkgs.vscodium;
       mutableExtensionsDir = false;
+    };
+
+    programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions;
         [
           fill-labs.dependi
@@ -103,6 +106,7 @@
             sha256 = "sha256-HOqfEHskNYg8452EXZdt62ch1Yn9xM6tFXEBiw5aioA=";
           }
         ];
+
       userSettings = {
         "diffEditor.ignoreTrimWhitespace" = false;
         "editor.fontFamily" = "Cascadia Code";
@@ -143,6 +147,7 @@
           };
         };
       };
+
       keybindings = [
         {
           key = "ctrl+r";
