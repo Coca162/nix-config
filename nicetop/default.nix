@@ -62,7 +62,10 @@ in {
   };
 
   # programs.virt-manager.enable = true;
-  # virtualisation.libvirtd.enable = true;
+  # virtualisation.libvirtd = {
+  #   enable = true;
+  #   qemu.vhostUserPackages = with pkgs; [virtiofsd];
+  # };
   # virtualisation.spiceUSBRedirection.enable = true;
 
   users.users.coca.extraGroups = ["networkmanager"];
@@ -73,7 +76,7 @@ in {
 
   services.thermald.enable = true;
 
-  environment.systemPackages = with pkgs; [nvtopPackages.nvidia virtiofsd];
+  environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
 
   services.xserver.videoDrivers = ["nvidia"];
 
