@@ -77,6 +77,35 @@
   home-manager.users.coca = {
     imports = [./home.nix];
 
+    programs.zed-editor = {
+      enable = true;
+      extensions = ["nix" "toml" "nu" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
+      extraPackages = with pkgs; [nil nixd alejandra];
+      userSettings = {
+        lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
+        load_direnv = "direct";
+        languages.Nix.format_on_save = "off";
+        features.copilot = false;
+        features.inline_completion_provider = "none";
+        assistant.enabled = false;
+        assistant.version = "1";
+        assistant.button = false;
+        assistant_v2.enabled = false;
+        notification_panel.button = false;
+        file_scan_exclusions = [
+          # "**/.git"
+          "**/.svn"
+          "**/.hg"
+          "**/.jj"
+          "**/CVS"
+          "**/.DS_Store"
+          "**/Thumbs.db"
+          "**/.classpath"
+          "**/.settings"
+        ];
+      };
+    };
+
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
