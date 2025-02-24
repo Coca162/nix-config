@@ -129,6 +129,7 @@
           "[x]"
           "todo!"
         ];
+        "files.exclude"."**/.git" = false;
         "window.customTitleBarVisibility" = "auto";
         "workbench.colorTheme" = "Ayu One Dark";
         "editor.semanticTokenColorCustomizations"."[Ayu One Dark]" = {
