@@ -48,12 +48,12 @@
   environment.systemPackages = with pkgs; [
     gparted
     qdirstat
-    kate
     osu-lazer-bin
     bitwig-studio
     pinta
     gimp
     krita
+    kdePackages.kate
     kdePackages.kdenlive
     kdePackages.kclock
     kdePackages.kruler
