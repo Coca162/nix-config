@@ -86,14 +86,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Coca162",
+        "owner": "andir",
         "repo": "npins"
       },
-      "branch": "main",
+      "branch": "master",
       "submodules": false,
-      "revision": "74f36dea348f0eb082a59adbdd7f434b27bf17f7",
-      "url": "https://github.com/Coca162/npins/archive/74f36dea348f0eb082a59adbdd7f434b27bf17f7.tar.gz",
-      "hash": "18b26g0ykb3wkd5g0fs91r1561mck0k789nzd7s3iz5hdc73p1nr"
+      "revision": "6438463c54b9b242f72da4c7bf8ac60bd5cfc6b5",
+      "url": "https://github.com/andir/npins/archive/6438463c54b9b242f72da4c7bf8ac60bd5cfc6b5.tar.gz",
+      "hash": "0fqmn8yxw2fxbbnx9k346qlp9rp8wimvwsh86j1wmq8w0q0fxwn7"
     }
   },
   "version": 4
