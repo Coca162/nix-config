@@ -103,6 +103,10 @@
           "**/.classpath"
           "**/.settings"
         ];
+        buffer_font_family = "Cascadia Code";
+        buffer_font_weight = 350;
+        buffer_font_features.zero = true; # Features do not work on Linux
+        terminal.font_family = "Monocraft";
       };
     };
 
