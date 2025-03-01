@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "343646e092696d94b6f22b6875ae685756fd4cf0",
-      "url": "https://github.com/nix-community/home-manager/archive/343646e092696d94b6f22b6875ae685756fd4cf0.tar.gz",
-      "hash": "07wb85vd5vagk744wmzhv3yvn4wrzq3j5b1j76lrl62w1fzg6kz9"
+      "revision": "30da4310935450ea38931abf775ffe1dfab15355",
+      "url": "https://github.com/nix-community/home-manager/archive/30da4310935450ea38931abf775ffe1dfab15355.tar.gz",
+      "hash": "0124h1gv9y1z4aa6v44xcxppa5p3c647m4b4mjy9a9vn0a8x40cw"
     },
     "lix": {
       "type": "GitRelease",
@@ -65,9 +65,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "5135c59491985879812717f4c9fea69604e7f26f",
-      "url": "https://github.com/NixOS/nixpkgs/archive/5135c59491985879812717f4c9fea69604e7f26f.tar.gz",
-      "hash": "09qy7zv80bkd9ighsw0bdxjq70dw3qjnyvg7il1fycrsgs5x1gan"
+      "revision": "6313551cd05425cd5b3e63fe47dbc324eabb15e4",
+      "url": "https://github.com/NixOS/nixpkgs/archive/6313551cd05425cd5b3e63fe47dbc324eabb15e4.tar.gz",
+      "hash": "0fxw15gia9cc72spsqf1870bggp8gx694cr2g8hspm3jbj87xr0g"
     },
     "rust-overlay": {
       "type": "Git",
@@ -78,9 +78,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d342e8b5fd88421ff982f383c853f0fc78a847ab",
-      "url": "https://github.com/oxalica/rust-overlay/archive/d342e8b5fd88421ff982f383c853f0fc78a847ab.tar.gz",
-      "hash": "1hrbc8hg0vmg6bwd30kmyi1hy9g0vm0hs197jlfqlsv8nr14y9yx"
+      "revision": "bbac9527bc6b28b6330b13043d0e76eac11720dc",
+      "url": "https://github.com/oxalica/rust-overlay/archive/bbac9527bc6b28b6330b13043d0e76eac11720dc.tar.gz",
+      "hash": "1g81sgbk0jkm78499x03a82myjml77gyxibk8ccr382gfsnigshn"
     },
     "unpins": {
       "type": "Git",
@@ -91,9 +91,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6438463c54b9b242f72da4c7bf8ac60bd5cfc6b5",
-      "url": "https://github.com/andir/npins/archive/6438463c54b9b242f72da4c7bf8ac60bd5cfc6b5.tar.gz",
-      "hash": "0fqmn8yxw2fxbbnx9k346qlp9rp8wimvwsh86j1wmq8w0q0fxwn7"
+      "revision": "c32f43e1b618a272cf999c9dde628d3bee96784b",
+      "url": "https://github.com/andir/npins/archive/c32f43e1b618a272cf999c9dde628d3bee96784b.tar.gz",
+      "hash": "0z8jlmw3pk79ff1w91cd29jqj2qs9dx7s7nvykggnfq89x9a86lx"
     }
   },
   "version": 4
