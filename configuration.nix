@@ -85,7 +85,22 @@ in {
 
   programs.ssh.package = pkgs.openssh_hpn;
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "osu-lazer-bin"
+      "bitwig-studio-unwrapped"
+      "aseprite" # Source available
+      "obsidian"
+      "reaper"
+      "steam"
+      "steam-unwrapped"
+    ]
+    # TODO: Find a better way to do this
+    || ((pkg.meta ? maintainers) && pkg.meta.maintainers == pkgs.lib.teams.cuda.members);
+
+  nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda];
 
   nix.extraOptions = ''
     trusted-users = @wheel

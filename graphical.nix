@@ -119,7 +119,6 @@
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions;
         [
-          fill-labs.dependi
           mkhl.direnv
           tamasfe.even-better-toml
           ecmel.vscode-html-css
@@ -128,7 +127,6 @@
           # vadimcn.vscode-lldb BROKEN
           gruntfuggly.todo-tree
           thenuprojectcontributors.vscode-nushell-lang
-          mhutchie.git-graph
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -136,6 +134,12 @@
             publisher = "faceair";
             version = "1.1.1";
             sha256 = "sha256-HOqfEHskNYg8452EXZdt62ch1Yn9xM6tFXEBiw5aioA=";
+          }
+          {
+            name = "crates-io";
+            publisher = "BarbossHack";
+            version = "0.7.3";
+            sha256 = "sha256-eTdCVejiVDQBJa9Q03QhbPmSumhkzxZcCxvuoWvJ8Es=";
           }
         ];
 
