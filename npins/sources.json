@@ -83,17 +83,20 @@
       "hash": "1mgxjis47bzpkdi3x8qcgrwwq4zr27hi6w0amdir82rckwkmsffj"
     },
     "unpins": {
-      "type": "Git",
+      "type": "GitRelease",
       "repository": {
         "type": "GitHub",
         "owner": "andir",
         "repo": "npins"
       },
-      "branch": "master",
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
       "submodules": false,
-      "revision": "c32f43e1b618a272cf999c9dde628d3bee96784b",
-      "url": "https://github.com/andir/npins/archive/c32f43e1b618a272cf999c9dde628d3bee96784b.tar.gz",
-      "hash": "0z8jlmw3pk79ff1w91cd29jqj2qs9dx7s7nvykggnfq89x9a86lx"
+      "version": "0.3.0",
+      "revision": "6cc1930e703698487bd703258126435a536ca492",
+      "url": "https://api.github.com/repos/andir/npins/tarball/0.3.0",
+      "hash": "1450ddp5gm3n5jvg64v9rc2jvf9za79fv4dmac5m8d47l0iblfcx"
     }
   },
   "version": 4
