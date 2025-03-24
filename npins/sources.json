@@ -22,39 +22,39 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "30cce6848a5aa41ceb5fb33185b84868cc3e9bef",
-      "url": "https://github.com/nix-community/home-manager/archive/30cce6848a5aa41ceb5fb33185b84868cc3e9bef.tar.gz",
-      "hash": "0yal04bv0dhlqgp9njzndpkip9155dsnrcachlrn6zg0kchh7vjn"
+      "revision": "908e055e157a0b35466faf4125d7e7410ff56160",
+      "url": "https://github.com/nix-community/home-manager/archive/908e055e157a0b35466faf4125d7e7410ff56160.tar.gz",
+      "hash": "1jcqs7lzixxif9v9dmyb9ks37nj2x1y4svg8cxjh4bfbr9jd02f2"
     },
     "lix": {
-      "type": "GitRelease",
+      "type": "Git",
       "repository": {
-        "type": "Git",
-        "url": "https://git.lix.systems/lix-project/lix"
+        "type": "Forgejo",
+        "server": "https://git.lix.systems/",
+        "owner": "lix-project",
+        "repo": "lix"
       },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
+      "branch": "main",
       "submodules": false,
-      "version": "2.92.0",
-      "revision": "2837da71ec1588c1187d2e554719b15904a46c8b",
-      "url": null,
-      "hash": "126vm9m517gwfqdy1c4zghzk3w3xfahhhjawkqmkjxrq9w08h8h8"
+      "revision": "4181796ed24e4c9c1c9c0d38986880d8c6407e5d",
+      "url": "https://git.lix.systems/lix-project/lix/archive/4181796ed24e4c9c1c9c0d38986880d8c6407e5d.tar.gz",
+      "hash": "1cx1khr5jxj5z2h15bdzccfkkbd02v0jlri83bxxbpkpyi7q0bap",
+      "frozen": true
     },
     "lix-module": {
-      "type": "GitRelease",
+      "type": "Git",
       "repository": {
-        "type": "Git",
-        "url": "https://git.lix.systems/lix-project/nixos-module"
+        "type": "Forgejo",
+        "server": "https://git.lix.systems/",
+        "owner": "lix-project",
+        "repo": "nixos-module"
       },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
+      "branch": "main",
       "submodules": false,
-      "version": "2.92.0",
-      "revision": "b90bf629bbd835e61f1317b99e12f8c831017006",
-      "url": null,
-      "hash": "1gzrpdv2p74is4mjmi4kkmm4ycf74mpsm6ppmxwk9laz39qfphk0"
+      "revision": "d8e4fee796342636f345e358f33583c8b2fa496e",
+      "url": "https://git.lix.systems/lix-project/nixos-module/archive/d8e4fee796342636f345e358f33583c8b2fa496e.tar.gz",
+      "hash": "07vsn910nn6agiydfkz4y750p1g417w27wji179p2ysm17qq1dga",
+      "frozen": true
     },
     "nixpkgs": {
       "type": "Git",
@@ -65,9 +65,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "6607cf789e541e7873d40d3a8f7815ea92204f32",
-      "url": "https://github.com/NixOS/nixpkgs/archive/6607cf789e541e7873d40d3a8f7815ea92204f32.tar.gz",
-      "hash": "0lad6jan49sywk6xzgcivc4h3ln7grhjhb8q8jv2jwhwlgrfrxvh"
+      "revision": "1e5b653dff12029333a6546c11e108ede13052eb",
+      "url": "https://github.com/NixOS/nixpkgs/archive/1e5b653dff12029333a6546c11e108ede13052eb.tar.gz",
+      "hash": "0k4kimyk5065sb5l0hzabhbk5579dnj2fhkqzdqw8pfbwlagx68v"
     },
     "rust-overlay": {
       "type": "Git",
@@ -78,9 +78,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8b137260b776525542d47d3a4dbac753df478a42",
-      "url": "https://github.com/oxalica/rust-overlay/archive/8b137260b776525542d47d3a4dbac753df478a42.tar.gz",
-      "hash": "14jhjlhp2r2bdx3i58znmxmxk113anka77zncv1xh8lnmwx39nn6"
+      "revision": "60766d63c227d576510ecfb5edd3a687d56f6bc7",
+      "url": "https://github.com/oxalica/rust-overlay/archive/60766d63c227d576510ecfb5edd3a687d56f6bc7.tar.gz",
+      "hash": "0v2iabg94ykraxrlzclfawd9lcjifja5v679gxsaabsdknbm41r3"
     },
     "unpins": {
       "type": "GitRelease",
