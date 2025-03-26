@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "908e055e157a0b35466faf4125d7e7410ff56160",
-      "url": "https://github.com/nix-community/home-manager/archive/908e055e157a0b35466faf4125d7e7410ff56160.tar.gz",
-      "hash": "1jcqs7lzixxif9v9dmyb9ks37nj2x1y4svg8cxjh4bfbr9jd02f2"
+      "revision": "693840c01b9bef9e54100239cef937e53d4661bf",
+      "url": "https://github.com/nix-community/home-manager/archive/693840c01b9bef9e54100239cef937e53d4661bf.tar.gz",
+      "hash": "1072k9kwn6853iqkhwsahsk5ddgcxvqridvm1wd8mskanm660z5j"
     },
     "lix": {
       "type": "Git",
@@ -65,9 +65,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "1e5b653dff12029333a6546c11e108ede13052eb",
-      "url": "https://github.com/NixOS/nixpkgs/archive/1e5b653dff12029333a6546c11e108ede13052eb.tar.gz",
-      "hash": "0k4kimyk5065sb5l0hzabhbk5579dnj2fhkqzdqw8pfbwlagx68v"
+      "revision": "698214a32beb4f4c8e3942372c694f40848b360d",
+      "url": "https://github.com/NixOS/nixpkgs/archive/698214a32beb4f4c8e3942372c694f40848b360d.tar.gz",
+      "hash": "0b1sxjghybf0fis20i9vjg79xwrjw597437v87clva97ghgbf3l7"
     },
     "rust-overlay": {
       "type": "Git",
@@ -78,25 +78,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "60766d63c227d576510ecfb5edd3a687d56f6bc7",
-      "url": "https://github.com/oxalica/rust-overlay/archive/60766d63c227d576510ecfb5edd3a687d56f6bc7.tar.gz",
-      "hash": "0v2iabg94ykraxrlzclfawd9lcjifja5v679gxsaabsdknbm41r3"
-    },
-    "unpins": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "andir",
-        "repo": "npins"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "0.3.0",
-      "revision": "6cc1930e703698487bd703258126435a536ca492",
-      "url": "https://api.github.com/repos/andir/npins/tarball/0.3.0",
-      "hash": "1450ddp5gm3n5jvg64v9rc2jvf9za79fv4dmac5m8d47l0iblfcx"
+      "revision": "a0e3395c63cdbc9c1ec17915f8328c077c79c4a1",
+      "url": "https://github.com/oxalica/rust-overlay/archive/a0e3395c63cdbc9c1ec17915f8328c077c79c4a1.tar.gz",
+      "hash": "0gd31zhs8bibx3wvaxi8w5lzdk2ss3kf27ppcwxz69x4vsdflnja"
     }
   },
   "version": 5
