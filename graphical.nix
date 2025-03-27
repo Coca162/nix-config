@@ -77,39 +77,38 @@
   home-manager.users.coca = {
     imports = [./home.nix];
 
-    # Broken in nixos-unstable for now https://github.com/NixOS/nixpkgs/pull/392319
-    #   programs.zed-editor = {
-    #     enable = true;
-    #     extensions = ["nix" "toml" "nu" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
-    #     extraPackages = with pkgs; [nil nixd alejandra];
-    #     userSettings = {
-    #       lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
-    #       load_direnv = "direct";
-    #       languages.Nix.format_on_save = "off";
-    #       features.copilot = false;
-    #       features.inline_completion_provider = "none";
-    #       assistant.enabled = false;
-    #       assistant.version = "1";
-    #       assistant.button = false;
-    #       assistant_v2.enabled = false;
-    #       notification_panel.button = false;
-    #       file_scan_exclusions = [
-    #         # "**/.git"
-    #         "**/.svn"
-    #         "**/.hg"
-    #         "**/.jj"
-    #         "**/CVS"
-    #         "**/.DS_Store"
-    #         "**/Thumbs.db"
-    #         "**/.classpath"
-    #         "**/.settings"
-    #       ];
-    #       buffer_font_family = "Cascadia Code";
-    #       buffer_font_weight = 350;
-    #       buffer_font_features.zero = true; # Features do not work on Linux
-    #       terminal.font_family = "Monocraft";
-    #     };
-    #   };
+    programs.zed-editor = {
+      enable = true;
+      extensions = ["nix" "toml" "nu" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
+      extraPackages = with pkgs; [nil nixd alejandra];
+      userSettings = {
+        lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
+        load_direnv = "direct";
+        languages.Nix.format_on_save = "off";
+        features.copilot = false;
+        features.inline_completion_provider = "none";
+        assistant.enabled = false;
+        assistant.version = "1";
+        assistant.button = false;
+        assistant_v2.enabled = false;
+        notification_panel.button = false;
+        file_scan_exclusions = [
+          # "**/.git"
+          "**/.svn"
+          "**/.hg"
+          "**/.jj"
+          "**/CVS"
+          "**/.DS_Store"
+          "**/Thumbs.db"
+          "**/.classpath"
+          "**/.settings"
+        ];
+        buffer_font_family = "Cascadia Code";
+        buffer_font_weight = 350;
+        buffer_font_features.zero = true; # Features do not work on Linux
+        terminal.font_family = "Monocraft";
+      };
+    };
 
     programs.vscode = {
       enable = true;
