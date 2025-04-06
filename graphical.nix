@@ -71,6 +71,7 @@
     obsidian
     reaper
     audacity
+    qpwgraph
     filezilla
   ];
 
