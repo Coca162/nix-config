@@ -108,4 +108,14 @@ in {
   '';
 
   system.rebuild.enableNg = true;
+
+  systemd.user.services.rescrobbled = {
+    description = "An MPRIS scrobbler";
+    documentation = ["https://github.com/InputUsername/rescrobbled"];
+    wants = ["network-online.target"];
+    after = ["network-online.target"];
+    unitConfig.ConditionUser = "coca";
+    serviceConfig.ExecStart = lib.getExe pkgs.rescrobbled;
+    wantedBy = ["default.target"];
+  };
 }
