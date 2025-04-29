@@ -73,6 +73,7 @@
     audacity
     qpwgraph
     filezilla
+    easyeffects
   ];
 
   home-manager.users.coca = {
