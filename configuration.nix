@@ -96,7 +96,7 @@ in {
       "steam-unwrapped"
     ]
     # TODO: Find a better way to do this
-    || ((pkg.meta ? maintainers) && pkg.meta.maintainers == pkgs.lib.teams.cuda.members);
+    || ((pkg.meta ? teams) && pkg.meta.teams == [pkgs.lib.teams.cuda]);
 
   nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda];
 
