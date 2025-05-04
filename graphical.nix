@@ -74,6 +74,7 @@
     qpwgraph
     filezilla
     easyeffects
+    space-station-14-launcher
   ];
 
   home-manager.users.coca = {
