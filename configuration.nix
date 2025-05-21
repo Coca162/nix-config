@@ -18,9 +18,13 @@ in {
   # remove nix-channel related tools & configs, we use system-wide npins instead.
   nix.channel.enable = false;
   nix.nixPath = [
-    "nixpkgs=${sources.nixpkgs}"
-    "rust-overlay=${sources.rust-overlay}"
+    "nixpkgs=/etc/nixos/nixpkgs"
+    "rust-overlay=/etc/nixos/rust-overlay"
   ];
+  environment.etc = {
+    "nixos/nixpkgs".source = builtins.storePath pkgs.path;
+    "nixos/rust-overlay".source = sources.rust-overlay;
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
