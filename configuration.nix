@@ -64,6 +64,7 @@ in {
     sshfs
     btrfs-progs
     npins
+    delta
   ];
 
   programs.fish.enable = true;
