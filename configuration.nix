@@ -65,6 +65,7 @@ in {
     btrfs-progs
     npins
     delta
+    (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
 
   programs.fish.enable = true;
