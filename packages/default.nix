@@ -8,5 +8,4 @@
   scripts = [spawn-terminal vod-stats];
 
   thumbfast-osc = import ./thumbfast-osc.nix pkgs;
-  pguint = callPackage ./pguint.nix {};
 }
