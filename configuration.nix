@@ -65,6 +65,7 @@ in {
     btrfs-progs
     npins
     delta
+    rescrobbled
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
 
@@ -115,7 +116,7 @@ in {
 
   system.rebuild.enableNg = true;
 
-  systemd.user.services.rescrobbled = {
+  systemd.user.services.scrobbler = {
     description = "An MPRIS scrobbler";
     documentation = ["https://github.com/InputUsername/rescrobbled"];
     wants = ["network-online.target"];
