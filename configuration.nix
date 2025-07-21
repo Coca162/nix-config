@@ -90,6 +90,8 @@ in {
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
 
+  environment.shellAliases.unpins = lib.getExe (import sources.unpins {});
+
   programs.fish.enable = true;
   programs.nix-index.enable = true;
   programs.command-not-found.enable = false;
