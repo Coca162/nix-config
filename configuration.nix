@@ -7,28 +7,7 @@
 in {
   imports = [
     "${sources.home-manager}/nixos"
-    # (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
-  ];
-
-  nixpkgs.overlays = [
-    (final: prev: let
-      versionSuffix = "-horribly-patched";
-      lix = final.applyPatches {
-        name = "lix${versionSuffix}";
-        src = sources.lix;
-        patches = [
-          (final.fetchpatch {
-            name = "lix-2.93-structuredAttrs.patch";
-            url = "https://gerrit.lix.systems/changes/lix~3668/revisions/2/patch?download&raw";
-            hash = "sha256-JQlAU0texMa7DMrqk447SXJUEu1k4IP9z8mjCHyskVc=";
-          })
-        ];
-      };
-      patchedOverlay = import (sources.lix-module + "/overlay.nix") {
-        inherit versionSuffix lix;
-      };
-    in
-      patchedOverlay final prev)
+    (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
   ];
 
   _module.args = {inherit sources;};
