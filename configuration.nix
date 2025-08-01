@@ -7,7 +7,28 @@
 in {
   imports = [
     "${sources.home-manager}/nixos"
-    (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
+  ];
+
+  nixpkgs.overlays = [
+    (final: prev: let
+      versionSuffix = "-horribly-patched";
+      lix = final.applyPatches {
+        name = "lix${versionSuffix}";
+        src = sources.lix;
+        patches = [
+          # Support for lowdown >= 1.4, https://gerrit.lix.systems/c/lix/+/3731
+          (pkgs.fetchpatch2 {
+            name = "lix-lowdown-1.4.0.patch";
+            url = "https://git.lix.systems/lix-project/lix/commit/858de5f47a1bfd33835ec97794ece339a88490f1.patch";
+            hash = "sha256-FfLO2dFSWV1qwcupIg8dYEhCHir2XX6/Hs89eLwd+SY=";
+          })
+        ];
+      };
+      patchedOverlay = import (sources.lix-module + "/overlay.nix") {
+        inherit versionSuffix lix;
+      };
+    in
+      patchedOverlay final prev)
   ];
 
   _module.args = {inherit sources;};

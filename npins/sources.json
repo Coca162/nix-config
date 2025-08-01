@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "a1817d1c0e5eabe7dfdfe4caa46c94d9d8f3fdb6",
-      "url": "https://github.com/nix-community/home-manager/archive/a1817d1c0e5eabe7dfdfe4caa46c94d9d8f3fdb6.tar.gz",
-      "hash": "0l4rf1vr9r902rp6brs77xkhkcllsqi7cwf3kdn6zn7sj99idrc4"
+      "revision": "7035020a507ed616e2b20c61491ae3eaa8e5462c",
+      "url": "https://github.com/nix-community/home-manager/archive/7035020a507ed616e2b20c61491ae3eaa8e5462c.tar.gz",
+      "hash": "1j21vaknfb9xkgzxjifk6p5adk6nb5l3hvpxz321m57qkcw41yfs"
     },
     "lix": {
       "type": "Tarball",
@@ -41,8 +41,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre834672.7fd36ee82c02/nixexprs.tar.xz",
-      "hash": "1qqzhfhpxaxim438q5ry2qd17zasbl5hrn17r10lwmiihrw361lq"
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre837094.94def634a204/nixexprs.tar.xz",
+      "hash": "0z81pz46gzfsyvyq1mskcrmlns787pv54c2fw0pgci4nzb7h8q0z"
     },
     "rust-overlay": {
       "type": "Git",
@@ -53,9 +53,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c8b8b812010515b7d9bd7e538f06a9f4edb373ff",
-      "url": "https://github.com/oxalica/rust-overlay/archive/c8b8b812010515b7d9bd7e538f06a9f4edb373ff.tar.gz",
-      "hash": "16s9zygl212hmhpzfkwd06p5g52swbx3k4689mr96gjzql668dnb"
+      "revision": "ddd488184f01603b712ddbb6dc9fe0b8447eb7fc",
+      "url": "https://github.com/oxalica/rust-overlay/archive/ddd488184f01603b712ddbb6dc9fe0b8447eb7fc.tar.gz",
+      "hash": "13x2rmzzf8q1c7g9zdahq0gfmvblzg7va43gq42rj7vvxhw7j44r"
     },
     "unpins": {
       "type": "Git",
@@ -66,9 +66,9 @@
       },
       "branch": "progress-bars",
       "submodules": false,
-      "revision": "69122bb00d82f149902ad286ad7549ff2a9f0bd2",
-      "url": "https://github.com/Coca162/npins/archive/69122bb00d82f149902ad286ad7549ff2a9f0bd2.tar.gz",
-      "hash": "03agbr1ycma6knxjfbzpzd9n4v5y82ad4g74c2k3d7xmccsbv8pr"
+      "revision": "65f1ef533b8224491237e2fb719dcffd2a631ae6",
+      "url": "https://github.com/Coca162/npins/archive/65f1ef533b8224491237e2fb719dcffd2a631ae6.tar.gz",
+      "hash": "1nq0bpa5gjinmdbh4h1kbhn0i4c5vpgpwim49kx9v02npkg7jg0k"
     }
   },
   "version": 5
