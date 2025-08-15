@@ -130,6 +130,8 @@
           vadimcn.vscode-lldb
           gruntfuggly.todo-tree
           thenuprojectcontributors.vscode-nushell-lang
+          haskell.haskell
+          justusadam.language-haskell
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
