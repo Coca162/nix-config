@@ -127,7 +127,7 @@
           ecmel.vscode-html-css
           jnoortheen.nix-ide
           rust-lang.rust-analyzer
-          # vadimcn.vscode-lldb BROKEN
+          vadimcn.vscode-lldb
           gruntfuggly.todo-tree
           thenuprojectcontributors.vscode-nushell-lang
         ]
