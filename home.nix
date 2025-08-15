@@ -80,6 +80,8 @@ in {
   programs.zellij.enable = true;
   programs.zellij.enableFishIntegration = false;
   xdg.configFile."zellij/config.kdl".text = ''
+    advanced_mouse_actions false
+
     keybinds {
         unbind "Ctrl q"
         shared_except "locked" {
