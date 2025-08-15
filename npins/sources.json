@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3ec1cd9a0703fbd55d865b7fd2b07d08374f0355",
-      "url": "https://github.com/nix-community/home-manager/archive/3ec1cd9a0703fbd55d865b7fd2b07d08374f0355.tar.gz",
-      "hash": "0x6ljdjn68p3ng3h7cvvvmrgzn4im2angdlr7y3j6rddqwldhn2v"
+      "revision": "11626a4383b458f8dc5ea3237eaa04e8ab1912f3",
+      "url": "https://github.com/nix-community/home-manager/archive/11626a4383b458f8dc5ea3237eaa04e8ab1912f3.tar.gz",
+      "hash": "062ca7snfghb26wi9dbv8szwfw4jwgybn99nvg37ri9lva15x1mj"
     },
     "lix": {
       "type": "Tarball",
@@ -41,8 +41,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre841808.85dbfc7aaf52/nixexprs.tar.xz",
-      "hash": "0bqpz7xsyv8iymc8i0s5arj1bswq831xhjn9zds4ynv4kscacqi4"
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre844474.fbcf476f790d/nixexprs.tar.xz",
+      "hash": "14id7xyz3prbi6d42swjyn8rff3n9brv9wqyhr8w4s2352d26nb4"
     },
     "rust-overlay": {
       "type": "Git",
@@ -53,9 +53,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d754da7c068c6e122f84d84c3e6bcd353ee48635",
-      "url": "https://github.com/oxalica/rust-overlay/archive/d754da7c068c6e122f84d84c3e6bcd353ee48635.tar.gz",
-      "hash": "045p65qc2jl1gy40gnf3rfcx1iaqngh8n2vjgh5rss22gvbk68g5"
+      "revision": "4abaeba6b176979be0da0195b9e4ce86bc501ae4",
+      "url": "https://github.com/oxalica/rust-overlay/archive/4abaeba6b176979be0da0195b9e4ce86bc501ae4.tar.gz",
+      "hash": "1jafycwac308arqpipb3c1wvr23jfpwx65h48vsaadipvsrn1d4b"
     },
     "unpins": {
       "type": "Git",
