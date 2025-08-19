@@ -64,6 +64,10 @@ in {
     LC_MEASUREMENT = "bg_BG.UTF-8"; # Imperial metrics?! Couldn't be me.
   };
 
+  networking.extraHosts = ''
+    0.0.0.0 wplace.live
+  '';
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.coca = {
     isNormalUser = true;
