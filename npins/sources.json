@@ -28,9 +28,9 @@
     },
     "lix": {
       "type": "Tarball",
-      "url": "https://git.lix.systems/lix-project/lix/archive/2.93.3.tar.gz",
-      "locked_url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/017e93ae637ce6dfc958001e5cdc2a3e0182be6f.tar.gz?rev=017e93ae637ce6dfc958001e5cdc2a3e0182be6f",
-      "hash": "152xjnlr733z34ndyxnhdaw7d4f3zcj5w028mlmwy378wvhk9b1s"
+      "url": "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz",
+      "locked_url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/1a4393d0aac31aba21f5737ede1b171e11336d77.tar.gz?rev=1a4393d0aac31aba21f5737ede1b171e11336d77",
+      "hash": "07c7kp5ymc1khvkm397738xi5ff5zqqiy4ffz515i33g85dq9c4c"
     },
     "lix-module": {
       "type": "Tarball",
