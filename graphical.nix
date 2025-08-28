@@ -85,6 +85,18 @@
       extensions = ["nix" "toml" "nu" "sql" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
       extraPackages = with pkgs; [nil nixd alejandra];
       userSettings = {
+        inlay_hints = {
+          enabled = true;
+          toggle_on_modifiers_press.shift = true;
+        };
+        lsp.rust-analyzer.initialization_options.inlayHints = {
+          closureReturnTypeHints = {enable = "with_block";};
+          lifetimeElisionHints = {
+            enable = "skip_trivial";
+            useParameterNames = true;
+          };
+          maxLength = 15;
+        };
         lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
         load_direnv = "direct";
         languages.Nix.format_on_save = "off";
