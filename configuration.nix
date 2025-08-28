@@ -27,6 +27,7 @@ in {
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.use-xdg-base-directories = true;
 
   system.tools.nixos-option.enable = false; # Complains about Lix or something
 

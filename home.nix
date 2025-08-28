@@ -42,6 +42,14 @@ in {
     ]
     ++ local-pkgs.scripts;
 
+  home.sessionVariables = {
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+    DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
+    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+    NUGET_PACKAGES = "${config.xdg.cacheHome}/NuGetPackages";
+  };
+
   programs.micro.enable = true;
   programs.micro.package = pkgs.micro-with-wl-clipboard;
   xdg.configFile."micro/bindings.json".text = builtins.toJSON {
