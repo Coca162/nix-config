@@ -155,8 +155,8 @@
           {
             name = "crates-io";
             publisher = "BarbossHack";
-            version = "0.7.3";
-            sha256 = "sha256-eTdCVejiVDQBJa9Q03QhbPmSumhkzxZcCxvuoWvJ8Es=";
+            version = "0.7.5";
+            sha256 = "sha256-eXLOr/XYhQgTl/gEjZQh97haFUgiqLNJn2P1uiMxPKg=";
           }
         ];
 
