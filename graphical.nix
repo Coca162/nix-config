@@ -82,7 +82,7 @@
 
     programs.zed-editor = {
       enable = true;
-      extensions = ["nix" "toml" "nu" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
+      extensions = ["nix" "toml" "nu" "sql" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
       extraPackages = with pkgs; [nil nixd alejandra];
       userSettings = {
         lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
