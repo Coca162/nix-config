@@ -237,6 +237,8 @@ in {
       screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
       screenshot-format = "png";
+      volume = 20;
+      volume-max = 150;
     };
     scripts = with pkgs.mpvScripts; [visualizer thumbfast local-pkgs.thumbfast-osc];
   };
