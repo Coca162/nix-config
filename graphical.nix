@@ -75,6 +75,8 @@
     filezilla
     easyeffects
     space-station-14-launcher
+    deltachat-desktop
+    signal-desktop
   ];
 
   home-manager.users.coca = {
