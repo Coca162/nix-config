@@ -2,12 +2,80 @@
   pkgs,
   lib,
   ...
-}: {
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
+}: let
+  plasma = {
+    programs = {
+      gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
+      ssh.enableAskPassword = true;
+      ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+    };
+    environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
+    services = {
+      displayManager.sddm.enable = true;
+      desktopManager.plasma6.enable = true;
+    };
   };
-  services.desktopManager.plasma6.enable = true;
+  niri = let update-wallpaper = pkgs.writers.writeNu "update-wallpaper"   {
+    makeWrapperArgs = [
+      "--prefix" "PATH" ":" "${lib.makeBinPath [ pkgs.swww ]}"
+    ];
+  } (builtins.readFile ./wallpaper.nu); in {
+    programs.niri.enable = true;
+    environment.systemPackages = with pkgs; with pkgs.kdePackages; [
+      eww
+      swww
+      fuzzel
+      xwayland-satellite
+      elisa
+      gwenview
+      dolphin
+      breeze
+      ark
+      breeze-icons
+      breeze-gtk
+      ocean-sound-theme
+      plasma-workspace-wallpapers
+      pkgs.hicolor-icon-theme # fallback icons
+      qqc2-breeze-style
+      qqc2-desktop-style
+      plasma-integration
+    ];
+    systemd.packages = [pkgs.mako];
+    systemd.user.services.niri = {
+      wants = ["mako.service" "swww.service"];
+      path = ["/run/wrappers" "/home/coca/.nix-profile" "/nix/profile" "/home/coca/.local/state/nix/profile" "/etc/profiles/per-user/coca" "/nix/var/nix/profiles/default" "/run/current-system/sw"];
+    };
+
+    systemd.user.services.swww = {
+      partOf = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      requisite = ["graphical-session.target"];
+
+      serviceConfig.ExecStart = lib.getExe' pkgs.swww "swww-daemon";
+      serviceConfig.ExecStartPost = update-wallpaper;
+    };
+
+    systemd.user.timers."update-wallpaper" = {
+      wantedBy = ["swww.service"];
+      timerConfig = {
+        OnUnitActiveSec = "30min";
+        Unit = "update-wallpaper.service";
+      };
+    };
+
+    systemd.user.services."update-wallpaper" = {
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = update-wallpaper;
+      };
+    };
+
+    xdg.icons.enable = true;
+    xdg.icons.fallbackCursorThemes = ["breeze_cursors"];
+  };
+in {
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   programs.xwayland.enable = true;
 
   # Enable sound.
@@ -20,10 +88,6 @@
     jack.enable = true;
   };
 
-  programs.ssh.enableAskPassword = true;
-  programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
-  environment.variables.SSH_ASKPASS_REQUIRE = "prefer";
-
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -31,12 +95,8 @@
   };
 
   programs.steam.enable = true;
-
   programs.kdeconnect.enable = true;
-
   programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
-  services.dbus.packages = [pkgs.pinentry-qt];
 
   fonts.packages = with pkgs; [
     google-fonts # EVER FONT IN EXISTENCE!!!
@@ -46,6 +106,8 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    libnotify
+    playerctl
     gparted
     qdirstat
     osu-lazer-bin
@@ -84,7 +146,7 @@
 
     programs.zed-editor = {
       enable = true;
-      extensions = ["nix" "toml" "nu" "sql" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly"];
+      extensions = ["nix" "toml" "nu" "sql" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly" "clojure" "scss"];
       extraPackages = with pkgs; [nil nixd alejandra];
       userSettings = {
         inlay_hints = {
@@ -231,7 +293,15 @@
         };
         terminal.shell.program = "${pkgs.fish}/bin/fish";
         window.opacity = 0.85;
+        window.decorations = "None";
       };
     };
   };
+
+  specialisation = {
+    plasma.configuration = plasma;
+    # niri.configuration = niri;
+  };
+
+  imports = [({config, ...}: {config = lib.mkIf (config.specialisation != {}) niri;})];
 }

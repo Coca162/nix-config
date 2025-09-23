@@ -62,8 +62,9 @@ in {
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
 
-      if contains "true" $ENABLE_ZELLIJ
-        eval (zellij setup --generate-auto-start fish | string collect)
+      if test "true" = "$ENABLE_ZELLIJ"
+         and test "niri" != "$XDG_CURRENT_DESKTOP"
+         eval (zellij setup --generate-auto-start fish | string collect)
       end
     '';
     shellAliases = rec {
