@@ -240,7 +240,7 @@ in {
       volume = 20;
       volume-max = 150;
     };
-    scripts = with pkgs.mpvScripts; [visualizer thumbfast local-pkgs.thumbfast-osc];
+    scripts = with pkgs.mpvScripts; [visualizer thumbfast local-pkgs.thumbfast-osc mpris];
   };
 
   programs.direnv = {
