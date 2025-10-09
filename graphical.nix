@@ -123,7 +123,7 @@ in {
     prismlauncher
     qbittorrent
     qt6.qtimageformats
-    aseprite
+    # aseprite BROKEN
     obs-studio
     wayfarer # Spectacle recording is a bit unreliable
     # blender BROKEN
