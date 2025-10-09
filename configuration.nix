@@ -83,6 +83,8 @@ in {
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
 
+  security.sudo-rs.enable = true;
+
   environment.shellAliases.unpins = lib.getExe (import sources.unpins {});
 
   programs.fish.enable = true;
