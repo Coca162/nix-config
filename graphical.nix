@@ -39,17 +39,31 @@
       qqc2-breeze-style
       qqc2-desktop-style
       plasma-integration
+      kservice
+      swayidle
+      swaylock
     ];
     systemd.packages = [pkgs.mako];
     systemd.user.services.niri = {
-      wants = ["mako.service" "swww.service"];
+      wants = ["mako.service" "swww.service" "swayidle.service"];
       path = ["/run/wrappers" "/home/coca/.nix-profile" "/nix/profile" "/home/coca/.local/state/nix/profile" "/etc/profiles/per-user/coca" "/nix/var/nix/profiles/default" "/run/current-system/sw"];
+    };
+
+    environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
+    systemd.user.services.swayidle = {
+      partOf = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      bindsTo = ["graphical-session.target"];
+
+      serviceConfig.ExecStart = lib.getExe pkgs.swayidle;
+      path = [pkgs.swaylock pkgs.niri pkgs.nushell pkgs.swww];
     };
 
     systemd.user.services.swww = {
       partOf = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      requisite = ["graphical-session.target"];
+      after = ["graphical-session.target" "niri.service"];
+      bindsTo = ["graphical-session.target"];
 
       serviceConfig.ExecStart = lib.getExe' pkgs.swww "swww-daemon";
       serviceConfig.ExecStartPost = update-wallpaper;
@@ -57,6 +71,7 @@
 
     systemd.user.timers."update-wallpaper" = {
       wantedBy = ["swww.service"];
+      requires = ["swww.service"];
       timerConfig = {
         OnUnitActiveSec = "30min";
         Unit = "update-wallpaper.service";
