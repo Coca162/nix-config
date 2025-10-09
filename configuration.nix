@@ -7,8 +7,17 @@
 in {
   imports = [
     "${sources.home-manager}/nixos"
-    (import "${sources.lix-module}/module.nix" {inherit (sources) lix;})
   ];
+
+  nixpkgs.overlays = [ (final: prev: {
+    inherit (prev.lixPackageSets.stable)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena;
+  }) ];
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 
   _module.args = {inherit sources;};
 

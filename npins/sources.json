@@ -26,18 +26,6 @@
       "url": "https://github.com/nix-community/home-manager/archive/1a09eb84fa9e33748432a5253102d01251f72d6d.tar.gz",
       "hash": "06a62pr21rmdl2n2d4h407sa2avm9m4ak5fai04bccbagg4y39ms"
     },
-    "lix": {
-      "type": "Tarball",
-      "url": "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz",
-      "locked_url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/9bfef6a06c806c813b2c6ebcea9c8c4abc7c5298.tar.gz?rev=9bfef6a06c806c813b2c6ebcea9c8c4abc7c5298",
-      "hash": "0s4nsx779c0ks48czqi1h77njzq3clc3l9kpbnrhsxfhq4lm4spy"
-    },
-    "lix-module": {
-      "type": "Tarball",
-      "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz",
-      "locked_url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/46a9e8fcfe4be72b4c7c8082ee11d2c42da1e873.tar.gz?rev=46a9e8fcfe4be72b4c7c8082ee11d2c42da1e873",
-      "hash": "0fqm1nfqpjrl4yrfjcapw0id2yj7g4srxlgiwx8z87vv6nni90r9"
-    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
