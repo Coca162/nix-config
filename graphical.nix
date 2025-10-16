@@ -42,8 +42,8 @@
       kservice
       swayidle
       swaylock
+      mako
     ];
-    systemd.packages = [pkgs.mako];
     systemd.user.services.niri = {
       wants = ["mako.service" "swww.service" "swayidle.service"];
       path = ["/run/wrappers" "/home/coca/.nix-profile" "/nix/profile" "/home/coca/.local/state/nix/profile" "/etc/profiles/per-user/coca" "/nix/var/nix/profiles/default" "/run/current-system/sw"];
