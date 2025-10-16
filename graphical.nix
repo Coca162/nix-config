@@ -15,13 +15,19 @@
       desktopManager.plasma6.enable = true;
     };
   };
-  niri = let update-wallpaper = pkgs.writers.writeNu "update-wallpaper"   {
-    makeWrapperArgs = [
-      "--prefix" "PATH" ":" "${lib.makeBinPath [ pkgs.swww ]}"
-    ];
-  } (builtins.readFile ./wallpaper.nu); in {
+  niri = let
+    update-wallpaper = pkgs.writers.writeNu "update-wallpaper" {
+      makeWrapperArgs = [
+        "--prefix"
+        "PATH"
+        ":"
+        "${lib.makeBinPath [pkgs.swww]}"
+      ];
+    } (builtins.readFile ./wallpaper.nu);
+  in {
     programs.niri.enable = true;
-    environment.systemPackages = with pkgs; with pkgs.kdePackages; [
+    environment.systemPackages = with pkgs;
+    with pkgs.kdePackages; [
       eww
       swww
       fuzzel
