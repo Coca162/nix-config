@@ -262,7 +262,7 @@ in
 
   programs.git = {
     enable = true;
-    programs.git.settings.user = {
+    settings.user = {
       name = "Coca";
       email = "coca16622@gmail.com";
     };
