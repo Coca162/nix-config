@@ -27,7 +27,7 @@ in
       yt-dlp
       scdl
       inetutils
-      du-dust
+      dust
       nix-du
       nix-inspect
       graphviz
@@ -153,9 +153,9 @@ in
 
   programs.btop = {
     enable = true;
-    package = pkgs.btop.override {
-      cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;
-    };
+    # package = pkgs.btop.override {
+    #   cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;
+    # };
     settings.theme_background = false;
   };
 

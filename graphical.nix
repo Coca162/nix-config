@@ -149,7 +149,6 @@ in {
     wayfarer # Spectacle recording is a bit unreliable
     # blender BROKEN
     libreoffice-qt6
-    onlyoffice-bin
     bitwarden-desktop
     obsidian
     reaper

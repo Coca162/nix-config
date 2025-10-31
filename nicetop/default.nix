@@ -76,7 +76,10 @@ in {
 
   services.thermald.enable = true;
 
-  environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
+  environment.systemPackages = with pkgs; [
+    # nvtopPackages.nvidia
+    quickemu
+  ];
 
   services.xserver.videoDrivers = ["nvidia"];
 
