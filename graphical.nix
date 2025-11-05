@@ -34,6 +34,7 @@
       xwayland-satellite
       elisa
       gwenview
+      okular
       dolphin
       breeze
       ark
