@@ -26,6 +26,8 @@
     } (builtins.readFile ./wallpaper.nu);
   in {
     programs.niri.enable = true;
+    programs.niri.useNautilus = false;
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
     environment.systemPackages = with pkgs;
     with pkgs.kdePackages; [
       eww
@@ -52,11 +54,24 @@
       mako
     ];
     systemd.user.services.niri = {
-      wants = ["mako.service" "swww.service" "swayidle.service"];
-      path = ["/run/wrappers" "/home/coca/.nix-profile" "/nix/profile" "/home/coca/.local/state/nix/profile" "/etc/profiles/per-user/coca" "/nix/var/nix/profiles/default" "/run/current-system/sw"];
+      wants = [
+        "mako.service"
+        "swww.service"
+        "swayidle.service"
+      ];
+      path = [
+        "/run/wrappers"
+        "/home/coca/.nix-profile"
+        "/nix/profile"
+        "/home/coca/.local/state/nix/profile"
+        "/etc/profiles/per-user/coca"
+        "/nix/var/nix/profiles/default"
+        "/run/current-system/sw"
+      ];
     };
 
-    environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    environment.etc."/xdg/menus/applications.menu".text =
+      builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
     systemd.user.services.swayidle = {
       partOf = ["graphical-session.target"];
@@ -64,12 +79,20 @@
       bindsTo = ["graphical-session.target"];
 
       serviceConfig.ExecStart = lib.getExe pkgs.swayidle;
-      path = [pkgs.swaylock pkgs.niri pkgs.nushell pkgs.swww];
+      path = [
+        pkgs.swaylock
+        pkgs.niri
+        pkgs.nushell
+        pkgs.swww
+      ];
     };
 
     systemd.user.services.swww = {
       partOf = ["graphical-session.target"];
-      after = ["graphical-session.target" "niri.service"];
+      after = [
+        "graphical-session.target"
+        "niri.service"
+      ];
       bindsTo = ["graphical-session.target"];
 
       serviceConfig.ExecStart = lib.getExe' pkgs.swww "swww-daemon";
@@ -92,8 +115,27 @@
       };
     };
 
-    xdg.icons.enable = true;
-    xdg.icons.fallbackCursorThemes = ["breeze_cursors"];
+    xdg = {
+      autostart.enable = true;
+      menus.enable = true;
+      mime.enable = true;
+      icons.enable = true;
+      icons.fallbackCursorThemes = ["breeze_cursors"];
+    };
+
+    systemd.user.services.niri-flake-polkit = {
+      description = "PolicyKit Authentication Agent provided by niri-flake";
+      wantedBy = ["niri.service"];
+      after = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 in {
   services.displayManager.sddm.enable = true;
@@ -119,6 +161,7 @@ in {
   programs.steam.enable = true;
   programs.kdeconnect.enable = true;
   programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.settings.no-allow-external-cache = "";
 
   fonts.packages = with pkgs; [
     google-fonts # EVER FONT IN EXISTENCE!!!
@@ -168,22 +211,47 @@ in {
 
     programs.zed-editor = {
       enable = true;
-      extensions = ["nix" "toml" "nu" "sql" "rainbow-csv" "env" "xml" "fish" "typst" "uiua" "just" "ssh-config" "git-firefly" "clojure" "scss"];
-      extraPackages = with pkgs; [nil nixd alejandra];
+      extensions = [
+        "nix"
+        "toml"
+        "nu"
+        "sql"
+        "rainbow-csv"
+        "env"
+        "xml"
+        "fish"
+        "typst"
+        "uiua"
+        "just"
+        "ssh-config"
+        "git-firefly"
+        "clojure"
+        "scss"
+      ];
+      extraPackages = with pkgs; [
+        nil
+        nixd
+        alejandra
+      ];
       userSettings = {
         inlay_hints = {
           enabled = true;
           toggle_on_modifiers_press.shift = true;
         };
         lsp.rust-analyzer.initialization_options.inlayHints = {
-          closureReturnTypeHints = {enable = "with_block";};
+          closureReturnTypeHints = {
+            enable = "with_block";
+          };
           lifetimeElisionHints = {
             enable = "skip_trivial";
             useParameterNames = true;
           };
           maxLength = 15;
         };
-        lsp.nil.settings.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
+        lsp.nil.settings.formatting.command = [
+          "${lib.getExe pkgs.alejandra}"
+          "--"
+        ];
         load_direnv = "direct";
         languages.Nix.format_on_save = "off";
         features.copilot = false;
@@ -255,8 +323,10 @@ in {
         "git.autofetch" = true;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${lib.getExe pkgs.nil}";
-        "nix.serverSettings".nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "--"];
-        "[nix]"."editor.formatOnSave" = true;
+        "nix.serverSettings".nil.formatting.command = [
+          "${lib.getExe pkgs.alejandra}"
+          "--"
+        ];
         "rust-analyzer.check.command" = "clippy";
         "terminal.integrated.fontFamily" = "Monocraft";
         "todo-tree.general.tags" = [
@@ -325,5 +395,11 @@ in {
     # niri.configuration = niri;
   };
 
-  imports = [({config, ...}: {config = lib.mkIf (config.specialisation != {}) niri;})];
+  imports = [
+    (
+      {config, ...}: {
+        config = lib.mkIf (config.specialisation != {}) niri;
+      }
+    )
+  ];
 }
