@@ -3,16 +3,13 @@
   pkgs,
   osConfig ? null,
   ...
-}:
-let
-  local-pkgs = pkgs.callPackage ./packages { };
-in
-{
+}: let
+  local-pkgs = pkgs.callPackage ./packages {};
+in {
   # The home.stateVersion option does not have a default and must be set, DO NOT CHANGE WITHOUT CARE
   home.stateVersion = "23.11";
 
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       firefox
       alejandra
@@ -84,7 +81,7 @@ in
 
   programs.nushell = {
     enable = true;
-    plugins = with pkgs.nushellPlugins; [ query ];
+    plugins = with pkgs.nushellPlugins; [query];
   };
 
   programs.zellij.enable = true;
@@ -172,7 +169,7 @@ in
       color_align = {
         custom_colors."1" = 3;
         custom_colors."2" = 2;
-        fore_back = [ ];
+        fore_back = [];
         mode = "custom";
       };
       distro = null;
@@ -181,7 +178,7 @@ in
       mode = "rgb";
       preset = "agender";
       pride_month_disable = false;
-      pride_month_shown = [ ];
+      pride_month_shown = [];
     };
   };
 
@@ -277,7 +274,7 @@ in
 
   programs.zoxide = {
     enable = true;
-    options = [ "--cmd cd" ];
+    options = ["--cmd cd"];
   };
 
   programs.fzf = {
