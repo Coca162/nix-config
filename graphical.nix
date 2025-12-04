@@ -158,6 +158,7 @@ in {
     filezilla
     easyeffects
     space-station-14-launcher
+    alsa-utils
     deltachat-desktop
     signal-desktop
   ];

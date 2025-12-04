@@ -83,6 +83,7 @@ in {
     btrfs-progs
     npins
     delta
+    nix-tree
     rescrobbled
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
