@@ -86,25 +86,15 @@ in {
   hardware.nvidia = {
     # Enables proprietary drivers
     modesetting.enable = true;
+    open = true;
 
-    # Open is the new default for 560 (beta) drivers
-    open = false;
-
-    # Enables settings gui which barely works
+    # Half broken stuff
     nvidiaSettings = false;
-
-    prime = {
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-    };
-
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    videoAcceleration = false;
   };
+
+  hardware.graphics.extraPackages = [pkgs.intel-media-driver];
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
