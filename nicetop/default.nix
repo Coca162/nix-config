@@ -77,7 +77,7 @@ in {
   services.thermald.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # nvtopPackages.nvidia
+    nvtopPackages.nvidia
     quickemu
   ];
 

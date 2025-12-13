@@ -150,9 +150,9 @@ in {
 
   programs.btop = {
     enable = true;
-    # package = pkgs.btop.override {
-    #   cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;
-    # };
+    package = pkgs.btop.override {
+      cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;
+    };
     settings.theme_background = false;
   };
 
