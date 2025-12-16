@@ -134,6 +134,4 @@ in {
     keep-outputs = true
     keep-derivations = true
   '';
-
-  system.rebuild.enableNg = true;
 }
