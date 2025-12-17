@@ -88,7 +88,7 @@ in {
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
   ];
 
-  security.sudo-rs.enable = true;
+  security.sudo.enable = false;
 
   environment.shellAliases.unpins = lib.getExe (import sources.unpins {});
 
