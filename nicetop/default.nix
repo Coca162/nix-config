@@ -50,6 +50,24 @@ in {
     serviceConfig.KillSignal = "SIGINT";
   };
 
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id != "org.freedesktop.systemd1.manage-units" || subject.user != "coca") {
+            return;
+        }
+
+        const unit = action.lookup("unit");
+        if (unit != "data-btrfs\\x2dexternal.automount" && unit != "data-btrfs\\x2dexternal.mount") {
+            return;
+        }
+
+        const verb = action.lookup("verb");
+        if (verb == "start" || verb == "stop" || verb == "restart") {
+            return polkit.Result.YES;
+        }
+    });
+  '';
+
   # Enable networking
   networking.networkmanager.enable = true;
 
