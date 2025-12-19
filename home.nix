@@ -23,7 +23,6 @@ in {
       wget
       yt-dlp
       scdl
-      inetutils
       dust
       nix-du
       nix-inspect
