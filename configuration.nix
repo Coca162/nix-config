@@ -92,6 +92,7 @@ in {
       sshfs
       btrfs-progs
       npins
+      (pkgs.writeShellScriptBin "unpins" ''exec ${lib.getExe (import sources.unpins {})} "$@"'')
       delta
       nix-tree
       (lib.hiPrio uutils-coreutils-noprefix)
@@ -99,8 +100,6 @@ in {
     ++ [rescrobbled];
 
   security.sudo.enable = false;
-
-  environment.shellAliases.unpins = lib.getExe (import sources.unpins {});
 
   programs.fish.enable = true;
   programs.nix-index.enable = true;

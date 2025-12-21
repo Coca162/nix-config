@@ -11,7 +11,7 @@
       "submodules": false,
       "revision": "3206453fb6c1a08ccd1623016879c7701b901e24",
       "url": "https://github.com/Coca162/diski/archive/3206453fb6c1a08ccd1623016879c7701b901e24.tar.gz",
-      "hash": "005k9ilkmcrpawn2q98hqil1dd55icws91s81wmd7maphyhm7cph"
+      "hash": "sha256-8LJToYdX1dMqD0iHpDmLpbQWaMQQJSwsVzezOmlMswA="
     },
     "home-manager": {
       "type": "Git",
@@ -22,15 +22,15 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "bb35f07cc95a73aacbaf1f7f46bb8a3f40f265b5",
-      "url": "https://github.com/nix-community/home-manager/archive/bb35f07cc95a73aacbaf1f7f46bb8a3f40f265b5.tar.gz",
-      "hash": "0r61fwvkjr0h1x6n1lp6p855rv26ss4vj1zvvxzi2xp2nk8ixcg3"
+      "revision": "61fcc9de76b88e55578eb5d79fc80f2b236df707",
+      "url": "https://github.com/nix-community/home-manager/archive/61fcc9de76b88e55578eb5d79fc80f2b236df707.tar.gz",
+      "hash": "sha256-0V/nKU93KdYGi+5LB/MVo355obBJw/2z9b2xS3bPJxY="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre913595.c6245e83d836/nixexprs.tar.xz",
-      "hash": "0a93r0l6ajblcb23x1phdf489jdqbxghpxi8q3rkxldzy5gqyn3x"
+      "hash": "sha256-fViPX/G/0T7zwCj2C19fuMmEiGvwhj7EYnRJZSjIIyk="
     },
     "rust-overlay": {
       "type": "Git",
@@ -41,23 +41,23 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "2a6db3fc1c27ae77f9caa553d7609b223cb770b5",
-      "url": "https://github.com/oxalica/rust-overlay/archive/2a6db3fc1c27ae77f9caa553d7609b223cb770b5.tar.gz",
-      "hash": "0khqbiy6wywqji7ia74s8789wzb1f2c0k02x2jghs1w8jhw98hip"
+      "revision": "c4249d0c370d573d95e33b472014eae4f2507c2f",
+      "url": "https://github.com/oxalica/rust-overlay/archive/c4249d0c370d573d95e33b472014eae4f2507c2f.tar.gz",
+      "hash": "sha256-DqVXFZ4ToiFHgnxebMWVL70W+U+JOxpmfD37eWD/Qc8="
     },
     "unpins": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Coca162",
+        "owner": "piegamesde",
         "repo": "npins"
       },
-      "branch": "progress-bars",
+      "branch": "master",
       "submodules": false,
-      "revision": "41ae1acd91762cbd059d128afacc0e94ffb94d3f",
-      "url": "https://github.com/Coca162/npins/archive/41ae1acd91762cbd059d128afacc0e94ffb94d3f.tar.gz",
-      "hash": "0gh3jbszqmmk12cq0g4n7va0f7vbr33y745728q5lbgl1qw60wrq"
+      "revision": "52904b878c2db61e062b63beb07784d41f98c765",
+      "url": "https://github.com/piegamesde/npins/archive/52904b878c2db61e062b63beb07784d41f98c765.tar.gz",
+      "hash": "sha256-ksOXi7u4bpHyWNHwkUR62fdwKowPW5GqBS7MA7Apwh4="
     }
   },
-  "version": 5
+  "version": 7
 }
