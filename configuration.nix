@@ -91,8 +91,7 @@ in {
       waypipe
       sshfs
       btrfs-progs
-      npins
-      (pkgs.writeShellScriptBin "unpins" ''exec ${lib.getExe (import sources.unpins {})} "$@"'')
+      (import sources.unpins {})
       delta
       nix-tree
       (lib.hiPrio uutils-coreutils-noprefix)
