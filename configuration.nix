@@ -70,10 +70,12 @@ in {
     0.0.0.0 wplace.live
   '';
 
+  programs.tcpdump.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.coca = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "pcap"];
     shell = pkgs.fish;
   };
 
