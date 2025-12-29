@@ -52,11 +52,11 @@
         "owner": "Coca162",
         "repo": "npins"
       },
-      "branch": "static-completions",
+      "branch": "main",
       "submodules": false,
-      "revision": "826aba234527c63fa0bd708a7158d1eefdd9f62f",
-      "url": "https://github.com/Coca162/npins/archive/826aba234527c63fa0bd708a7158d1eefdd9f62f.tar.gz",
-      "hash": "sha256-a0gUo1CbMoZ2r1pwnGOl0d8YrT4yZcIRxRTDFMM0PP8="
+      "revision": "e2b9b434df4eab0d32cf117b0382c7e06ac355c5",
+      "url": "https://github.com/Coca162/npins/archive/e2b9b434df4eab0d32cf117b0382c7e06ac355c5.tar.gz",
+      "hash": "sha256-+wnHRYXPm63c2bVdQMU4YNV5zx9SaDqUsgK9wMZS6jA="
     }
   },
   "version": 7
