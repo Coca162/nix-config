@@ -42,14 +42,6 @@ in {
     }
   ];
 
-  systemd.user.services.disk_status_external = {
-    bindsTo = [''dev-disk-by\x2duuid-a0e08bb3\x2d18b0\x2d4ee8\x2da402\x2d0e00f9220a68.device''];
-    after = [''dev-disk-by\x2duuid-a0e08bb3\x2d18b0\x2d4ee8\x2da402\x2d0e00f9220a68.device''];
-    unitConfig.ConditionUser = "coca";
-    serviceConfig.ExecStart = ''${lib.getExe diski} data-btrfs\\x2dexternal "Btrfs External"'';
-    serviceConfig.KillSignal = "SIGINT";
-  };
-
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
         if (action.id != "org.freedesktop.systemd1.manage-units" || subject.user != "coca") {
