@@ -52,7 +52,11 @@
       swayidle
       swaylock
       mako
+      ddcutil
+      wl-screenrec
+      slurp
     ];
+    hardware.i2c.enable = true;
     systemd.user.services.niri = {
       wants = [
         "mako.service"
