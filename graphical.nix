@@ -207,6 +207,7 @@ in {
     alsa-utils
     deltachat-desktop
     signal-desktop
+    space-station-14-launcher
   ];
 
   home-manager.users.coca = {
