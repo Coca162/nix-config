@@ -86,7 +86,8 @@
       path = [
         pkgs.swaylock
         pkgs.niri
-        pkgs.nushell
+        pkgs.jq
+        pkgs.uutils-findutils
         pkgs.swww
       ];
     };
@@ -213,76 +214,6 @@ in {
   home-manager.users.coca = {
     imports = [./home.nix];
 
-    programs.zed-editor = {
-      enable = true;
-      extensions = [
-        "nix"
-        "toml"
-        "nu"
-        "sql"
-        "rainbow-csv"
-        "env"
-        "xml"
-        "fish"
-        "typst"
-        "uiua"
-        "just"
-        "ssh-config"
-        "git-firefly"
-        "clojure"
-        "scss"
-      ];
-      extraPackages = with pkgs; [
-        nil
-        nixd
-        alejandra
-      ];
-      userSettings = {
-        inlay_hints = {
-          enabled = true;
-          toggle_on_modifiers_press.shift = true;
-        };
-        lsp.rust-analyzer.initialization_options.inlayHints = {
-          closureReturnTypeHints = {
-            enable = "with_block";
-          };
-          lifetimeElisionHints = {
-            enable = "skip_trivial";
-            useParameterNames = true;
-          };
-          maxLength = 15;
-        };
-        lsp.nil.settings.formatting.command = [
-          "${lib.getExe pkgs.alejandra}"
-          "--"
-        ];
-        load_direnv = "direct";
-        languages.Nix.format_on_save = "off";
-        features.copilot = false;
-        features.inline_completion_provider = "none";
-        assistant.enabled = false;
-        assistant.version = "1";
-        assistant.button = false;
-        assistant_v2.enabled = false;
-        notification_panel.button = false;
-        file_scan_exclusions = [
-          # "**/.git"
-          "**/.svn"
-          "**/.hg"
-          "**/.jj"
-          "**/CVS"
-          "**/.DS_Store"
-          "**/Thumbs.db"
-          "**/.classpath"
-          "**/.settings"
-        ];
-        buffer_font_family = "Cascadia Code";
-        buffer_font_weight = 350;
-        buffer_font_features.zero = true; # Features do not work on Linux
-        terminal.font_family = "Monocraft";
-      };
-    };
-
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -299,7 +230,6 @@ in {
           rust-lang.rust-analyzer
           vadimcn.vscode-lldb
           gruntfuggly.todo-tree
-          thenuprojectcontributors.vscode-nushell-lang
           haskell.haskell
           justusadam.language-haskell
         ]

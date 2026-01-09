@@ -97,6 +97,7 @@ in {
       delta
       nix-tree
       (lib.hiPrio uutils-coreutils-noprefix)
+      (lib.hiPrio uutils-findutils)
     ]
     ++ [rescrobbled];
 

@@ -78,11 +78,6 @@ in {
     };
   };
 
-  programs.nushell = {
-    enable = true;
-    plugins = with pkgs.nushellPlugins; [query];
-  };
-
   programs.zellij.enable = true;
   programs.zellij.enableFishIntegration = false;
   xdg.configFile."zellij/config.kdl".text = ''
