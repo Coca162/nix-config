@@ -255,7 +255,7 @@ in {
     enable = true;
     settings.user = {
       name = "Coca";
-      email = "coca16622@gmail.com";
+      email = "me@coca.codes";
     };
     signing.key = "0x03282DF88179AB19";
     signing.signByDefault = true;
