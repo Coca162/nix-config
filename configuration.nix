@@ -85,6 +85,7 @@ in {
 
   environment.systemPackages = with pkgs;
     [
+      fd
       wl-clipboard-rs
       nvd
       nix-output-monitor
@@ -94,7 +95,6 @@ in {
       sshfs
       btrfs-progs
       (import sources.unpins {})
-      delta
       nix-tree
       (lib.hiPrio uutils-coreutils-noprefix)
       (lib.hiPrio uutils-findutils)
