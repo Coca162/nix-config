@@ -55,6 +55,12 @@
       ddcutil
       wl-screenrec
       slurp
+      (qt6ct.overrideAttrs {
+        patches = pkgs.fetchurl {
+          url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
+          sha256 = "1igxin99ia0a5c8j00d43gpvgkwygv2iphjxhw1bx52aqm3054sm";
+        };
+      })
     ];
     hardware.i2c.enable = true;
     systemd.user.services.niri = {
@@ -72,6 +78,10 @@
         "/nix/var/nix/profiles/default"
         "/run/current-system/sw"
       ];
+      environment = {
+        QT_QPA_PLATFORMTHEME = "qt6ct";
+        QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+      };
     };
 
     environment.etc."/xdg/menus/applications.menu".text =
