@@ -261,9 +261,12 @@ in {
     signing.signByDefault = true;
   };
 
-  programs.delta = {
+  programs.delta.enable = true;
+
+  programs.difftastic = {
     enable = true;
-    enableGitIntegration = true;
+    git.enable = true;
+    git.diffToolMode = true;
   };
 
   programs.gpg = {
