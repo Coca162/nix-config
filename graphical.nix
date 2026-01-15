@@ -78,10 +78,11 @@
         "/nix/var/nix/profiles/default"
         "/run/current-system/sw"
       ];
-      environment = {
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-        QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
-      };
+    };
+
+    environment.sessionVariables = {
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+      QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
     };
 
     environment.etc."/xdg/menus/applications.menu".text =
