@@ -54,10 +54,7 @@ in {
   system.tools.nixos-option.enable = false; # Complains about Lix or something
 
   boot.supportedFilesystems = ["ntfs"];
-  boot.kernel.sysctl = {
-    "kernel.sysrq" = 1;
-    "vm.swappiness" = 5;
-  };
+  boot.kernel.sysctl."kernel.sysrq" = 1;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
