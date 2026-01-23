@@ -221,6 +221,7 @@ in {
     deltachat-desktop
     signal-desktop
     space-station-14-launcher
+    rescrobbled
   ];
 
   home-manager.users.coca = {

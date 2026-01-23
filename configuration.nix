@@ -4,15 +4,6 @@
   ...
 }: let
   sources = import ./npins;
-  rescrobbled = pkgs.rescrobbled.overrideAttrs (old: {
-    version = "auto-reconnect"; # usually harmless to omit
-    src = pkgs.fetchFromGitHub {
-      owner = "marius851000";
-      repo = "rescrobbled";
-      rev = "1fc643b888c8ad2eb46c53a25b6f8f1da4f38b3d";
-      hash = "sha256-OXLJvPwEWqrzRdEZlBv6eb3TfVaA7ujbAAoeFq2BHK4=";
-    };
-  });
 in {
   imports = [
     "${sources.home-manager}/nixos"
@@ -81,23 +72,21 @@ in {
   home-manager.useUserPackages = true;
   home-manager.users.coca = lib.mkDefault (import ./home.nix);
 
-  environment.systemPackages = with pkgs;
-    [
-      fd
-      wl-clipboard-rs
-      nvd
-      nix-output-monitor
-      lsof
-      fatrace
-      waypipe
-      sshfs
-      btrfs-progs
-      (import sources.unpins {})
-      nix-tree
-      (lib.hiPrio uutils-coreutils-noprefix)
-      (lib.hiPrio uutils-findutils)
-    ]
-    ++ [rescrobbled];
+  environment.systemPackages = with pkgs; [
+    fd
+    wl-clipboard-rs
+    nvd
+    nix-output-monitor
+    lsof
+    fatrace
+    waypipe
+    sshfs
+    btrfs-progs
+    (import sources.unpins {})
+    nix-tree
+    (lib.hiPrio uutils-coreutils-noprefix)
+    (lib.hiPrio uutils-findutils)
+  ];
 
   security.sudo.enable = false;
 
