@@ -1,12 +1,8 @@
 {
   config,
   pkgs,
-  lib,
-  sources,
   ...
-}: let
-  diski = import sources.diski {inherit pkgs;};
-in {
+}: {
   imports = [
     ../configuration.nix
     ../graphical.nix

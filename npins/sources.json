@@ -1,18 +1,5 @@
 {
   "pins": {
-    "diski": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Coca162",
-        "repo": "diski"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "3206453fb6c1a08ccd1623016879c7701b901e24",
-      "url": "https://github.com/Coca162/diski/archive/3206453fb6c1a08ccd1623016879c7701b901e24.tar.gz",
-      "hash": "sha256-8LJToYdX1dMqD0iHpDmLpbQWaMQQJSwsVzezOmlMswA="
-    },
     "home-manager": {
       "type": "Git",
       "repository": {
