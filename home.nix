@@ -3,41 +3,37 @@
   pkgs,
   osConfig ? null,
   ...
-}: let
-  local-pkgs = pkgs.callPackage ./packages {};
-in {
+}: {
   # The home.stateVersion option does not have a default and must be set, DO NOT CHANGE WITHOUT CARE
   home.stateVersion = "23.11";
 
-  home.packages = with pkgs;
-    [
-      firefox
-      alejandra
-      tokei
-      eza
-      kondo
-      killall
-      ripgrep
-      ffmpeg-full
-      ab-av1
-      wget
-      yt-dlp
-      scdl
-      dust
-      nix-du
-      nix-inspect
-      graphviz
-      dig
-      jq
-      bat
-      file
-      openssl
-      grex
-      opustags
-      opusTools
-      trashy
-    ]
-    ++ local-pkgs.scripts;
+  home.packages = with pkgs; [
+    firefox
+    alejandra
+    tokei
+    eza
+    kondo
+    killall
+    ripgrep
+    ffmpeg-full
+    ab-av1
+    wget
+    yt-dlp
+    scdl
+    dust
+    nix-du
+    nix-inspect
+    graphviz
+    dig
+    jq
+    bat
+    file
+    openssl
+    grex
+    opustags
+    opusTools
+    trashy
+  ];
 
   home.sessionVariables = {
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
@@ -238,7 +234,7 @@ in {
     scripts = with pkgs.mpvScripts; [
       visualizer
       thumbfast
-      local-pkgs.thumbfast-osc
+      thumbfast-osc
       mpris
     ];
   };

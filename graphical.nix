@@ -14,6 +14,7 @@
       displayManager.sddm.enable = true;
       desktopManager.plasma6.enable = true;
     };
+    environment.systemPackages = [pkgs.spawn-terminal];
   };
   niri = let
     update-wallpaper = pkgs.writers.writeNu "update-wallpaper" {

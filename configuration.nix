@@ -28,6 +28,7 @@ in {
         colmena
         ;
     })
+    (import ./packages)
   ];
 
   nix.package = pkgs.lixPackageSets.latest.lix;
