@@ -198,7 +198,6 @@ in {
     gimp
     krita
     kdePackages.kate
-    kdePackages.kdenlive
     kdePackages.kclock
     kdePackages.kruler
     inkscape

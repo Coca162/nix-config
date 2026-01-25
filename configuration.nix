@@ -48,7 +48,7 @@ in {
   boot.supportedFilesystems = ["ntfs"];
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
