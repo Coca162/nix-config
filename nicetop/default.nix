@@ -37,10 +37,6 @@
     }
   ];
 
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="a0e08bb3-18b0-4ee8-a402-0e00f9220a68", ENV{UDISKS_IGNORE}="1", ENV{SYSTEMD_USER_WANTS}+="disk_status_external.service"
-  '';
-
   systemd.automounts = [
     {
       description = "Automount for btrfs 2TB external drive";
