@@ -19,8 +19,8 @@ final: prev: {
     src = final.fetchFromGitHub {
       owner = "space-wizards";
       repo = "SS14.Launcher";
-      rev = "de91b7e9051debca9ddfcdb2c7b8d2af900ebb23";
-      hash = "sha256-NW7bTP0IEwjZ60LBhmWlAOChFJHn5tBLdg+wquqCGmI=";
+      rev = "c4be57791aa8c1ad746c87b5173e7bfc97dffbea";
+      hash = "sha256-J22g8vqKw/yVbAXhQxAUFKmtgJmCEYqrZvo0sxpr2sE=";
       fetchSubmodules = true;
     };
   in
