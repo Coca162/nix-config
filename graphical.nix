@@ -17,14 +17,14 @@
     environment.systemPackages = [pkgs.spawn-terminal];
   };
   niri = let
-    update-wallpaper = pkgs.writers.writeNu "update-wallpaper" {
+    update-wallpaper = pkgs.writers.writeFish "update-wallpaper" {
       makeWrapperArgs = [
         "--prefix"
         "PATH"
         ":"
         "${lib.makeBinPath [pkgs.swww]}"
       ];
-    } (builtins.readFile ./wallpaper.nu);
+    } (builtins.readFile ./wallpaper.fish);
   in {
     programs.niri.enable = true;
     programs.niri.useNautilus = false;
