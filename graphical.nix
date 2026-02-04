@@ -244,6 +244,7 @@ in {
           gruntfuggly.todo-tree
           haskell.haskell
           justusadam.language-haskell
+          bmalehorn.vscode-fish
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -255,8 +256,8 @@ in {
           {
             name = "crates-io";
             publisher = "BarbossHack";
-            version = "0.7.5";
-            sha256 = "sha256-eXLOr/XYhQgTl/gEjZQh97haFUgiqLNJn2P1uiMxPKg=";
+            version = "0.7.6";
+            sha256 = "sha256-cWSw/qvlp/ylPjXjXBbJfpDDKxzhVxrcag6A0JvO9T0=";
           }
         ];
 
