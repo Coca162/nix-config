@@ -9,7 +9,7 @@ shift
 machine=${1:-nicetop}
 shift
 
-nixpkgs_pin=$(nix eval --raw -f npins/default.nix nixpkgs)
+nixpkgs_pin=$(npins get-path nixpkgs)
 nix_path="nixpkgs=${nixpkgs_pin}:nixos-config=${PWD}/${machine}/default.nix"
 
 # without --no-reexec, nixos-rebuild will compile nix and use the compiled nix to
