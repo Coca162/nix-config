@@ -34,6 +34,8 @@
     opustags
     opusTools
     trashy
+    zola
+    minify
   ];
 
   home.sessionVariables = {
