@@ -200,6 +200,7 @@ in {
     kdePackages.kate
     kdePackages.kclock
     kdePackages.kruler
+    kdePackages.akregator
     inkscape
     prismlauncher
     qbittorrent
