@@ -25,6 +25,7 @@
     nix-du
     nix-inspect
     graphviz
+    libqalculate
     dig
     jq
     bat
