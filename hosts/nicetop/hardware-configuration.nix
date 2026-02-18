@@ -20,11 +20,6 @@
 
   boot.initrd.luks.devices."luks-dbf06856-fcaa-40b3-afc0-81e97230354b".device = "/dev/disk/by-uuid/dbf06856-fcaa-40b3-afc0-81e97230354b";
 
-  fileSystems."/data/btrfs-external" =
-    { device = "systemd-1";
-      fsType = "autofs";
-    };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/6668-6E92";
       fsType = "vfat";
