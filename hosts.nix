@@ -22,12 +22,10 @@ in {
         };
       };
 
-    modules =
-      []
-      ++ recursivelyImport [
-        ./base
-        ./graphical
-        ./hosts/nicetop
-      ];
+    modules = recursivelyImport [
+      ./base
+      ./graphical
+      ./hosts/nicetop
+    ];
   };
 }
