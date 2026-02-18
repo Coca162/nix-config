@@ -9,9 +9,6 @@ shift
 machine=${1:-nicetop}
 shift
 
-nixpkgs_pin=$(npins get-path nixpkgs)
-nix_path="nixpkgs=${nixpkgs_pin}:nixos-config=${PWD}/${machine}/default.nix"
-
 # without --no-reexec, nixos-rebuild will compile nix and use the compiled nix to
 # evaluate the config, wasting several seconds
-run0 --background="" env NIX_PATH="${nix_path}" nixos-rebuild "$cmd" --no-reexec "$@" --log-format internal-json -v |& nom --json
+run0 --background="" nixos-rebuild "$cmd" -f ./hosts.nix -A "$machine" --no-reexec "$@" --log-format internal-json -v |& nom --json

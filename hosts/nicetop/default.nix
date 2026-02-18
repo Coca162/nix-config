@@ -3,30 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ../configuration.nix
-    ../graphical.nix
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  fileSystems."/boot".options = ["umask=0077"]; # Make random seed file not world accessible
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 180;
-    "vm.watermark_boost_factor" = 0;
-    "vm.watermark_scale_factor" = 125;
-    "vm.page-cluster" = 0;
-  };
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 100;
-  };
-
   systemd.mounts = [
     {
       description = "Mount for btrfs 2TB external drive";
@@ -64,9 +40,6 @@
     });
   '';
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   hardware.bluetooth.enable = true;
 
   # Configure keymap in X11
@@ -81,10 +54,6 @@
     qemu.vhostUserPackages = with pkgs; [virtiofsd];
   };
   # virtualisation.spiceUSBRedirection.enable = true;
-
-  users.users.coca.extraGroups = ["networkmanager"];
-
-  networking.hostName = "nicetop"; # Define your hostname.
 
   time.timeZone = "Europe/London";
 
@@ -124,11 +93,11 @@
   hardware.graphics.extraPackages = [pkgs.intel-media-driver];
   environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  # services.postgresql = {
+  #   enable = true;
+  #   package = pkgs.postgresql_16;
+  #   extensions = [
+  #     (import (fetchTarball "https://github.com/Coca162/nixpkgs/archive/afc3b6816cb1fc42887f6ed94bb50b60f6741ac3.tar.gz") {}).postgresql16Packages.pg-uint128
+  #   ];
+  # };
 }

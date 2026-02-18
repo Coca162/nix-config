@@ -1,60 +1,83 @@
 {
   config,
   pkgs,
-  osConfig ? null,
+  lib,
+  sources,
   ...
 }: {
-  # The home.stateVersion option does not have a default and must be set, DO NOT CHANGE WITHOUT CARE
-  home.stateVersion = "23.11";
-
-  home.packages = with pkgs; [
-    firefox
-    alejandra
-    tokei
-    eza
-    kondo
-    killall
-    ripgrep
-    ffmpeg-full
-    ab-av1
-    wget
-    urlencode
-    yt-dlp
-    scdl
-    dust
-    nix-du
-    nix-inspect
-    graphviz
-    libqalculate
-    dig
-    jq
-    bat
-    file
-    openssl
-    grex
-    opustags
-    opus-tools
-    trashy
-    zola
-    minify
+  nixpkgs.overlays = [
+    (import ../packages)
   ];
 
-  home.sessionVariables = {
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
-    DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
-    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
-    XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
-    NUGET_PACKAGES = "${config.xdg.cacheHome}/NuGetPackages";
+  environment.systemPackages = with pkgs;
+    [
+      fd
+      wl-clipboard-rs
+      nvd
+      nix-output-monitor
+      lsof
+      fatrace
+      waypipe
+      sshfs
+      btrfs-progs
+      nix-tree
+      (lib.hiPrio uutils-coreutils-noprefix)
+      (lib.hiPrio uutils-findutils)
+      alejandra
+      tokei
+      eza
+      kondo
+      killall
+      ripgrep
+      ffmpeg-full
+      ab-av1
+      wget
+      urlencode
+      yt-dlp
+      scdl
+      dust
+      nix-du
+      nix-inspect
+      graphviz
+      libqalculate
+      dig
+      jq
+      bat
+      file
+      openssl
+      grex
+      opustags
+      opus-tools
+      trashy
+      zola
+      minify
+      nix-diff
+    ]
+    ++ [(import sources.unpins {inherit pkgs;})];
+
+  security.sudo.enable = false;
+
+  programs.fish.enable = true;
+  programs.nix-index.enable = true;
+  programs.command-not-found.enable = false;
+  environment.variables.MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
+
+  hm.home.sessionVariables = {
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.hm.xdg.configHome}/java";
+    DOTNET_CLI_HOME = "${config.hm.xdg.dataHome}/dotnet";
+    CUDA_CACHE_PATH = "${config.hm.xdg.cacheHome}/nv";
+    XCOMPOSECACHE = "${config.hm.xdg.cacheHome}/X11/xcompose";
+    NUGET_PACKAGES = "${config.hm.xdg.cacheHome}/NuGetPackages";
   };
 
-  programs.micro.enable = true;
-  programs.micro.package = pkgs.micro-with-wl-clipboard;
-  xdg.configFile."micro/bindings.json".text = builtins.toJSON {
+  hm.programs.micro.enable = true;
+  hm.programs.micro.package = pkgs.micro-with-wl-clipboard;
+  hm.xdg.configFile."micro/bindings.json".text = builtins.toJSON {
     "Alt-s" = "Save";
     "Alt-q" = "Quit";
   };
 
-  programs.fish = {
+  hm.programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
@@ -78,84 +101,27 @@
     };
   };
 
-  programs.zellij.enable = true;
-  programs.zellij.enableFishIntegration = false;
-  xdg.configFile."zellij/config.kdl".text = ''
-    advanced_mouse_actions false
+  hm.programs.lazygit.enable = true;
 
-    keybinds {
-        unbind "Ctrl q"
-        shared_except "locked" {
-            bind "Ctrl Alt q" { Quit; }
-        }
-    }
-  '';
-  xdg.configFile."zellij/layouts/default.kdl".text = ''
-    layout {
-        default_tab_template {
-            children
-            pane size=1 borderless=true {
-                plugin location="compact-bar"
-            }
-        }
-
-        tab focus=true name="Main" { pane; }
-
-        swap_tiled_layout name="horizontal extra" {
-            tab {
-                pane {
-                    pane stacked=true { children; }
-                    pane; pane; pane;
-                }
-                pane
-            }
-        }
-
-        swap_tiled_layout name="horizontal" {
-            tab {
-                pane stacked=true { children; }
-                pane; pane;
-            }
-        }
-
-        swap_tiled_layout name="vertical" {
-            tab max_panes=4 {
-                pane split_direction="vertical" {
-                  pane
-                  pane { pane; pane; }
-                }
-            }
-            tab {
-                pane split_direction="vertical" {
-                  pane
-                  pane stacked=true { children; }
-                }
-            }
-        }
-    }
-  '';
-
-  programs.lazygit.enable = true;
-
-  programs.tealdeer = {
+  hm.programs.tealdeer = {
     enable = true;
     settings.updates.auto_update = true;
   };
 
-  programs.btop = {
+  hm.programs.btop = {
     enable = true;
     package = pkgs.btop.override {
-      cudaSupport = osConfig.hardware.nvidia.modesetting.enable or false;
+      cudaSupport = config.hardware.nvidia.modesetting.enable or false;
     };
     settings.theme_background = false;
   };
 
-  programs.yazi = {
+  hm.programs.yazi = {
     enable = true;
     enableFishIntegration = true;
   };
 
-  programs.hyfetch = {
+  hm.programs.hyfetch = {
     enable = true;
     settings = {
       args = null;
@@ -176,8 +142,8 @@
     };
   };
 
-  programs.fastfetch.enable = true;
-  programs.fastfetch.settings = {
+  hm.programs.fastfetch.enable = true;
+  hm.programs.fastfetch.settings = {
     modules = [
       "title"
       "separator"
@@ -210,7 +176,7 @@
     ];
   };
 
-  programs.mpv = {
+  hm.programs.mpv = {
     enable = true;
     bindings = {
       RIGHT = "seek  5";
@@ -229,7 +195,7 @@
       "0" = "add volume 5";
     };
     config = {
-      screenshot-directory = "${config.home.homeDirectory}/Pictures/mpv";
+      screenshot-directory = "${config.hm.home.homeDirectory}/Pictures/mpv";
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
       screenshot-format = "png";
       volume = 20;
@@ -243,15 +209,15 @@
     ];
   };
 
-  programs.direnv = {
+  hm.programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
-  xdg.configFile."direnv/direnvrc".source = ./tmpfs_direnvrc.sh;
+  hm.xdg.configFile."direnv/direnvrc".source = ./tmpfs_direnvrc.sh;
 
-  services.ssh-agent.enable = true;
+  hm.services.ssh-agent.enable = true;
 
-  programs.jujutsu = {
+  hm.programs.jujutsu = {
     enable = true;
     settings = {
       user = {
@@ -267,8 +233,9 @@
     };
   };
 
-  programs.git = {
+  hm.programs.git = {
     enable = true;
+    settings.init.defaultBranch = "main";
     settings.user = {
       name = "Coca";
       email = "me@coca.codes";
@@ -277,25 +244,25 @@
     signing.signByDefault = true;
   };
 
-  programs.delta.enable = true;
+  hm.programs.delta.enable = true;
 
-  programs.difftastic = {
+  hm.programs.difftastic = {
     enable = true;
     git.enable = true;
     git.diffToolMode = true;
   };
 
-  programs.gpg = {
+  hm.programs.gpg = {
     enable = true;
     mutableKeys = true;
   };
 
-  programs.zoxide = {
+  hm.programs.zoxide = {
     enable = true;
     options = ["--cmd cd"];
   };
 
-  programs.fzf = {
+  hm.programs.fzf = {
     enable = true;
   };
 }
