@@ -116,11 +116,6 @@
     settings.theme_background = false;
   };
 
-  hm.programs.yazi = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
   hm.programs.hyfetch = {
     enable = true;
     settings = {
