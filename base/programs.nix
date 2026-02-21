@@ -52,6 +52,7 @@
       zola
       minify
       nix-diff
+      lixPackageSets.latest.nixpkgs-review
     ]
     ++ [(import sources.unpins {inherit pkgs;})];
 
