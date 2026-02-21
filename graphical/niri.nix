@@ -16,7 +16,11 @@ in {
   config = lib.mkIf (config.specialisation != {}) {
     programs.niri.enable = true;
     programs.niri.useNautilus = false;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal = {
+      config.niri."org.freedesktop.impl.portal.FileChooser" = lib.mkForce "kde";
+      extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.kdePackages.xdg-desktop-portal-kde];
+    };
+
     environment.systemPackages = with pkgs;
     with pkgs.kdePackages; [
       eww
