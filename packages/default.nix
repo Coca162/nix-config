@@ -14,15 +14,4 @@ final: prev: {
       hash = "sha256-OXLJvPwEWqrzRdEZlBv6eb3TfVaA7ujbAAoeFq2BHK4=";
     };
   });
-
-  space-station-14-launcher = let
-    src = final.fetchFromGitHub {
-      owner = "space-wizards";
-      repo = "SS14.Launcher";
-      rev = "c4be57791aa8c1ad746c87b5173e7bfc97dffbea";
-      hash = "sha256-J22g8vqKw/yVbAXhQxAUFKmtgJmCEYqrZvo0sxpr2sE=";
-      fetchSubmodules = true;
-    };
-  in
-    (final.callPackage "${src}/nix/package.nix" {}).overrideAttrs {inherit src;};
 }
