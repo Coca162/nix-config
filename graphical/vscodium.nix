@@ -44,7 +44,7 @@
       "editor.fontLigatures" = "'zero'";
       "editor.fontSize" = 15;
       "editor.inlayHints.enabled" = "onUnlessPressed";
-      "git.autofetch" = true;
+      "git.autofetch" = false;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${lib.getExe pkgs.nil}";
       "nix.serverSettings".nil.formatting.command = [
