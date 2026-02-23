@@ -52,7 +52,7 @@
       zola
       minify
       nix-diff
-      lixPackageSets.latest.nixpkgs-review
+      lixPackageSets.latest.nixpkgs-reviewFull
     ]
     ++ [(pkgs.callPackage "${sources.unpins}/npins.nix" {nix-prefetch-docker = pkgs.nix-prefetch-docker.override {nix = config.nix.package;};})];
 
