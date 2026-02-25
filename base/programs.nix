@@ -53,6 +53,7 @@
       minify
       nix-diff
       lixPackageSets.latest.nixpkgs-reviewFull
+      jmtpfs
     ]
     ++ [(pkgs.callPackage "${sources.unpins}/npins.nix" {nix-prefetch-docker = pkgs.nix-prefetch-docker.override {nix = config.nix.package;};})];
 
