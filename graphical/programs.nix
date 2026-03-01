@@ -22,7 +22,7 @@
     obs-studio
     wayfarer # Spectacle recording is a bit unreliable
     # blender BROKEN
-    libreoffice-qt6
+    # libreoffice-qt6
     bitwarden-desktop
     obsidian
     reaper

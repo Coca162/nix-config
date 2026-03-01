@@ -47,7 +47,7 @@
       openssl
       grex
       opustags
-      opus-tools
+      # opus-tools
       trashy
       zola
       minify
