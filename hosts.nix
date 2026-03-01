@@ -16,7 +16,7 @@ in {
       // {
         hostVars = {
           hostname = "nicetop";
-          timezone = "Europe/London";
+          timezone = "Europe/Sofia";
           stateVersion = "25.11";
           hmStateVersion = "23.11";
         };
