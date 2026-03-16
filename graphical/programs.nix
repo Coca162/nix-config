@@ -35,6 +35,7 @@
     signal-desktop
     space-station-14-launcher
     rescrobbled
+    gamescope
   ];
 
   programs.steam.enable = true;
