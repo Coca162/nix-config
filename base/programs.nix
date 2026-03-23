@@ -240,6 +240,7 @@
       email = "me@coca.codes";
     };
     signing.key = "0x03282DF88179AB19";
+    signing.format = "openpgp";
     signing.signByDefault = true;
   };
 
