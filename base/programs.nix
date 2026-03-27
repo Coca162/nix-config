@@ -57,8 +57,6 @@
     ]
     ++ [(pkgs.callPackage "${sources.unpins}/npins.nix" {nix-prefetch-docker = pkgs.nix-prefetch-docker.override {nix = config.nix.package;};})];
 
-  security.sudo.enable = false;
-
   programs.fish.enable = true;
   programs.nix-index.enable = true;
   programs.nix-index.package = pkgs.nix-index.override {nix = config.nix.package;};
