@@ -7,5 +7,5 @@ if test $index -gt (count $images)
     set -g index 1
 end
 
-swww img images/$images[$index]
+awww img images/$images[$index]
 echo $index > current.txt

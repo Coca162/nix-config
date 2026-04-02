@@ -9,7 +9,7 @@
       "--prefix"
       "PATH"
       ":"
-      "${lib.makeBinPath [pkgs.swww]}"
+      "${lib.makeBinPath [pkgs.awww]}"
     ];
   } (builtins.readFile ./wallpaper.fish);
 in {
@@ -24,7 +24,7 @@ in {
     environment.systemPackages = with pkgs;
     with pkgs.kdePackages; [
       eww
-      swww
+      awww
       fuzzel
       xwayland-satellite
       elisa
@@ -59,7 +59,7 @@ in {
     systemd.user.services.niri = {
       wants = [
         "mako.service"
-        "swww.service"
+        "awww.service"
         "swayidle.service"
       ];
       path = [
@@ -92,11 +92,11 @@ in {
         pkgs.niri
         pkgs.jq
         pkgs.uutils-findutils
-        pkgs.swww
+        pkgs.awww
       ];
     };
 
-    systemd.user.services.swww = {
+    systemd.user.services.awww = {
       partOf = ["graphical-session.target"];
       after = [
         "graphical-session.target"
@@ -104,13 +104,13 @@ in {
       ];
       bindsTo = ["graphical-session.target"];
 
-      serviceConfig.ExecStart = lib.getExe' pkgs.swww "swww-daemon";
+      serviceConfig.ExecStart = lib.getExe' pkgs.awww "awww-daemon";
       serviceConfig.ExecStartPost = update-wallpaper;
     };
 
     systemd.user.timers."update-wallpaper" = {
-      wantedBy = ["swww.service"];
-      requires = ["swww.service"];
+      wantedBy = ["awww.service"];
+      requires = ["awww.service"];
       timerConfig = {
         OnUnitActiveSec = "30min";
         Unit = "update-wallpaper.service";
