@@ -16,6 +16,10 @@
     variant = "";
   };
 
+  # We have zswap and 32GB of ram on here it'll be fine
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "75%";
+
   # services.postgresql = {
   #   enable = true;
   #   package = pkgs.postgresql_16;
