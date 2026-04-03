@@ -14,6 +14,6 @@
 
   environment.etc."polkit-1/polkitd.conf".text = ''
     [Polkitd]
-    ExpirationSeconds=120
+    ExpirationSeconds=240
   '';
 }
