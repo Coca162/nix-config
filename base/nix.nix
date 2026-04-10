@@ -29,6 +29,8 @@
       "nvidia-x11"
       "osu-lazer-bin"
       "bitwig-studio-unwrapped"
+      "bitwig-studio6"
+      "bitwig-studio6-6.0"
       "aseprite" # Source available
       "obsidian"
       "reaper"
