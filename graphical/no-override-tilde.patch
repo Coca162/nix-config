@@ -1,0 +1,37 @@
+diff --git a/packages/frontend/src/components/attachment/galleryAttachment.tsx b/packages/frontend/src/components/attachment/galleryAttachment.tsx
+index 582af81f1..63bdcdeab 100644
+--- a/packages/frontend/src/components/attachment/galleryAttachment.tsx
++++ b/packages/frontend/src/components/attachment/galleryAttachment.tsx
+@@ -453,9 +453,7 @@ export function AudioAttachment({
+       >
+         <div className='heading'>
+           <div className='name'>
+-            {message?.overrideSenderName
+-              ? `~${message.overrideSenderName}`
+-              : message?.sender?.displayName}
++            {message?.overrideSenderName ?? message?.sender?.displayName}
+           </div>
+           <Timestamp
+             timestamp={message?.timestamp * 1000}
+diff --git a/packages/frontend/src/components/message/Message.tsx b/packages/frontend/src/components/message/Message.tsx
+index 718d14594..33ecb3dfc 100644
+--- a/packages/frontend/src/components/message/Message.tsx
++++ b/packages/frontend/src/components/message/Message.tsx
+@@ -197,7 +197,7 @@ const ForwardedTitle = ({
+               key='displayname'
+               style={{ color: color }}
+             >
+-              {overrideSenderName ? `~${overrideSenderName}` : displayName}
++              {overrideSenderName ?? displayName}
+             </button>
+           )
+         )
+@@ -1152,7 +1152,7 @@ export function getAuthorName(
+   displayName: string,
+   overrideSenderName?: string | null
+ ) {
+-  return overrideSenderName ? `~${overrideSenderName}` : displayName
++  return overrideSenderName ?? displayName
+ }
+ 
+ function WebxdcMessageContent({

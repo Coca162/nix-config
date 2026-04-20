@@ -1,0 +1,230 @@
+diff --git a/packages/frontend/src/components/composer/Composer.tsx b/packages/frontend/src/components/composer/Composer.tsx
+index 273c27c99..b267a3b79 100644
+--- a/packages/frontend/src/components/composer/Composer.tsx
++++ b/packages/frontend/src/components/composer/Composer.tsx
+@@ -101,7 +101,7 @@ const Composer = forwardRef<
+   const accountId = selectedAccountId()
+   const { openDialog } = useDialog()
+   const { sendMessage } = useMessage()
+-  const { unselectChat } = useChat()
++  const { unselectChat, setOverrideName, wipeOverrideName } = useChat()
+   const { smallScreenMode } = useContext(ScreenContext)
+ 
+   // The philosophy of the editing mode is as follows.
+@@ -230,6 +230,21 @@ const Composer = forwardRef<
+             return
+           }
+ 
++          let alias = {}
++          if (draftState.text.startsWith(';')) {
++            const i = draftState.text.indexOf(' ')
++            const overrideSenderName = draftState.text.slice(1, i)
++            if (overrideSenderName !== '') {
++              setOverrideName(overrideSenderName)
++            } else {
++              wipeOverrideName()
++            }
++            alias = {
++              text: draftState.text.slice(i + 1),
++              overrideSenderName,
++            }
++          }
++
+           const preSendDraftState = draftState
+           const sendMessagePromise = sendMessage(accountId, chatId, {
+             text: draftState.text,
+@@ -240,6 +255,7 @@ const Composer = forwardRef<
+                 ? draftState.quote.messageId
+                 : null,
+             viewtype: draftState.viewType,
++            ...alias,
+           })
+           // _Immediately_ clear the draft from React state.
+           // This does _not_ remove the draft from the back-end yet.
+diff --git a/packages/frontend/src/components/composer/ComposerMessageInput.tsx b/packages/frontend/src/components/composer/ComposerMessageInput.tsx
+index b72d54d46..1f79bc6cc 100644
+--- a/packages/frontend/src/components/composer/ComposerMessageInput.tsx
++++ b/packages/frontend/src/components/composer/ComposerMessageInput.tsx
+@@ -4,6 +4,7 @@ import { ActionEmitter, KeybindAction } from '../../keybindings'
+ import { getLogger } from '../../../../shared/logger'
+ import { DialogContext } from '../../contexts/DialogContext'
+ import { I18nContext } from '../../contexts/I18nContext'
++import { ChatContext } from '../../contexts/ChatContext'
+ 
+ const log = getLogger('renderer/composer/ComposerMessageInput')
+ 
+@@ -236,41 +237,47 @@ export default class ComposerMessageInput extends React.Component<
+     return (
+       <I18nContext.Consumer>
+         {({ writingDirection }) => (
+-          <textarea
+-            className={
+-              'create-or-edit-message-input' +
+-              (browserSupportsCSSFieldSizing
+-                ? ' use-field-sizing-css-prop'
+-                : '')
+-            }
+-            style={{ '--maxLines': maxLines } as React.CSSProperties}
+-            id={
+-              this.props.isMessageEditingMode
+-                ? 'composer-textarea-edit'
+-                : 'composer-textarea-non-edit'
+-            }
+-            ref={this.textareaRef}
+-            rows={1}
+-            // intent={this.state.error ? 'danger' : 'none'}
+-            // large
+-            value={this.props.text}
+-            onKeyDown={this.onKeyDown}
+-            onChange={this.onChange}
+-            onPaste={this.props.onPaste}
+-            placeholder={
+-              this.props.isMessageEditingMode
+-                ? window.static_translate('edit_message')
+-                : window.static_translate('write_message_desktop')
+-            }
+-            disabled={this.props.loadingDraft}
+-            dir={
+-              writingDirection === 'rtl'
+-                ? 'rtl'
+-                : 'auto' /* auto is based on content but defaults to ltr */
+-            }
+-            spellCheck={true}
+-            aria-keyshortcuts='Control+M'
+-          />
++          <ChatContext.Consumer>
++            {chatContext => (
++              <textarea
++                className={
++                  'create-or-edit-message-input' +
++                  (browserSupportsCSSFieldSizing
++                    ? ' use-field-sizing-css-prop'
++                    : '')
++                }
++                style={{ '--maxLines': maxLines } as React.CSSProperties}
++                id={
++                  this.props.isMessageEditingMode
++                    ? 'composer-textarea-edit'
++                    : 'composer-textarea-non-edit'
++                }
++                ref={this.textareaRef}
++                rows={1}
++                // intent={this.state.error ? 'danger' : 'none'}
++                // large
++                value={this.props.text}
++                onKeyDown={this.onKeyDown}
++                onChange={this.onChange}
++                onPaste={this.props.onPaste}
++                placeholder={
++                  this.props.isMessageEditingMode
++                    ? window.static_translate('edit_message')
++                    : chatContext?.overrideName === undefined
++                      ? window.static_translate('write_message_desktop')
++                      : `${window.static_translate('write_message_desktop')} as ${chatContext?.overrideName}`
++                }
++                disabled={this.props.loadingDraft}
++                dir={
++                  writingDirection === 'rtl'
++                    ? 'rtl'
++                    : 'auto' /* auto is based on content but defaults to ltr */
++                }
++                spellCheck={true}
++                aria-keyshortcuts='Control+M'
++              />
++            )}
++          </ChatContext.Consumer>
+         )}
+       </I18nContext.Consumer>
+     )
+diff --git a/packages/frontend/src/contexts/ChatContext.tsx b/packages/frontend/src/contexts/ChatContext.tsx
+index d3a25cf08..e66672dc1 100644
+--- a/packages/frontend/src/contexts/ChatContext.tsx
++++ b/packages/frontend/src/contexts/ChatContext.tsx
+@@ -16,6 +16,10 @@ export type SelectChat = (nextAccountId: number, chatId: number) => void
+ 
+ export type UnselectChat = () => void
+ 
++export type SetOverrideName = (overrideName: string) => void
++
++export type WipeOverrideName = () => void
++
+ export type ChatContextValue = {
+   /**
+    * `withLinger` means that after `selectChat()` the value of `chatWithLinger`
+@@ -35,6 +39,10 @@ export type ChatContextValue = {
+    */
+   selectChat: SelectChat
+   unselectChat: UnselectChat
++
++  overrideName?: string
++  setOverrideName: SetOverrideName
++  wipeOverrideName: WipeOverrideName
+ }
+ 
+ type Props = {
+@@ -58,6 +66,7 @@ export const ChatProvider = ({
+   unselectChatRef,
+ }: PropsWithChildren<Props>) => {
+   const [chatId, setChatId] = useState<number | undefined>()
++  const [overrideName, _setOverrideName] = useState<string | undefined>()
+   useEffect(() => {
+     window.__selectedChatId = chatId
+   }, [chatId])
+@@ -236,6 +245,17 @@ export const ChatProvider = ({
+     }
+   }, [accountId, chatWithLinger, chatId, refreshChat])
+ 
++  const setOverrideName = useCallback<SetOverrideName>(
++    (overrideName: string) => {
++      _setOverrideName(overrideName)
++    },
++    []
++  )
++
++  const clearOverrideName = useCallback<WipeOverrideName>(() => {
++    _setOverrideName(undefined)
++  }, [])
++
+   const value: ChatContextValue = {
+     chatWithLinger,
+     chatNoLinger,
+@@ -243,6 +263,9 @@ export const ChatProvider = ({
+     chatId,
+     selectChat,
+     unselectChat,
++    overrideName,
++    setOverrideName,
++    wipeOverrideName: clearOverrideName,
+   }
+ 
+   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
+diff --git a/packages/frontend/src/hooks/chat/useMessage.ts b/packages/frontend/src/hooks/chat/useMessage.ts
+index 5d0e74cfb..2a338bfe5 100644
+--- a/packages/frontend/src/hooks/chat/useMessage.ts
++++ b/packages/frontend/src/hooks/chat/useMessage.ts
+@@ -81,7 +81,7 @@ const MESSAGE_DEFAULT: T.MessageData = {
+ }
+ 
+ export default function useMessage() {
+-  const { chatId, selectChat } = useChat()
++  const { chatId, selectChat, overrideName } = useChat()
+ 
+   const jumpToMessage = useCallback<JumpToMessage>(
+     async ({
+@@ -139,6 +139,7 @@ export default function useMessage() {
+     ) => {
+       const msgId = await BackendRemote.rpc.sendMsg(accountId, chatId, {
+         ...MESSAGE_DEFAULT,
++        overrideSenderName: overrideName ?? null,
+         ...message,
+       })
+ 
+@@ -154,7 +155,7 @@ export default function useMessage() {
+         focus: false,
+       })
+     },
+-    [jumpToMessage]
++    [jumpToMessage, overrideName]
+   )
+ 
+   const forwardMessage = useCallback<ForwardMessage>(

@@ -31,7 +31,9 @@
     filezilla
     easyeffects
     alsa-utils
-    deltachat-desktop
+    (deltachat-desktop.overrideAttrs {
+      patches = [./no-override-tilde.patch ./override-name.patch];
+    })
     signal-desktop
     space-station-14-launcher
     rescrobbled
