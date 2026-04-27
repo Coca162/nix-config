@@ -42,10 +42,10 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "857569c108618c93ea3c6fcfaaffa64d8bf68dc5",
-      "url": "https://github.com/Coca162/npins/archive/857569c108618c93ea3c6fcfaaffa64d8bf68dc5.tar.gz",
-      "hash": "sha256-U8JLSSxs7PLzoswW+1W1iDtu2pWr3FwbWJoZoWQ/mSg="
+      "revision": "25977d76659eb2ea4d926c4e89929d4c93c43a98",
+      "url": "https://github.com/Coca162/npins/archive/25977d76659eb2ea4d926c4e89929d4c93c43a98.tar.gz",
+      "hash": "sha256-bwWT7wvBB6WIBLA3NHPhkJ6+JfH9wyLTjVrp4xtZnZQ="
     }
   },
-  "version": 7
+  "version": 8
 }
