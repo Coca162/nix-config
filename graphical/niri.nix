@@ -3,16 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  update-wallpaper = pkgs.writers.writeFish "update-wallpaper" {
-    makeWrapperArgs = [
-      "--prefix"
-      "PATH"
-      ":"
-      "${lib.makeBinPath [pkgs.awww]}"
-    ];
-  } (builtins.readFile ./wallpaper.fish);
-in {
+}: {
   config = lib.mkIf (config.specialisation != {}) {
     programs.niri.enable = true;
     programs.niri.useNautilus = false;
@@ -103,14 +94,14 @@ in {
         "niri.service"
       ];
       bindsTo = ["graphical-session.target"];
+      wants = ["update-wallpaper.timer" "update-wallpaper.service"];
 
       serviceConfig.ExecStart = lib.getExe' pkgs.awww "awww-daemon";
-      serviceConfig.ExecStartPost = update-wallpaper;
     };
 
     systemd.user.timers."update-wallpaper" = {
-      wantedBy = ["awww.service"];
-      requires = ["awww.service"];
+      bindsTo = ["awww.service"];
+      after = ["awww.service"];
       timerConfig = {
         OnUnitActiveSec = "30min";
         Unit = "update-wallpaper.service";
@@ -118,9 +109,18 @@ in {
     };
 
     systemd.user.services."update-wallpaper" = {
+      requires = ["awww.service"];
+      after = ["awww.service"];
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = update-wallpaper;
+        ExecStart = pkgs.writers.writeFish "update-wallpaper" {
+          makeWrapperArgs = [
+            "--prefix"
+            "PATH"
+            ":"
+            "${lib.makeBinPath [pkgs.awww]}"
+          ];
+        } (builtins.readFile ./wallpaper.fish);
       };
     };
 
