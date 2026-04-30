@@ -11,7 +11,6 @@
 
   environment.systemPackages = with pkgs;
     [
-      fd
       wl-clipboard-rs
       nvd
       nix-output-monitor
@@ -21,8 +20,6 @@
       sshfs
       btrfs-progs
       nix-tree
-      (lib.hiPrio uutils-coreutils-noprefix)
-      (lib.hiPrio uutils-findutils)
       alejandra
       tokei
       eza
@@ -47,7 +44,7 @@
       openssl
       grex
       opustags
-      # opus-tools
+      opus-tools
       trashy
       zola
       minify
