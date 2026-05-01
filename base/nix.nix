@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   sources,
   hostVars,
   ...
@@ -23,24 +22,6 @@
   nix.settings.use-xdg-base-directories = true;
 
   nix.package = pkgs.lixPackageSets.latest.lix;
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "osu-lazer-bin"
-      "bitwig-studio-unwrapped"
-      "bitwig-studio6"
-      "bitwig-studio6-6.0"
-      "aseprite" # Source available
-      "obsidian"
-      "reaper"
-      "steam"
-      "steam-unwrapped"
-    ]
-    # TODO: Find a better way to do this
-    || ((pkg.meta ? teams) && pkg.meta.teams == [pkgs.lib.teams.cuda]);
-
-  nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda];
 
   nix.extraOptions = ''
     trusted-users = @wheel

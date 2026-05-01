@@ -5,10 +5,6 @@
   sources,
   ...
 }: {
-  nixpkgs.overlays = [
-    (import ../packages)
-  ];
-
   environment.systemPackages = with pkgs;
     [
       wl-clipboard-rs
