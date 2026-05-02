@@ -21,7 +21,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.use-xdg-base-directories = true;
 
-  nix.package = pkgs.lixPackageSets.latest.lix;
+  # nix.package = pkgs.lixPackageSets.latest.lix;
 
   nix.extraOptions = ''
     trusted-users = @wheel

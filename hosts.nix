@@ -3,9 +3,21 @@ let
 
   pkgs = let
     inherit (pkgs.lib) getName teams licenses;
+    lix-module = sources.lix-module;
+    lix = sources.lix {inherit pkgs;};
   in
     import sources.nixpkgs {
-      overlays = [(import ./packages)];
+      overlays = [
+        (import ./packages)
+        (import "${lix-module}/overlay.nix" {
+          lix = pkgs.applyPatches {
+            name = "lix-main-patched";
+            src = lix.outPath;
+            patches = [./0001-bindings-linear-search-small-sets.patch ./0002-primops-o1-tail-share-elems.patch];
+          };
+          versionSuffix = "-${builtins.substring 0 8 lix.revision}-raf-patched";
+        })
+      ];
 
       config.allowUnfreePredicate = pkg:
         builtins.elem (getName pkg) [

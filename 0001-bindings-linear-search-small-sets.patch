@@ -1,0 +1,19 @@
+diff --git i/lix/libexpr/attr-set.hh w/lix/libexpr/attr-set.hh
+index dbec1f4dc..e7a865364 100644
+--- i/lix/libexpr/attr-set.hh
++++ w/lix/libexpr/attr-set.hh
+@@ -73,6 +73,14 @@ public:
+ 
+     const Attr * get(Symbol name)
+     {
++        // For small binding sets, linear search is faster than binary search
++        // due to better cache locality and branch prediction.
++        if (size_ <= 8) {
++            for (Size i = 0; i < size_; ++i) {
++                if (attrs[i].name == name) return &attrs[i];
++            }
++            return nullptr;
++        }
+         iterator i = std::lower_bound(begin(), end(), name, [](const Attr & value, const Symbol & compare) {
+             return value.name < compare;
+         });

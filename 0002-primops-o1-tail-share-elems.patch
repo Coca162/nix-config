@@ -1,0 +1,56 @@
+diff --git i/lix/libexpr/eval.cc w/lix/libexpr/eval.cc
+index 7675f10c4..ced37fcc9 100644
+--- i/lix/libexpr/eval.cc
++++ w/lix/libexpr/eval.cc
+@@ -841,6 +841,7 @@ Value::List * EvalMemory::newList(size_t size)
+     auto list =
+         reinterpret_cast<Value::List *>(allocBytes(sizeof(Value::List) + size * sizeof(Value *)));
+     list->size = size;
++    list->elems = reinterpret_cast<Value *>(list + 1);
+     stats.nrListElems += size;
+     return list;
+ }
+diff --git i/lix/libexpr/primops.cc w/lix/libexpr/primops.cc
+index 1237ad7ae..881c986aa 100644
+--- i/lix/libexpr/primops.cc
++++ w/lix/libexpr/primops.cc
+@@ -2283,10 +2283,9 @@ static Value prim_tail(EvalState & state, Value ** args)
+     if (args[0]->listSize() == 0)
+         state.ctx.errors.make<EvalError>("'tail' called on an empty list").debugThrow();
+ 
+-    auto result = state.ctx.mem.newList(args[0]->listSize() - 1);
+-    for (unsigned int n = 0; n < result->size; ++n) {
+-        result->elems[n] = args[0]->listElems()[n + 1];
+-    }
++    auto result = state.ctx.mem.allocType<Value::List>();
++    result->size = args[0]->listSize() - 1;
++    result->elems = args[0]->listElems() + 1;
+     return {NewValueAs::list, result};
+ }
+ 
+diff --git i/lix/libexpr/value.cc w/lix/libexpr/value.cc
+index 2a5474bed..f4d1f41ee 100644
+--- i/lix/libexpr/value.cc
++++ w/lix/libexpr/value.cc
+@@ -10,7 +10,7 @@
+ namespace nix
+ {
+ 
+-static const Value::List emptyListData{.size = 0};
++static const Value::List emptyListData{.size = 0, .elems = nullptr};
+ Value Value::EMPTY_LIST{Value::list_t{}, &emptyListData};
+ Value Value::EMPTY_SET{attrs_t{}, &Bindings::EMPTY};
+ 
+diff --git i/lix/libexpr/value.hh w/lix/libexpr/value.hh
+index bf20f2c5f..1b746ce65 100644
+--- i/lix/libexpr/value.hh
++++ w/lix/libexpr/value.hh
+@@ -912,7 +912,7 @@ struct alignas(Value::TAG_ALIGN) Value::Thunk
+ struct alignas(Value::TAG_ALIGN) Value::List
+ {
+     size_t size;
+-    Value elems[0];
++    Value * elems;
+ 
+     std::span<Value> span()
+     {
