@@ -3,13 +3,12 @@
   lib,
   ...
 }: {
-  hm.programs.vscode = {
+  hm.programs.vscodium = {
     enable = true;
-    package = pkgs.vscodium;
     mutableExtensionsDir = false;
   };
 
-  hm.programs.vscode.profiles.default = {
+  hm.programs.vscodium.profiles.default = {
     extensions = with pkgs.vscode-extensions;
       [
         mkhl.direnv
