@@ -10,20 +10,8 @@ let
       overlays = [
         (import ./packages)
         (import "${lix-module}/overlay.nix" {
-          lix = pkgs.applyPatches {
-            name = "lix-main-patched";
-            src = lix.outPath;
-            patches = [
-              ./0001-bindings-linear-search-small-sets.patch
-              ./0002-primops-o1-tail-share-elems.patch
-              (pkgs.fetchpatch2 {
-                name = "lix-replxx-5.patch";
-                url = "https://gerrit.lix.systems/changes/lix~5534/revisions/5/patch?download&raw";
-                hash = "sha256-BJ2fsO8rjbcOUw//dCAAc0zcSpLA6mxy4MG3uaBD1Rc=";
-              })
-            ];
-          };
-          versionSuffix = "-${builtins.substring 0 8 lix.revision}-raf-patched";
+          lix = lix.outPath;
+          versionSuffix = "-${builtins.substring 0 8 lix.revision}";
         })
       ];
 
