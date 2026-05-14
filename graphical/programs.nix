@@ -38,6 +38,7 @@
     space-station-14-launcher
     rescrobbled
     gamescope
+    brightnessctl
   ];
 
   programs.steam.enable = true;
