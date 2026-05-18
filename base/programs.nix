@@ -86,6 +86,9 @@
          eval (zellij setup --generate-auto-start fish | string collect)
       end
     '';
+    functions = {
+      callpackage = ''nix-build --expr "(import <nixpkgs> {}).callPackage $(realpath $argv[1]) {$argv[2]}" --no-link'';
+    };
     shellAliases = rec {
       ls = "eza -a";
       lsa = "eza -ambhlU --icons";
