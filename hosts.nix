@@ -10,8 +10,11 @@ let
       overlays = [
         (import ./packages)
         (import "${lix-module}/overlay.nix" {
-          lix = lix.outPath;
-          versionSuffix = "-${builtins.substring 0 8 lix.revision}";
+          lix = {
+            inherit (lix) outPath;
+            rev = lix.revision;
+          };
+          versionSuffix = "-${builtins.substring 0 7 lix.revision}";
         })
       ];
 
