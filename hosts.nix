@@ -3,13 +3,12 @@ let
 
   pkgs = let
     inherit (pkgs.lib) getName teams licenses;
-    lix-module = sources.lix-module;
     lix = sources.lix {inherit pkgs;};
   in
     import sources.nixpkgs {
       overlays = [
         (import ./packages)
-        (import "${lix-module}/overlay.nix" {
+        (import "${sources.lix-module}/overlay.nix" {
           lix = {
             inherit (lix) outPath;
             rev = lix.revision;
@@ -31,7 +30,6 @@ let
           "steam"
           "steam-unwrapped"
         ]
-        # TODO: Find a better way to do this
         || ((pkg.meta ? teams) && pkg.meta.teams == [teams.cuda]);
       config.allowlistedLicenses = [licenses.nvidiaCuda];
     };
@@ -39,8 +37,10 @@ let
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
   recursivelyImport = import ./recursivelyImport.nix {inherit (pkgs) lib;};
 
+  fixed-sources = builtins.mapAttrs (_: pin: pin {inherit pkgs;}) sources;
+
   specialArgs = {
-    inherit sources;
+    sources = fixed-sources;
     baseVars.username = "coca";
   };
 in {
