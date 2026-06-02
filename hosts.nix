@@ -17,6 +17,9 @@ let
         })
       ];
 
+      # God bless bitwarden
+      config.permittedInsecurePackages = ["electron-39.8.10"];
+
       config.allowUnfreePredicate = pkg:
         builtins.elem (getName pkg) [
           "nvidia-x11"
