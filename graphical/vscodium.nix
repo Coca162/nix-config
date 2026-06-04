@@ -45,7 +45,7 @@
       "editor.inlayHints.enabled" = "onUnlessPressed";
       "git.autofetch" = false;
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = lib.mkDefault (lib.getExe pkgs.nil);
+      "nix.serverPath" = "${lib.getExe pkgs.nil}";
       "nix.serverSettings".nil.formatting.command = [
         "${lib.getExe pkgs.alejandra}"
         "--"

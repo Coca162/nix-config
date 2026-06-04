@@ -2,49 +2,58 @@
   config,
   pkgs,
   lib,
+  sources,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    wl-clipboard-rs
-    nvd
-    nix-output-monitor
-    lsof
-    fatrace
-    waypipe
-    sshfs
-    btrfs-progs
-    nix-tree
-    alejandra
-    tokei
-    eza
-    kondo
-    killall
-    ripgrep
-    ffmpeg-full
-    ab-av1
-    wget
-    urlencode
-    yt-dlp
-    scdl
-    dust
-    nix-inspect
-    graphviz
-    libqalculate
-    dig
-    jq
-    bat
-    file
-    openssl
-    grex
-    opustags
-    opus-tools
-    trashy
-    zola
-    minify
-    nix-diff
-    jmtpfs
-    hyperfine
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      wl-clipboard-rs
+      nvd
+      nix-output-monitor
+      lsof
+      fatrace
+      waypipe
+      sshfs
+      btrfs-progs
+      nix-tree
+      alejandra
+      tokei
+      eza
+      kondo
+      killall
+      ripgrep
+      ffmpeg-full
+      ab-av1
+      wget
+      urlencode
+      yt-dlp
+      scdl
+      dust
+      nix-du
+      nix-inspect
+      graphviz
+      libqalculate
+      dig
+      jq
+      bat
+      file
+      openssl
+      grex
+      opustags
+      opus-tools
+      trashy
+      zola
+      minify
+      nix-diff
+      nixpkgs-reviewFull # lixPackageSets.latest.nixpkgs-reviewFull
+      jmtpfs
+      hyperfine
+    ]
+    ++ [
+      (pkgs.callPackage "${sources.unpins}/npins.nix" {
+        # nix-prefetch-docker = pkgs.nix-prefetch-docker.override {nix = config.nix.package;};
+      })
+    ];
 
   programs.fish.enable = true;
   programs.nix-index.enable = true;
@@ -207,6 +216,7 @@
   hm.programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    # nix-direnv.package = pkgs.lixPackageSets.latest.nix-direnv;
   };
   hm.xdg.configFile."direnv/direnvrc".source = ./tmpfs_direnvrc.sh;
 
