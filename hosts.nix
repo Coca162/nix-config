@@ -3,18 +3,10 @@ let
 
   pkgs = let
     inherit (pkgs.lib) getName teams licenses;
-    lix = sources.lix {inherit pkgs;};
   in
     import sources.nixpkgs {
       overlays = [
         (import ./packages)
-        (import "${sources.lix-module}/overlay.nix" {
-          lix = {
-            inherit (lix) outPath;
-            rev = lix.revision;
-          };
-          versionSuffix = "-${builtins.substring 0 7 lix.revision}";
-        })
       ];
 
       # God bless bitwarden
