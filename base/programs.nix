@@ -183,7 +183,7 @@
       "0" = "add volume 5";
     };
     config = {
-      screenshot-directory = "${config.hm.home.homeDirectory}/Pictures/mpv";
+      screenshot-directory = "~/Pictures/mpv";
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
       screenshot-format = "png";
       volume = 20;
