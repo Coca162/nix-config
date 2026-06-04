@@ -27,7 +27,6 @@
       yt-dlp
       scdl
       dust
-      nix-du
       nix-inspect
       graphviz
       libqalculate
@@ -43,14 +42,12 @@
       zola
       minify
       nix-diff
-      nixpkgs-reviewFull
       jmtpfs
       hyperfine
       lazygit
       fzf
     ]
     ++ [
-      (pkgs.callPackage "${sources.unpins}/npins.nix" {})
       (
         pkgs.nix-output-monitor.overrideAttrs (prev: {
           version = "0-unstable-2026-06-08";
@@ -72,11 +69,18 @@
       wrappers.jujutsu
       wrappers.git
       wrappers.eza
-      wrappers.direnv
       wrappers.fastfetch
       wrappers.hyfetch
       wrappers.btop
       wrappers.gnupg
+    ]
+    # Every package with a dep on nix
+    # excluding nil (derivation used in vscodium settings)
+    ++ [
+      pkgs.nix-du
+      pkgs.nixpkgs-reviewFull
+      (pkgs.callPackage "${sources.unpins}/npins.nix" {})
+      wrappers.direnv
     ];
 
   programs.fish = {
