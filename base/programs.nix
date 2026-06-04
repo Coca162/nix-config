@@ -45,19 +45,16 @@
       zola
       minify
       nix-diff
-      nixpkgs-reviewFull # lixPackageSets.latest.nixpkgs-reviewFull
+      nixpkgs-reviewFull
       jmtpfs
       hyperfine
     ]
     ++ [
-      (pkgs.callPackage "${sources.unpins}/npins.nix" {
-        # nix-prefetch-docker = pkgs.nix-prefetch-docker.override {nix = config.nix.package;};
-      })
+      (pkgs.callPackage "${sources.unpins}/npins.nix" {})
     ];
 
   programs.fish.enable = true;
   programs.nix-index.enable = true;
-  programs.nix-index.package = pkgs.nix-index.override {nix = config.nix.package;};
   programs.command-not-found.enable = false;
   environment.variables.MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
 
@@ -216,7 +213,6 @@
   hm.programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    # nix-direnv.package = pkgs.lixPackageSets.latest.nix-direnv;
   };
   hm.xdg.configFile."direnv/direnvrc".source = ./tmpfs_direnvrc.sh;
 
