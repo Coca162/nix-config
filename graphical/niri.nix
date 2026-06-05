@@ -2,11 +2,15 @@
   config,
   lib,
   pkgs,
+  wrappers,
   ...
 }: {
   config = lib.mkIf (config.specialisation != {}) {
-    programs.niri.enable = true;
-    programs.niri.useNautilus = false;
+    programs.niri = {
+      enable = true;
+      package = wrappers.niri;
+      useNautilus = false;
+    };
     xdg.portal = {
       config.niri."org.freedesktop.impl.portal.FileChooser" = lib.mkForce "kde";
       extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.kdePackages.xdg-desktop-portal-kde];
@@ -33,7 +37,7 @@
       qqc2-desktop-style
       plasma-integration
       kservice
-      swayidle
+      wrappers.swayidle
       swaylock
       mako
       ddcutil
@@ -77,7 +81,7 @@
       after = ["graphical-session.target"];
       bindsTo = ["graphical-session.target"];
 
-      serviceConfig.ExecStart = lib.getExe pkgs.swayidle;
+      serviceConfig.ExecStart = lib.getExe wrappers.swayidle;
       path = [
         pkgs.swaylock
         pkgs.niri

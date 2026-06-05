@@ -42,6 +42,12 @@ let
 
   fixed-sources = builtins.mapAttrs (_: pin: pin {inherit pkgs;}) sources;
 
+  mkWrappers = config:
+    import ./wrappers {
+      inherit pkgs config;
+      sources = fixed-sources;
+    };
+
   specialArgs = {
     sources = fixed-sources;
     baseVars.username = "coca";
@@ -59,6 +65,7 @@ in {
           stateVersion = "25.11";
           hmStateVersion = "23.11";
         };
+        wrappers = mkWrappers {nvidia = true;};
       };
 
     modules = recursivelyImport [
