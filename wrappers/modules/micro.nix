@@ -10,7 +10,7 @@
     settings = {
       type = types.attrs;
     };
-    settingsFile = {
+    configFile = {
       type = types.pathLike;
     };
 
@@ -35,15 +35,15 @@
     inherit (inputs.nixpkgs.pkgs) writeText;
     inherit (inputs.nixpkgs.lib.generators) toJSON;
   in
-    assert !(options ? settings && options ? settingsFile);
+    assert !(options ? settings && options ? configFile);
     assert !(options ? bindings && options ? bindingsFile);
       inputs.mkWrapper {
         inherit (options) package;
 
         symlinks = {
           "$out/micro/settings.json" =
-            if options ? settingsFile
-            then options.settingsFile
+            if options ? configFile
+            then options.configFile
             else if options ? settings
             then writeText "settings.json" (toJSON {} options.settings)
             else null;
@@ -60,4 +60,8 @@
           MICRO_CONFIG_HOME = "$out/micro";
         };
       };
+
+  meta = {
+    maintainers = ["coca"];
+  };
 }

@@ -30,4 +30,8 @@
         };
       }
     else options.package;
+
+  meta = {
+    maintainers = ["coca"];
+  };
 }
