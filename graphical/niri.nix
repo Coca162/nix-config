@@ -52,6 +52,9 @@
     ];
     hardware.i2c.enable = true;
     systemd.user.services.niri = {
+      # Clear the previous execstart or else systemd get angry
+      serviceConfig.ExecStart = ["" "${lib.getExe wrappers.niri} --session"];
+
       wants = [
         "mako.service"
         "awww.service"

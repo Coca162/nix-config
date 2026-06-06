@@ -22,6 +22,7 @@
   }:
     if options ? configFile
     then
+      # TODO: This needs to handle the systemd unit because it doesn't use wrapped
       inputs.mkWrapper {
         inherit (options) package;
         environment = {
