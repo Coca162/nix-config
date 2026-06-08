@@ -22,9 +22,19 @@
   }:
     if options ? configFile
     then
-      # TODO: This needs to handle the systemd unit because it doesn't use wrapped
       inputs.mkWrapper {
         inherit (options) package;
+        # hack gotten from https://github.com/Lassulus/wrappers/blob/main/modules/niri/module.nix
+        postWrap = ''
+          cp $out/share/systemd/user/niri.service niri.service
+          chmod +w niri.service
+          cat >> niri.service<<EOF
+          [Service]
+          ExecStart=
+          ExecStart=$out/bin/niri --session
+          EOF
+          cp --remove-destination niri.service $out/share/systemd/user/niri.service
+        '';
         environment = {
           NIRI_CONFIG = options.configFile;
         };
