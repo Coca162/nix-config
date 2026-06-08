@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "75e269f7f793ad5fcab350e48aeb49658efdc3a4",
-      "url": "https://github.com/Coca162/adios-wrappers/archive/75e269f7f793ad5fcab350e48aeb49658efdc3a4.tar.gz",
-      "hash": "sha256-R8cNH1pA5QO0J4LXeAj9rwmxxztFXX+kzLuKnV/6K60="
+      "revision": "4b9765add49d0bf3e54aa20616cb8facd5f4988d",
+      "url": "https://github.com/Coca162/adios-wrappers/archive/4b9765add49d0bf3e54aa20616cb8facd5f4988d.tar.gz",
+      "hash": "sha256-xVzNvsuTLLSgnIgb/uyzPwD0eFMM47oPj6dVr2lOdHc="
     },
     "home-manager": {
       "type": "Git",

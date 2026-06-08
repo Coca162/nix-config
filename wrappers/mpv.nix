@@ -20,7 +20,7 @@ _: {
       volume-max = 150;
     };
 
-    bindings.default = {
+    keybinds.default = {
       RIGHT = "seek  5";
       LEFT = "seek  -5";
       UP = "seek  60";
