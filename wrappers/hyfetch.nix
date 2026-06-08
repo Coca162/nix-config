@@ -16,4 +16,10 @@ _: {
     pride_month_disable = false;
     pride_month_shown = [];
   };
+
+  mutations = {
+    "/fish".abbreviations = _: {
+      neofetch = "hyfetch";
+    };
+  };
 }
