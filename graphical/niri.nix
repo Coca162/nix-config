@@ -17,39 +17,41 @@
     };
 
     environment.systemPackages = with pkgs;
-    with pkgs.kdePackages; [
-      eww
-      awww
-      fuzzel
-      xwayland-satellite
-      elisa
-      gwenview
-      okular
-      dolphin
-      breeze
-      ark
-      breeze-icons
-      breeze-gtk
-      ocean-sound-theme
-      plasma-workspace-wallpapers
-      pkgs.hicolor-icon-theme # fallback icons
-      qqc2-breeze-style
-      qqc2-desktop-style
-      plasma-integration
-      kservice
-      wrappers.swayidle
-      swaylock
-      mako
-      ddcutil
-      wl-screenrec
-      slurp
-      (qt6ct.overrideAttrs {
-        patches = pkgs.fetchurl {
-          url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
-          hash = "sha256-gXtwFPLT4e6Y3Y3NdEltOkSFj6cUOAZMqrqLxatR5Pk=";
-        };
-      })
-    ];
+      [
+        eww
+        awww
+        fuzzel
+        xwayland-satellite
+        swaylock
+        mako
+        ddcutil
+        wl-screenrec
+        slurp
+        hicolor-icon-theme # fallback icons, again
+        wrappers.swayidle
+      ]
+      ++ (with pkgs.kdePackages; [
+        elisa
+        gwenview
+        okular
+        dolphin
+        breeze
+        ark
+        breeze-icons
+        breeze-gtk
+        ocean-sound-theme
+        qqc2-breeze-style
+        qqc2-desktop-style
+        plasma-integration
+        kservice
+        (qt6ct.overrideAttrs {
+          patches = pkgs.fetchurl {
+            url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
+            hash = "sha256-gXtwFPLT4e6Y3Y3NdEltOkSFj6cUOAZMqrqLxatR5Pk=";
+          };
+        })
+      ]);
+
     hardware.i2c.enable = true;
     systemd.user.services.niri = {
       # Clear the previous execstart or else systemd get angry
@@ -76,8 +78,7 @@
       QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
     };
 
-    environment.etc."/xdg/menus/applications.menu".text =
-      builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    environment.etc."/xdg/menus/applications.menu".source = ./applications.xml;
 
     systemd.user.services.swayidle = {
       partOf = ["graphical-session.target"];
