@@ -1,10 +1,19 @@
 _: {
   options = {
     functions.default = {
-      callpackage = ''nix-build --expr "(import <nixpkgs> {}).callPackage $(realpath $argv[1]) {$argv[2]}" --no-link'';
+      callpackage = ''
+        function callpackage -a path attrset
+          nix-build --expr "(import <nixpkgs> {}).callPackage $(realpath $path) {$attrset}" --no-link
+        end
+      '';
+      whichlink = ''
+        function whichlink -a command
+          readlink (which $command)
+        end
+      '';
     };
-    abbreviations.mutators = ["/fish" "/eza"];
-    interactiveShellInit.mutators = ["/fish" "/direnv" "/zoxide" "/hyfetch"];
+    abbreviations.mutators = ["/fish" "/eza" "/hyfetch"];
+    interactiveShellInit.mutators = ["/fish" "/direnv" "/zoxide"];
   };
 
   mutations = {
@@ -17,6 +26,7 @@ _: {
       end
     '';
     "/fish".abbreviations = _: {
+      wl = "whichlink";
       nano = "nano -c";
       grep = "rg";
       loc = "tokei";
