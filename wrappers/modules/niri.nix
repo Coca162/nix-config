@@ -1,7 +1,7 @@
 {types, ...}: {
   inputs = {
-    mkWrapper.path = "/mkWrapper";
-    nixpkgs.path = "/nixpkgs";
+    mkWrapper.from = {parent}: parent.mkWrapper;
+    nixpkgs.from = {parent}: parent.nixpkgs;
   };
 
   options = {

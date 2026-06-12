@@ -1,6 +1,6 @@
 _: {
   inputs = {
-    config.path = "/config";
+    config.from = {parent}: parent.config;
   };
 
   options.settings.default.theme_background = false;
