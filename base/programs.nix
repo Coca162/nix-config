@@ -107,4 +107,7 @@
   # No idea what sets this
   # It doesn't even work!
   services.gnome.gcr-ssh-agent.enable = false;
+
+  # Speed is key.
+  documentation.nixos.enable = false;
 }
