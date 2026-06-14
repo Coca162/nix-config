@@ -40,7 +40,6 @@
       (deltachat-desktop.overrideAttrs {
         patches = [sources."delta-no-override-tilde.patch" sources."delta-override-name.patch"];
       })
-      signal-desktop
       space-station-14-launcher
       rescrobbled
       gamescope
