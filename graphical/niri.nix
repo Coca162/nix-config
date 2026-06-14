@@ -134,7 +134,7 @@
   };
 
   systemd.user.services.niri-flake-polkit = {
-    description = "PolicyKit Authentication Agent provided by niri-flake";
+    description = "PolicyKit Authentication Agent setup for niri";
     wantedBy = ["niri.service"];
     after = ["graphical-session.target"];
     partOf = ["graphical-session.target"];
