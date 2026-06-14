@@ -27,15 +27,17 @@
       "hash": "sha256-UCeeNbQlPlCiCpml4vd0NFtRGJb7Aj5zz+XdD0L8weQ="
     },
     "delta-no-override-tilde.patch": {
-      "type": "Url",
-      "url": "https://coca.codes/no-override-tilde.patch",
+      "type": "MutableUrl",
+      "update_url": "https://coca.codes/no-override-tilde.patch",
       "unpack": false,
+      "url": "https://coca.codes/no-override-tilde.patch",
       "hash": "sha256-T7vim8kUM6z4Aslhba5I+GenT5svBddkBA029ckeNrA="
     },
     "delta-override-name.patch": {
-      "type": "Url",
-      "url": "https://coca.codes/override-name.patch",
+      "type": "MutableUrl",
+      "update_url": "https://coca.codes/override-name.patch",
       "unpack": false,
+      "url": "https://coca.codes/override-name.patch",
       "hash": "sha256-4XMGtNK/l0VxlhXbUWmQlyXnVJcd8KilAYTWWF/K4tk="
     },
     "home-manager": {
