@@ -16,7 +16,7 @@ _: {
       screenshot-directory = "~/Pictures/mpv";
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
       screenshot-format = "png";
-      volume = 20;
+      volume = 40;
       volume-max = 150;
     };
 
