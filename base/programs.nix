@@ -76,6 +76,7 @@
       wrappers.fastfetch
       wrappers.hyfetch
       wrappers.btop
+      wrappers.gnupg
     ];
 
   programs.fish = {
@@ -102,10 +103,8 @@
     GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
   };
 
-  hm.services.ssh-agent.enable = true;
-
-  hm.programs.gpg = {
-    enable = true;
-    mutableKeys = true;
-  };
+  programs.ssh.startAgent = true;
+  # No idea what sets this
+  # It doesn't even work!
+  services.gnome.gcr-ssh-agent.enable = false;
 }

@@ -40,19 +40,6 @@
       "url": "https://coca.codes/override-name.patch",
       "hash": "sha256-4XMGtNK/l0VxlhXbUWmQlyXnVJcd8KilAYTWWF/K4tk="
     },
-    "home-manager": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nix-community",
-        "repo": "home-manager"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "486595d2cf49cfcd649b58a284fa11ac0e34da22",
-      "url": "https://github.com/nix-community/home-manager/archive/486595d2cf49cfcd649b58a284fa11ac0e34da22.tar.gz",
-      "hash": "sha256-5inaamLgUMWy+MOBE9ChF9QAF1o/74LFuHkI0W/9rqc="
-    },
     "lix": {
       "type": "Git",
       "repository": {

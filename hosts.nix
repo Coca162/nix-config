@@ -63,7 +63,6 @@ in {
           hostname = "nicetop";
           timezone = "Europe/London";
           stateVersion = "25.11";
-          hmStateVersion = "23.11";
         };
         wrappers = mkWrappers {nvidia = true;};
       };
