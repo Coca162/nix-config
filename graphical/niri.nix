@@ -26,7 +26,9 @@
       wl-screenrec
       slurp
       hicolor-icon-theme # fallback icons, again
+      chameleos
       wrappers.swayidle
+      wrappers.satty
     ]
     ++ (with pkgs.kdePackages; [
       elisa
@@ -56,6 +58,7 @@
       "mako.service"
       "awww.service"
       "swayidle.service"
+      "chameleos.service"
     ];
     path = [
       "/run/wrappers"
@@ -145,5 +148,13 @@
       RestartSec = 1;
       TimeoutStopSec = 10;
     };
+  };
+
+  systemd.user.services.chameleos = {
+    partOf = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    bindsTo = ["graphical-session.target"];
+
+    serviceConfig.ExecStart = lib.getExe pkgs.chameleos;
   };
 }

@@ -32,6 +32,10 @@
           [Service]
           ExecStart=
           ExecStart=$out/bin/niri --session
+          ExecReload=$out/bin/niri msg action load-config-file --path ${options.configFile}
+          X-ReloadIfChanged=true
+          [Unit]
+          X-Reload-Triggers=${options.configFile}
           EOF
           cp --remove-destination niri.service $out/share/systemd/user/niri.service
         '';

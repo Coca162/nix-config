@@ -40,7 +40,7 @@
     inputs,
   }: let
     inherit (inputs.nixpkgs.pkgs) writeText;
-    inherit (inputs.nixpkgs.lib) generators isString optionalString;
+    inherit (inputs.nixpkgs.lib) generators isString optionals optionalString;
     toKeyValue = settings:
       generators.toKeyValue {
         mkKeyValue = key: value:
@@ -63,7 +63,7 @@
             then writeText "gpg.conf" (toKeyValue options.settings)
             else null;
         };
-        flags = [
+        flags = optionals (options ? configFile || options ? settings) [
           "--options"
           "$out/gnupg/gpg.conf"
         ];

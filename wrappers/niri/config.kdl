@@ -605,8 +605,13 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Mod+Print { screenshot-screen; }
+    Mod+Shift+Print { screenshot-window; }
+
+    Ctrl+Print { spawn "chamel" "toggle"; }
+    Ctrl+Shift+Print { spawn "chamel" "clear"; }
+
+    Alt+Print { spawn-sh "wl-paste | satty -f -"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
