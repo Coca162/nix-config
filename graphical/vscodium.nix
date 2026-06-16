@@ -20,6 +20,7 @@
       "--"
     ];
     "rust-analyzer.check.command" = "clippy";
+    "rust-analyzer.diagnostics.enable" = false;
     "terminal.integrated.fontFamily" = "Monocraft";
     "todo-tree.general.tags" = [
       "BUG"
