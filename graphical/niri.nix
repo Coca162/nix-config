@@ -58,6 +58,7 @@
       "mako.service"
       "awww.service"
       "swayidle.service"
+      "niri-flake-polkit.service"
       "chameleos.service"
     ];
     path = [
@@ -81,7 +82,7 @@
   systemd.user.services.swayidle = {
     partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
-    bindsTo = ["graphical-session.target"];
+    requisite = ["graphical-session.target"];
 
     serviceConfig.ExecStart = lib.getExe wrappers.swayidle;
     path = [
@@ -97,7 +98,7 @@
       "graphical-session.target"
       "niri.service"
     ];
-    bindsTo = ["graphical-session.target"];
+    requisite = ["graphical-session.target"];
     wants = ["update-wallpaper.timer" "update-wallpaper.service"];
 
     serviceConfig.ExecStart = lib.getExe' pkgs.awww "awww-daemon";
@@ -138,9 +139,11 @@
 
   systemd.user.services.niri-flake-polkit = {
     description = "PolicyKit Authentication Agent setup for niri";
-    wantedBy = ["niri.service"];
-    after = ["graphical-session.target"];
+
     partOf = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    requisite = ["graphical-session.target"];
+
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
@@ -153,7 +156,7 @@
   systemd.user.services.chameleos = {
     partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
-    bindsTo = ["graphical-session.target"];
+    requisite = ["graphical-session.target"];
 
     serviceConfig.ExecStart = lib.getExe pkgs.chameleos;
   };
