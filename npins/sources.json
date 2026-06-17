@@ -17,14 +17,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "llakala",
+        "owner": "Coca162",
         "repo": "adios-wrappers"
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c58bac4b8517b41cf54d83599291ba9ea78cce3a",
-      "url": "https://github.com/llakala/adios-wrappers/archive/c58bac4b8517b41cf54d83599291ba9ea78cce3a.tar.gz",
-      "hash": "sha256-UCeeNbQlPlCiCpml4vd0NFtRGJb7Aj5zz+XdD0L8weQ="
+      "revision": "47034f567b66606c00690ad4eb1a21592229e6c4",
+      "url": "https://github.com/Coca162/adios-wrappers/archive/47034f567b66606c00690ad4eb1a21592229e6c4.tar.gz",
+      "hash": "sha256-2wfydqwNcDfKIvhv6swQ5vHw+Ugqm3JNZuaSN9jSFhg="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
@@ -50,9 +50,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "abfe9d0c3efc2204b0f88ff87a642c174a09ff09",
-      "url": "https://git.lix.systems/lix-project/lix/archive/abfe9d0c3efc2204b0f88ff87a642c174a09ff09.tar.gz",
-      "hash": "sha256-byG4WdIQedN0EVQYqs1kibIbzMhhMYYZultROwlENW4="
+      "revision": "0d6b372c19a2a86db5549cdda4cd342dec3e312c",
+      "url": "https://git.lix.systems/lix-project/lix/archive/0d6b372c19a2a86db5549cdda4cd342dec3e312c.tar.gz",
+      "hash": "sha256-Tts5tsFTKiuZ4S+F4QzUJiE9JLGbCBxiqnBxhwBz2mY="
     },
     "lix-module": {
       "type": "Git",
@@ -72,8 +72,8 @@
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1014179.9ae611a455b9/nixexprs.tar.xz",
-      "hash": "sha256-d34lhgOet4IqYMnCxbIvwFBMOyTV6PT4TyNEOP0/ZhU="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1017464.567a49d1913c/nixexprs.tar.xz",
+      "hash": "sha256-rcUHdUtJEvMdNEl2Wq+YpHraHKfcer3KsBscpZEF2Yg="
     },
     "rust-overlay": {
       "type": "Git",
@@ -84,9 +84,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "107c334f141854f563f8adf1db781dc453d92639",
-      "url": "https://github.com/oxalica/rust-overlay/archive/107c334f141854f563f8adf1db781dc453d92639.tar.gz",
-      "hash": "sha256-hBdiQYd40xRtBWBiXHUxuQYWmJBiK19YO1FiYgrmEo0="
+      "revision": "d0e019d9543f0f1215a3d961fc4dca59aa29c638",
+      "url": "https://github.com/oxalica/rust-overlay/archive/d0e019d9543f0f1215a3d961fc4dca59aa29c638.tar.gz",
+      "hash": "sha256-Tzgol+o9+V4lK99r4AERI4pyFoZwg6Si2xUd1wc/WQU="
     },
     "unpins": {
       "type": "Git",

@@ -1,4 +1,9 @@
 _: {
+  # These are the defaults home-manager sets
+  # https://github.com/nix-community/home-manager/blob/master/modules/programs/gpg.nix#L286-L304
+  # idk if I actually want to do this
+  # I assume actual defaults it sets are fine
+  # but the docs are kinda ass so eh
   options.settings.default = {
     personal-cipher-preferences = "AES256 AES192 AES";
     personal-digest-preferences = "SHA512 SHA384 SHA256";
