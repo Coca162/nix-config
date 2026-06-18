@@ -17,14 +17,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Coca162",
+        "owner": "llakala",
         "repo": "adios-wrappers"
       },
       "branch": "main",
       "submodules": false,
-      "revision": "47034f567b66606c00690ad4eb1a21592229e6c4",
-      "url": "https://github.com/Coca162/adios-wrappers/archive/47034f567b66606c00690ad4eb1a21592229e6c4.tar.gz",
-      "hash": "sha256-2wfydqwNcDfKIvhv6swQ5vHw+Ugqm3JNZuaSN9jSFhg="
+      "revision": "2754b3e614b69b3061a3c6fd9b661e9ffbfa657a",
+      "url": "https://github.com/llakala/adios-wrappers/archive/2754b3e614b69b3061a3c6fd9b661e9ffbfa657a.tar.gz",
+      "hash": "sha256-DA0lljadx60ACw57k3RqA+iSXfeJgncEPUpOZ4Hr3No="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
