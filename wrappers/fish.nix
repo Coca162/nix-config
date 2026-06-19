@@ -8,7 +8,12 @@ _: {
       '';
       whichlink = ''
         function whichlink -a command
-          readlink (which $command)
+          readlink --canonicalize-existing (which $command)
+        end
+      '';
+      copyl = ''
+        function copyl
+          echo (urlencode -e fragment file://(realpath $argv[1])) | wl-copy -t text/uri-list
         end
       '';
     };
