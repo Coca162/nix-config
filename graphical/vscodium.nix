@@ -1,6 +1,5 @@
 {
   baseVars,
-  config,
   pkgs,
   lib,
   ...
@@ -100,15 +99,14 @@
   jsonFormat = pkgs.formats.json {};
 
   inherit (baseVars) username;
-  homeDir = config.users.users.${username}.home;
-  userDir = "${homeDir}/.config/VSCodium/User";
+  userDir = "/.config/VSCodium/User";
   keybindingsPath = "${userDir}/keybindings.json";
   settingsPath = "${userDir}/settings.json";
 in {
   users.users.${username}.packages = [vscodium-with-extensions];
 
   systemd.user.tmpfiles.users.${username}.rules = [
-    "L+ ${settingsPath} - - - - ${jsonFormat.generate "vscode-user-settings" settings}"
-    "L+ ${keybindingsPath} - - - - ${jsonFormat.generate "vscode-keybindings" keybindings}"
+    "L+ %h${settingsPath} - - - - ${jsonFormat.generate "vscode-user-settings" settings}"
+    "L+ %h${keybindingsPath} - - - - ${jsonFormat.generate "vscode-keybindings" keybindings}"
   ];
 }
