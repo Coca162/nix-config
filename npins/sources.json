@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b4e6b9474083bb00fdd9b287471aebf869e51c32",
-      "url": "https://github.com/llakala/lladios/archive/b4e6b9474083bb00fdd9b287471aebf869e51c32.tar.gz",
-      "hash": "sha256-lzwi0SgSkkkMQsiSl3NlPyglSOLZgy54KrYJSZRx9NI="
+      "revision": "47b7913af1d138725870109450e6ba941017d429",
+      "url": "https://github.com/llakala/lladios/archive/47b7913af1d138725870109450e6ba941017d429.tar.gz",
+      "hash": "sha256-X9FEv/4cy7VgFWR/HOthFtjLyTq5dC6W+lKZ/NoeY1s="
     },
     "adios-wrappers": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "2754b3e614b69b3061a3c6fd9b661e9ffbfa657a",
-      "url": "https://github.com/llakala/adios-wrappers/archive/2754b3e614b69b3061a3c6fd9b661e9ffbfa657a.tar.gz",
-      "hash": "sha256-DA0lljadx60ACw57k3RqA+iSXfeJgncEPUpOZ4Hr3No="
+      "revision": "790aae96969a9fbd9383d858085f5f7bd02a42dc",
+      "url": "https://github.com/llakala/adios-wrappers/archive/790aae96969a9fbd9383d858085f5f7bd02a42dc.tar.gz",
+      "hash": "sha256-rghbyu2pRggZe5s4gCUEgfxaFBpAkOAaTYTj7FSv9Vg="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
