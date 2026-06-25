@@ -35,7 +35,7 @@ _: {
       nano = "nano -c";
       grep = "rg";
       loc = "tokei";
-      qdl = ''yt-dlp --cookies-from-browser firefox -o "$XDG_RUNTIME_DIR/quick-yt-dlp/%(title)s.%(ext)s" --exec "urlencode -e fragment \"file://%(filepath)s\" | wl-copy -t text/uri-list"'';
+      qdl = ''yt-dlp --cookies-from-browser firefox -o "$XDG_RUNTIME_DIR/quick-yt-dlp/%(title)s.%(ext)s" --exec "echo file://%(filepath)q | wl-copy -t text/uri-list"'';
     };
   };
 }
