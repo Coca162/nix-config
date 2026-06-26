@@ -12,8 +12,5 @@
     });
   '';
 
-  environment.etc."polkit-1/polkitd.conf".text = ''
-    [Polkitd]
-    ExpirationSeconds=240
-  '';
+  security.polkit.settings.Polkitd.ExpirationSeconds = 240;
 }

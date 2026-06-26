@@ -41,7 +41,7 @@
         patches = [sources."delta-no-override-tilde.patch" sources."delta-override-name.patch"];
       })
       space-station-14-launcher
-      rescrobbled
+      rescrobbled # TODO: wrap with config and https://github.com/InputUsername/rescrobbled/pull/223 when merge conflicts are fixed
       gamescope
       brightnessctl
     ]
