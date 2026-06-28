@@ -6,15 +6,13 @@
   adios = import "${sources.adios}/adios";
   adios-wrappers = import sources.adios-wrappers {inherit adios;};
 
-  extra-modules = adios.lib.importModules ./modules;
-
-  overrides = adios.lib.importModules (pkgs.lib.fileset.toSource {
-    root = ./.;
-    fileset = pkgs.lib.fileset.difference ./. ./modules;
-  });
   root = {
     name = "root";
-    modules = pkgs.lib.recursiveUpdate (adios-wrappers // extra-modules) overrides;
+    modules = adios.lib.inject [
+      adios-wrappers
+      (adios.lib.importModules {directory = ./modules;})
+      (adios.lib.importModules {directory = ./.;})
+    ];
   };
 
   wrapperModules = adios root {
