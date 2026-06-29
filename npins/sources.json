@@ -50,9 +50,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "fce63f6dbf4d1de8fdabde6531f536529c41ab03",
-      "url": "https://git.lix.systems/lix-project/lix/archive/fce63f6dbf4d1de8fdabde6531f536529c41ab03.tar.gz",
-      "hash": "sha256-IbPX4fo8sTjo1baDsw19JdHMlR6a7Jj5DDYLtM/mWfg="
+      "revision": "7ef274600d5e7c83d4e94336aac30f974209db9c",
+      "url": "https://git.lix.systems/lix-project/lix/archive/7ef274600d5e7c83d4e94336aac30f974209db9c.tar.gz",
+      "hash": "sha256-E4J9RFReYB2d51muU9c4oLLLoN6M9Mm4jCQCk/xz6T0="
     },
     "lix-module": {
       "type": "Git",
