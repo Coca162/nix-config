@@ -78,6 +78,12 @@
     ]
     ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
+        name = "kdl-v1";
+        publisher = "kdl-org";
+        version = "1.4.1";
+        sha256 = "sha256-9hC+0GEj6cxCgPk2R9OMPUrkqXaztV7xDLrQYPqAedg=";
+      }
+      {
         name = "ayu-one-dark";
         publisher = "faceair";
         version = "1.1.1";
