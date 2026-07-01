@@ -7,7 +7,6 @@
   adios-wrappers = import sources.adios-wrappers {inherit adios;};
 
   root = {
-    name = "root";
     modules = adios.lib.inject [
       adios-wrappers
       (adios.lib.importModules {directory = ./modules;})
