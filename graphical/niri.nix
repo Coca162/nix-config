@@ -61,15 +61,6 @@
       "niri-flake-polkit.service"
       "chameleos.service"
     ];
-    path = [
-      "/run/wrappers"
-      "/home/coca/.nix-profile"
-      "/nix/profile"
-      "/home/coca/.local/state/nix/profile"
-      "/etc/profiles/per-user/coca"
-      "/nix/var/nix/profiles/default"
-      "/run/current-system/sw"
-    ];
   };
 
   environment.sessionVariables = {
