@@ -85,6 +85,7 @@
 
   programs.fish = {
     enable = true;
+    useBabelfish = true;
     package = wrappers.fish;
   };
   programs.nix-index.enable = true;
