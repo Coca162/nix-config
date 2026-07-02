@@ -45,7 +45,24 @@
       gamescope
       brightnessctl
     ]
-    ++ [wrappers.alacritty wrappers.mpv];
+    ++ [
+      wrappers.alacritty
+      (
+        mpv.override {
+          mpv-unwrapped =
+            wrappers.mpv
+            // {
+              inherit (pkgs.mpv-unwrapped) version meta;
+            };
+          scripts = with mpvScripts; [
+            visualizer
+            thumbfast
+            thumbfast-osc
+            mpris
+          ];
+        }
+      )
+    ];
 
   programs.steam.enable = true;
   programs.kdeconnect.enable = true;
