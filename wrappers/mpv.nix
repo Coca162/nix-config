@@ -1,5 +1,13 @@
 _: {
   options = {
+    scripts.defaultFunc = {inputs}:
+      with inputs.nixpkgs.pkgs.mpvScripts; [
+        visualizer
+        thumbfast
+        thumbfast-osc
+        mpris
+      ];
+
     settings.default = {
       screenshot-directory = "~/Pictures/mpv";
       screenshot-template = "Screenshot_%tY%tm%td_%tH%tM%tS"; # %m/%d/%Y, %H:%M:%S
