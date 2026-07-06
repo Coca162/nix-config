@@ -44,6 +44,7 @@
       rescrobbled # TODO: wrap with config and https://github.com/InputUsername/rescrobbled/pull/223 when merge conflicts are fixed
       gamescope
       brightnessctl
+      gram
     ]
     ++ [
       wrappers.alacritty
