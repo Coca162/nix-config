@@ -1,6 +1,6 @@
 {
   sources ? import ../npins,
-  pkgs ? import sources.nixpkgs {overlays = [(import ../packages)];},
+  pkgs ? import sources.nixpkgs {},
   config ? {},
 }: let
   adios = import "${sources.adios}/adios";

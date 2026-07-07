@@ -7,7 +7,6 @@ let
   in
     import sources.nixpkgs {
       overlays = [
-        (import ./packages)
         (import "${sources.lix-module}/overlay.nix" {
           lix = {
             inherit (lix) outPath;

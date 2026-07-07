@@ -4,7 +4,7 @@ _: {
       with inputs.nixpkgs.pkgs.mpvScripts; [
         visualizer
         thumbfast
-        thumbfast-osc
+        thumbfast-vanilla-osc
         mpris
       ];
 
