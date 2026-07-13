@@ -4,9 +4,6 @@
   hostVars,
   ...
 }: {
-  # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this config.
-  nix.registry.nixpkgs.flake = sources.nixpkgs;
-
   # remove nix-channel related tools & configs, we use system-wide pinned paths instead.
   nix.channel.enable = false;
   environment.etc = {
@@ -17,6 +14,9 @@
     "nixpkgs=/etc/nixos/nixpkgs"
     "rust-overlay=/etc/nixos/rust-overlay"
   ];
+
+  # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by nixos.
+  nix.registry.nixpkgs.flake = sources.nixpkgs;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.use-xdg-base-directories = true;
