@@ -39,16 +39,13 @@ let
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
   recursivelyImport = import ./recursivelyImport.nix {inherit (pkgs) lib;};
 
-  fixed-sources = builtins.mapAttrs (_: pin: pin {inherit pkgs;}) sources;
-
   mkWrappers = config:
     import ./wrappers {
-      inherit pkgs config;
-      sources = fixed-sources;
+      inherit pkgs config sources;
     };
 
   specialArgs = {
-    sources = fixed-sources;
+    inherit sources;
     baseVars.username = "coca";
   };
 in {
