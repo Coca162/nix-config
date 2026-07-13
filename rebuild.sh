@@ -11,4 +11,4 @@ shift
 
 # without --no-reexec, nixos-rebuild will compile nix and use the compiled nix to
 # evaluate the config, wasting several seconds
-run0 --background="" nixos-rebuild "$cmd" -f ./hosts.nix -A "$machine" --no-reexec "$@" --log-format internal-json -v |& nom --json
+run0 --background="" nixos-rebuild "$cmd" -A "$machine" --no-reexec "$@" --log-format internal-json -v |& nom --json
