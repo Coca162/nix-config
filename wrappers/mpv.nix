@@ -29,8 +29,10 @@ _: {
       "Ctrl+]" = "add speed 0.25";
       "{" = "multiply speed 0.5";
       "}" = "multiply speed 2.0";
-      "9" = "add volume -5";
-      "0" = "add volume 5";
+      "9" = "add volume -4";
+      "0" = "add volume 4";
+      "(" = "add volume -10";
+      ")" = "add volume 10";
     };
   };
 }
