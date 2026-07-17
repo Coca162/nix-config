@@ -4,8 +4,8 @@ _: {
   mutations = {
     "/fish".abbreviations = _: rec {
       ls = "eza";
-      lsa = "eza -mbhlU --icons";
-      tree = "eza --tree -mbhlu --icons";
+      lsa = "eza -mbhlU --icons auto";
+      tree = "eza --tree -mbhlu --icons auto";
       dirs = "eza --only-dirs";
       dir = dirs;
     };
