@@ -42,7 +42,7 @@
       zola
       minify
       nix-diff
-      jmtpfs
+      android-file-transfer
       hyperfine
       lazygit
       fzf
