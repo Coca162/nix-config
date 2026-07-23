@@ -4,51 +4,21 @@
   lib,
   ...
 }: let
-  nil = pkgs.nil.overrideAttrs {
-    patches = [
-      (builtins.toFile
-        "nix-doc-update.patch"
-        ''
-          diff --git a/crates/builtin/src/lib.rs b/crates/builtin/src/lib.rs
-          index 719fe2b..f56ed19 100644
-          --- a/crates/builtin/src/lib.rs
-          +++ b/crates/builtin/src/lib.rs
-          @@ -47,7 +47,9 @@ mod tests {
-                               "\
-           Return the names of the attributes in the set *set* in an
-           alphabetically sorted list. For instance, `builtins.attrNames { y
-          -= 1; x = \"foo\"; }` evaluates to `[ \"x\" \"y\" ]`.\
-          += 1; x = \"foo\"; }` evaluates to `[ \"x\" \"y\" ]`.
-          +
-          +Has `O(l n log n)` time complexity, where `n` is number of attributes in the *set* and `l` is the maximum attribute name length.\
-                           "
-                           ),
-                           impure_only: false,
-          diff --git a/crates/ide/src/ide/hover.rs b/crates/ide/src/ide/hover.rs
-          index 535bfde..09a82b0 100644
-          --- a/crates/ide/src/ide/hover.rs
-          +++ b/crates/ide/src/ide/hover.rs
-          @@ -387,6 +387,8 @@ mod tests {
-                           Return the first element of a list; abort evaluation if the argument
-                           isn’t a list or is an empty list. You can test whether a list is
-                           empty by comparing it with `[]`.
-          +
-          +                Has constant time complexity.
-                       "#]],
-                   );
-               }
-          @@ -404,6 +406,8 @@ mod tests {
-                           Return the first element of a list; abort evaluation if the argument
-                           isn’t a list or is an empty list. You can test whether a list is
-                           empty by comparing it with `[]`.
-          +
-          +                Has constant time complexity.
-                       "#]],
-                   );
-               }
-        '')
-    ];
-  };
+  nil = pkgs.nil.overrideAttrs (final: prev: {
+    version = "dbbb5";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "oxalica";
+      repo = "nil";
+      rev = "dbbb5c24f9215476992aa1bd305f8e5398e89654";
+      hash = "sha256-upJVI2pq9sOKgF2AILt8l6O4/3GNcMtT/s0rmnbO5UA=";
+    };
+
+    cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+      inherit (final) src;
+      hash = "sha256-ZyTrxGX0mRdskxp4o5ssDCyZzNn36rIgP9fDaA1fDws=";
+    };
+  });
 
   settings = {
     "diffEditor.ignoreTrimWhitespace" = false;
