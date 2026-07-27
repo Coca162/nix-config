@@ -4,22 +4,6 @@
   lib,
   ...
 }: let
-  nil = pkgs.nil.overrideAttrs (final: prev: {
-    version = "dbbb5";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "oxalica";
-      repo = "nil";
-      rev = "dbbb5c24f9215476992aa1bd305f8e5398e89654";
-      hash = "sha256-upJVI2pq9sOKgF2AILt8l6O4/3GNcMtT/s0rmnbO5UA=";
-    };
-
-    cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
-      inherit (final) src;
-      hash = "sha256-ZyTrxGX0mRdskxp4o5ssDCyZzNn36rIgP9fDaA1fDws=";
-    };
-  });
-
   settings = {
     "diffEditor.ignoreTrimWhitespace" = false;
     "editor.fontFamily" = "Cascadia Code";
@@ -29,7 +13,7 @@
     "git.autofetch" = false;
     "nix.enableLanguageServer" = true;
     # TODO: Don't reference these directly?
-    "nix.serverPath" = "${lib.getExe nil}";
+    "nix.serverPath" = "${lib.getExe pkgs.nil}";
     "nix.serverSettings".nil.formatting.command = [
       "${lib.getExe pkgs.alejandra}"
       "--"
@@ -108,8 +92,8 @@
       {
         name = "crates-io";
         publisher = "BarbossHack";
-        version = "0.7.6";
-        sha256 = "sha256-cWSw/qvlp/ylPjXjXBbJfpDDKxzhVxrcag6A0JvO9T0=";
+        version = "0.7.7";
+        sha256 = "sha256-tupsTX6ho94zL4jMRjQy/caynVibkuXbyIE5x+vv6SQ=";
       }
     ];
 

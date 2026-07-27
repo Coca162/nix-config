@@ -20,9 +20,9 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.use-xdg-base-directories = true;
+  nix.settings.trusted-users = ["@wheel"];
 
   nix.extraOptions = ''
-    trusted-users = @wheel
     # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
     keep-outputs = true
     keep-derivations = true

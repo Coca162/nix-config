@@ -78,7 +78,7 @@
     serviceConfig.ExecStart = lib.getExe wrappers.swayidle;
     path = [
       pkgs.swaylock
-      pkgs.niri
+      wrappers.niri
       pkgs.awww
     ];
   };
