@@ -31,14 +31,14 @@
       "update_url": "https://coca.codes/no-override-tilde.patch",
       "unpack": false,
       "url": "https://coca.codes/no-override-tilde.patch",
-      "hash": "sha256-L7sCTmul6/6hq4274uhDTQkl1Hh29QxaWl4SD7GYVlk="
+      "hash": "sha256-k/pFH5i76rjQ474lH63CPRoeLpolAbl5h+BFBMPLnaQ="
     },
     "delta-override-name.patch": {
       "type": "MutableUrl",
       "update_url": "https://coca.codes/override-name.patch",
       "unpack": false,
       "url": "https://coca.codes/override-name.patch",
-      "hash": "sha256-MvsZzzHo0OIBF2yo4AsxoW/d5czrp8v1muPjolHPBb4="
+      "hash": "sha256-wCTSl6ldRaCy72FsLIm0Y79ebAwR9AEAEBDGdHOoh0o="
     },
     "lix": {
       "type": "Git",
