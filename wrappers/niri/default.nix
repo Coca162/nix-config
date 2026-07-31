@@ -1,3 +1,3 @@
 _: {
-  options.configFile.default = builtins.toString ./config.kdl;
+  options.configFiles.default = [(builtins.toString ./config.kdl)];
 }
