@@ -3,7 +3,7 @@ let
 
   pkgs = let
     inherit (pkgs.lib) getName teams licenses;
-    lix = sources.lix {inherit pkgs;};
+    lix = sources.lix;
   in
     import sources.nixpkgs {
       overlays = [
