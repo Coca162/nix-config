@@ -18,15 +18,16 @@
   # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by nixos.
   nix.registry.nixpkgs.flake = sources.nixpkgs;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.use-xdg-base-directories = true;
-  nix.settings.trusted-users = ["@wheel"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    use-xdg-base-directories = true;
+    trusted-users = ["@wheel"];
+    keep-going = true;
 
-  nix.extraOptions = ''
     # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
-    keep-outputs = true
-    keep-derivations = true
-  '';
+    keep-outputs = true;
+    keep-derivations = true;
+  };
 
   system.stateVersion = hostVars.stateVersion;
 }
