@@ -19,12 +19,4 @@
   # We have zswap and 32GB of ram on here it'll be fine
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "75%";
-
-  # services.postgresql = {
-  #   enable = true;
-  #   package = pkgs.postgresql_16;
-  #   extensions = [
-  #     (import (fetchTarball "https://github.com/Coca162/nixpkgs/archive/afc3b6816cb1fc42887f6ed94bb50b60f6741ac3.tar.gz") {}).postgresql16Packages.pg-uint128
-  #   ];
-  # };
 }
