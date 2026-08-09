@@ -44,7 +44,6 @@
       nix-diff
       android-file-transfer
       hyperfine
-      lazygit
       fzf
       nix-output-monitor
     ]
@@ -58,6 +57,7 @@
       wrappers.hyfetch
       wrappers.btop
       wrappers.gnupg
+      wrappers.lazygit
     ]
     # Every package with a dep on nix
     # excluding nil (derivation used in vscodium settings)
