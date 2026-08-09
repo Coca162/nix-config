@@ -16,6 +16,12 @@ _: {
           echo (urlencode -e fragment file://(realpath $argv[1])) | wl-copy -t text/uri-list
         end
       '';
+      pick_and_copy_color = ''
+        function pick_and_copy_color
+            niri msg pick-color | string match -gr '(#[[:xdigit:]]+)' | read -l hex
+            wl-copy -n $hex
+        end
+      '';
     };
     abbreviations.mutators = ["/fish" "/eza" "/hyfetch"];
     interactiveShellInit.mutators = ["/fish" "/direnv" "/zoxide"];
