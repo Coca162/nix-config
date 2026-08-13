@@ -11,7 +11,6 @@
       nvd
       lsof
       fatrace
-      waypipe
       sshfs
       btrfs-progs
       nix-tree
