@@ -5,8 +5,8 @@
   wrappers,
   ...
 }: {
-  environment.systemPackages = with pkgs;
-    [
+  environment.systemPackages =
+    (with pkgs; [
       wl-clipboard-rs
       nvd
       lsof
@@ -44,20 +44,27 @@
       android-file-transfer
       hyperfine
       fzf
-      nix-output-monitor
-    ]
-    ++ [
-      wrappers.zoxide
-      wrappers.tealdeer
-      wrappers.jujutsu
-      wrappers.git
-      wrappers.eza
-      wrappers.fastfetch
-      wrappers.hyfetch
-      wrappers.btop
-      wrappers.gnupg
-      wrappers.lazygit
-    ]
+      (nix-output-monitor.overrideAttrs {
+        src = fetchFromGitHub {
+          owner = "maralorn";
+          repo = "nix-output-monitor";
+          rev = "e7c24c7576d5ab89957fe8ffe6b6077ff3934669";
+          hash = "sha256-LhAG+vrrm/8c+SF8TKATMuTmm0vMxUApyA3vHiFmdsY=";
+        };
+      })
+    ])
+    ++ (with wrappers; [
+      zoxide
+      tealdeer
+      jujutsu
+      git
+      eza
+      fastfetch
+      hyfetch
+      btop
+      gnupg
+      lazygit
+    ])
     # Every package with a dep on nix
     # excluding nil (derivation used in vscodium settings)
     ++ [
