@@ -6,6 +6,7 @@ _: {
   options.settings.default = {
     theme_background = false;
     rounded_corners = false;
+    clock_format = "%a %d %b %m %X";
 
     # # crappy zswap PR needs these to look nice
     # mem_graphs = false;
