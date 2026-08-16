@@ -95,6 +95,12 @@
         version = "0.7.7";
         sha256 = "sha256-tupsTX6ho94zL4jMRjQy/caynVibkuXbyIE5x+vv6SQ=";
       }
+      {
+        name = "vscode-parinfer";
+        publisher = "shaunlebron";
+        version = "0.6.2";
+        sha256 = "sha256-zev0oomPf9B+TaNRnp4xcmEWJBaa+IHgysbX2G0mm0A=";
+      }
     ];
 
   vscodium-with-extensions = pkgs.vscode-with-extensions.override {
