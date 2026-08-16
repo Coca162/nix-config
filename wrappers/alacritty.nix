@@ -2,7 +2,8 @@ _: {
   options.settings.default = {
     font = {
       size = 11;
-      normal.family = "monocraft";
+      normal.family = "Monocraft";
+      normal.style = "Regular";
     };
     env = {
       ZELLIJ_AUTO_ATTACH = "true";
