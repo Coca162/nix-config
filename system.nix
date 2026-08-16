@@ -4,9 +4,24 @@ let
   pkgs = let
     inherit (pkgs.lib) getName teams licenses;
     lix = sources.lix;
+    # lib = import (sources.nixpkgs + "/lib");
+    # lix-scope =
+    #   import "${sources.lix}/nix-support/build/inputs.nix"
+    #   {
+    #     inherit lib;
+    #     nixpkgs = null;
+    #     nix2container = null;
+    #     nixpkgs-regression = null;
+    #     nix_2_18 = null;
+    #     lixSrc = {
+    #       lastModifiedDate = "20260807";
+    #       shortRev = "09b373e";
+    #     };
+    #   };
   in
     import sources.nixpkgs {
       overlays = [
+        # (lix-scope.overlayFor (p: p.clangStdenv))
         (import "${sources.lix-module}/overlay.nix" {
           lix = {
             inherit (lix) outPath;

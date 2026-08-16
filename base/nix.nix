@@ -27,6 +27,9 @@
     # Keeps the compiled build outputs, means we don't have to rebuild everything again after gc
     keep-outputs = true;
     keep-derivations = true;
+
+    extra-substituters = ["https://afnix-hydra.s3-bulk-web.afnix.fr?priority=50"];
+    extra-trusted-public-keys = ["afnix:oqt801y+IwJ09XRtNDQYCKb7zuCw9DQXQk8fDWPkwxM"];
   };
 
   system.stateVersion = hostVars.stateVersion;
