@@ -26,7 +26,7 @@
       wl-screenrec
       slurp
       hicolor-icon-theme # fallback icons, again
-      chameleos
+      vellum
       wrappers.swayidle
       wrappers.satty
     ]
@@ -59,7 +59,7 @@
       "awww.service"
       "swayidle.service"
       "niri-flake-polkit.service"
-      "chameleos.service"
+      "vellum.service"
     ];
   };
 
@@ -144,11 +144,14 @@
     };
   };
 
-  systemd.user.services.chameleos = {
+  systemd.user.services.vellum = {
     partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
     requisite = ["graphical-session.target"];
 
-    serviceConfig.ExecStart = lib.getExe pkgs.chameleos;
+    serviceConfig = {
+      ExecStart = lib.getExe pkgs.vellum;
+      Restart = "on-failure";
+    };
   };
 }
