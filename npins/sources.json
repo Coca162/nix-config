@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "dcb7e1e7f15680f0c43f494d8f6003a078f39c07",
-      "url": "https://github.com/llakala/adios-wrappers/archive/dcb7e1e7f15680f0c43f494d8f6003a078f39c07.tar.gz",
-      "hash": "sha256-LI5dAeq+ABftSj4wknz3m/t7Wgh9hzcdF+5yqJhW/Iw="
+      "revision": "1bcfcd62d9639c84019e567e9eede1eccf04f5aa",
+      "url": "https://github.com/llakala/adios-wrappers/archive/1bcfcd62d9639c84019e567e9eede1eccf04f5aa.tar.gz",
+      "hash": "sha256-LBFKi3Hr7VoLEIHqSmB/xAX/1qmUKqVuOYQ27U9BJE4="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
@@ -50,9 +50,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f303b7d7263ddf9f5d284e3b0844efa427e16619",
-      "url": "https://git.lix.systems/lix-project/lix/archive/f303b7d7263ddf9f5d284e3b0844efa427e16619.tar.gz",
-      "hash": "sha256-u5Pq2xBUhaK6lcsRALbbO1dATzJeAEfAgkckRJqUbOQ="
+      "revision": "e007f54f508f9da8ce20050ac3855c749aa1de03",
+      "url": "https://git.lix.systems/lix-project/lix/archive/e007f54f508f9da8ce20050ac3855c749aa1de03.tar.gz",
+      "hash": "sha256-+JW0iBEmNou8iwgBmHqcrYgDQVzB16irkoRlkpSkNiM="
     },
     "lix-module": {
       "type": "Git",
@@ -72,8 +72,8 @@
       "type": "Channel",
       "name": "nixpkgs-unstable",
       "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1062790.c27cdad491a9/nixexprs.tar.zst",
-      "hash": "sha256-4Opnii0iGg8Dk8/rZ2IYh/HCHvg1B+Us5+Qg+Qy5c18="
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1063175.7d1a7c21a4c0/nixexprs.tar.zst",
+      "hash": "sha256-mm3axqWht8JL0/6rpAzQBxcJgOrbN4rgkN6s4AjZBOk="
     },
     "rust-overlay": {
       "type": "Git",
@@ -97,9 +97,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "94798995d35c11a4304769e1a77bfa1776828484",
-      "url": "https://github.com/Coca162/npins/archive/94798995d35c11a4304769e1a77bfa1776828484.tar.gz",
-      "hash": "sha256-/R42tB2mr/dbOY184Wlz3dM9nZJO+MVSQ+5oSbcX5CQ="
+      "revision": "e6af18b03836d6863f67204909e685f91dc317a6",
+      "url": "https://github.com/Coca162/npins/archive/e6af18b03836d6863f67204909e685f91dc317a6.tar.gz",
+      "hash": "sha256-XxZcOua2yZgaRv4Yx0LgKndYCivgaMIFZ+njEvS0muA="
     }
   },
   "version": 8
