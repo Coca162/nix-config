@@ -346,7 +346,7 @@ window-rule {
 
 window-rule {
     match app-id="Bitwarden"
-    match app-id="DeltaChat"
+    match app-id="deltachat"
     match title=r#"^Discord"#
     match title=r#"^Element"#
 
