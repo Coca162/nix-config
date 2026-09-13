@@ -6,8 +6,8 @@
   # kernel = pkgs.callPackage ./_zen.nix {};
   kernel = pkgs.linuxKernel.manualConfig rec {
     pname = "linux-zen";
-    version = "7.2.2";
-    modDirVersion = lib.versions.pad 3 "${version}-zen1";
+    version = "7.2.4";
+    modDirVersion = lib.versions.pad 3 "${version}-zen2";
     configfile = ./kernel.config;
     isZen = true;
     features.efiBootStub = true;
@@ -15,8 +15,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "zen-kernel";
       repo = "zen-kernel";
-      rev = "v7.2.2-zen1";
-      hash = "sha256-KDPxfU+md/ii13KfwSz6IocPFma8Xe0T3xXlsIEj0GM=";
+      rev = "v7.2.4-zen2";
+      sha256 = "1n8597gzym8fm9d18k4wczmngjg9id7dqgi8y8ak53iy6q0pwlsv";
     };
 
     extraMakeFlags = [
