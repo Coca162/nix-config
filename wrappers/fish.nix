@@ -23,7 +23,7 @@ _: {
         end
       '';
     };
-    abbreviations.mutators = ["/fish" "/eza" "/hyfetch"];
+    abbreviations.mutators = ["/fish" "/eza" "/hyfetch" "/git"];
     interactiveShellInit.mutators = ["/fish" "/direnv" "/zoxide"];
   };
 
