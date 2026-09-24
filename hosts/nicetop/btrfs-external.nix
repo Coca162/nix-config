@@ -13,7 +13,7 @@
     {
       description = "Automount for btrfs 2TB external drive";
       where = "/data/btrfs-external";
-      wantedBy = ["multi-user.target"];
+      # wantedBy = ["multi-user.target"];
       automountConfig.TimeoutIdleSec = 5;
     }
   ];
