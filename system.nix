@@ -69,7 +69,7 @@ in {
       // {
         hostVars = {
           hostname = "nicetop";
-          timezone = "Europe/London";
+          timezone = "Europe/Warsaw";
           stateVersion = "25.11";
         };
         wrappers = mkWrappers {nvidia = true;};
