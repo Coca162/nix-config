@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3ae345690af381c1d26e30ba4390f7f85a72e820",
-      "url": "https://github.com/llakala/lladios/archive/3ae345690af381c1d26e30ba4390f7f85a72e820.tar.gz",
-      "hash": "sha256-MngoNkQymdQFvXdrUv30V7O+2QnOKnJxbzwsZik5KJ8="
+      "revision": "7ff2ec6b7ad9c868373fa5375cf5665c3cda379d",
+      "url": "https://github.com/llakala/lladios/archive/7ff2ec6b7ad9c868373fa5375cf5665c3cda379d.tar.gz",
+      "hash": "sha256-rfuD+LHDPxeq0y2dfrGyVl1d6eVGG0sk+9bY3dm+1/c="
     },
     "adios-wrappers": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "5f22481df5e832c156a81cc5c5de920ccc35c540",
-      "url": "https://github.com/llakala/adios-wrappers/archive/5f22481df5e832c156a81cc5c5de920ccc35c540.tar.gz",
-      "hash": "sha256-w+UbwkHYEKABpmzu5DRkhEAwo9r21AHP7ivJurPFmx0="
+      "revision": "022a39dfd40f898928ff702fd5ca763394f4624b",
+      "url": "https://github.com/llakala/adios-wrappers/archive/022a39dfd40f898928ff702fd5ca763394f4624b.tar.gz",
+      "hash": "sha256-eJvlrYSiUn/6Q2adEHMzWRgwceg4117edTwhhPWzQ1g="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
@@ -72,8 +72,8 @@
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1078696.4975466d3247/nixexprs.tar.zst",
-      "hash": "sha256-EZwz6sR6RLzbKiJJ9QQgXPZ/zA6P8ecfFr/6fwBRfes="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080189.e158d9ed9b51/nixexprs.tar.zst",
+      "hash": "sha256-VZHcT2wKLkApBCACQ2SH4P1jVZUbbOA7jWAGi1MIViw="
     },
     "rust-overlay": {
       "type": "Git",
@@ -84,9 +84,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ed34466c59b766481248959a21a6e46cf0c60468",
-      "url": "https://github.com/oxalica/rust-overlay/archive/ed34466c59b766481248959a21a6e46cf0c60468.tar.gz",
-      "hash": "sha256-tjQa1vDoHJir4lasZTakz/xgmsfB6SRjeQqaIbefFOk="
+      "revision": "edea2d6f98b1e5f64ce5ac21e19a96c603c20b8c",
+      "url": "https://github.com/oxalica/rust-overlay/archive/edea2d6f98b1e5f64ce5ac21e19a96c603c20b8c.tar.gz",
+      "hash": "sha256-26FbceKgybcbwkIvs2yHsF5jHcWLEkITYg5g9WPSy64="
     },
     "unpins": {
       "type": "Git",
