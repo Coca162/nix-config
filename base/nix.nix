@@ -10,7 +10,7 @@
     "nixos/nixpkgs".source = builtins.storePath pkgs.path;
     "nixos/rust-overlay".source = sources.rust-overlay;
   };
-  nix.nixPath = [
+  nix.settings.nix-path = [
     "nixpkgs=/etc/nixos/nixpkgs"
     "rust-overlay=/etc/nixos/rust-overlay"
   ];
