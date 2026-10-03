@@ -46,10 +46,10 @@
       fzf
       (nix-output-monitor.overrideAttrs {
         src = fetchFromGitHub {
-          owner = "maralorn";
+          owner = "leana8959";
           repo = "nix-output-monitor";
-          rev = "e7c24c7576d5ab89957fe8ffe6b6077ff3934669";
-          hash = "sha256-LhAG+vrrm/8c+SF8TKATMuTmm0vMxUApyA3vHiFmdsY=";
+          rev = "992799cc22df1adb7e63da7f39fa1edea90c7e88";
+          hash = "sha256-oBbXOCAzKPcEv6knn4A0UzW5BzSUPbGyrnwOYntST7s=";
         };
       })
     ])
