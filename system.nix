@@ -23,10 +23,7 @@ let
       overlays = [
         # (lix-scope.overlayFor (p: p.clangStdenv))
         (import "${sources.lix-module}/overlay.nix" {
-          lix = {
-            inherit (lix) outPath;
-            rev = lix.revision;
-          };
+          inherit lix;
           versionSuffix = "-${builtins.substring 0 7 lix.revision}";
         })
       ];
