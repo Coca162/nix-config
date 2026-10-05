@@ -15,10 +15,12 @@ _: {
     rerere.enabled = true;
     column.ui = "auto";
     branch.sort = "-committerdate";
+
+    # TODO figure out push.useForceIfIncludes
   };
 
   mutations = {
-    "/fish".abbreviations = _: {
+    "/fish".abbreviations = {
       gpf = "git push --force-with-lease";
     };
   };

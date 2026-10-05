@@ -1,12 +1,14 @@
-_: {
+{promise, ...}: {
   options = {
-    scripts.defaultFunc = {inputs}:
-      with inputs.nixpkgs.pkgs.mpvScripts; [
-        visualizer
-        thumbfast
-        thumbfast-vanilla-osc
-        mpris
-      ];
+    scripts.default =
+      promise
+      ({inputs}:
+        with inputs.nixpkgs.pkgs.mpvScripts; [
+          visualizer
+          thumbfast
+          thumbfast-vanilla-osc
+          mpris
+        ]);
 
     settings.default = {
       screenshot-directory = "~/Pictures/mpv";

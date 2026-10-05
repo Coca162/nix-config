@@ -18,7 +18,7 @@ _: {
   };
 
   mutations = {
-    "/fish".abbreviations = _: {
+    "/fish".abbreviations = {
       neofetch = "hyfetch";
     };
   };

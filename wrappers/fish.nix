@@ -28,7 +28,7 @@ _: {
   };
 
   mutations = {
-    "/fish".interactiveShellInit = _: ''
+    "/fish".interactiveShellInit = ''
       set fish_greeting # Disable greeting
 
       if test "true" = "$ENABLE_ZELLIJ"
@@ -36,7 +36,7 @@ _: {
          eval (zellij setup --generate-auto-start fish | string collect)
       end
     '';
-    "/fish".abbreviations = _: {
+    "/fish".abbreviations = {
       wl = "whichlink";
       nano = "nano -c";
       grep = "rg";

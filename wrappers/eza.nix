@@ -2,7 +2,7 @@ _: {
   options.flags.default = ["-a"];
 
   mutations = {
-    "/fish".abbreviations = _: rec {
+    "/fish".abbreviations = rec {
       ls = "eza";
       lsa = "eza -mbhlU --icons auto";
       tree = "eza --tree -mbhlu --icons auto";

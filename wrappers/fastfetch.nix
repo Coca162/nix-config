@@ -1,4 +1,4 @@
-_: {
+{promise, ...}: {
   options.settings.default = {
     modules = [
       "title"
@@ -32,6 +32,8 @@ _: {
     ];
   };
 
-  options.package.defaultFunc = {inputs}:
-    inputs.nixpkgs.pkgs.fastfetch-unwrapped;
+  options.package.default =
+    promise
+    ({inputs}:
+      inputs.nixpkgs.pkgs.fastfetch-unwrapped);
 }
