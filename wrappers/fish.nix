@@ -11,8 +11,8 @@ _: {
           readlink --canonicalize-existing (which $command)
         end
       '';
-      copyl = ''
-        function copyl
+      f-copy = ''
+        function f-copy
           echo (urlencode -e fragment file://(realpath $argv[1])) | wl-copy -t text/uri-list
         end
       '';
@@ -20,6 +20,11 @@ _: {
         function pick_and_copy_color
             niri msg pick-color | string match -gr '(#[[:xdigit:]]+)' | read -l hex
             wl-copy -n $hex
+        end
+      '';
+      git-prs = ''
+        function git-prs -a remote
+          git config "remote.$remote.fetch" "+refs/pull/*:refs/remotes/$remote/pull/*"
         end
       '';
     };
@@ -38,6 +43,7 @@ _: {
     '';
     "/fish".abbreviations = {
       wl = "whichlink";
+      copyl = "f-copy";
       nano = "nano -c";
       grep = "rg";
       loc = "tokei";
