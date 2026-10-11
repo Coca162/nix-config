@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "4a5e900239bc2248cd7620954090df5b4fe52b4b",
-      "url": "https://github.com/llakala/lladios/archive/4a5e900239bc2248cd7620954090df5b4fe52b4b.tar.gz",
-      "hash": "sha256-GhUB1h01JtCY9xgqFXch5TDTQMwNqryJuwJa+9A8zBI="
+      "revision": "3ee1b4f934e0773bab2c7ede86839592076ab200",
+      "url": "https://github.com/llakala/lladios/archive/3ee1b4f934e0773bab2c7ede86839592076ab200.tar.gz",
+      "hash": "sha256-7GE/8CyJ9bQQHQcfvacW65myyt0AIJ9JiJ1552DsgRc="
     },
     "adios-wrappers": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "abe795a8fd256fc191e0b15d6257c2c683769f7a",
-      "url": "https://github.com/llakala/adios-wrappers/archive/abe795a8fd256fc191e0b15d6257c2c683769f7a.tar.gz",
-      "hash": "sha256-CUY95ViByDUisbAEOsi0IpRJu53bup1WpMIaNPxuUt8="
+      "revision": "bf7124b12ac30042a9220cf920333b6f93447464",
+      "url": "https://github.com/llakala/adios-wrappers/archive/bf7124b12ac30042a9220cf920333b6f93447464.tar.gz",
+      "hash": "sha256-eWzFhGi/EIRqgx16YjIInvHWnx4rgOplHkmNQy6o77I="
     },
     "delta-no-override-tilde.patch": {
       "type": "MutableUrl",
@@ -50,9 +50,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a3f7094877ebadc9bf6e1bad74bb04802548c763",
-      "url": "https://git.lix.systems/lix-project/lix/archive/a3f7094877ebadc9bf6e1bad74bb04802548c763.tar.gz",
-      "hash": "sha256-o5/yN2U0oGo6Cbh3FwSvkLYjm7XyY6ZU8pv+mlmOrMI="
+      "revision": "8dacbdd507d8c00e2880cb008cf31d2d1edfd598",
+      "url": "https://git.lix.systems/lix-project/lix/archive/8dacbdd507d8c00e2880cb008cf31d2d1edfd598.tar.gz",
+      "hash": "sha256-EvqsAH+Mf3Ph1a/G7JRyHjdPDdtknQ4FZs5hxaEWslo="
     },
     "lix-module": {
       "type": "Git",
@@ -72,8 +72,8 @@
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1087755.e7439b6b14ad/nixexprs.tar.zst",
-      "hash": "sha256-gRZ/s8WQJ2CsXdhcDVQH34qxuL0MuMCOs3aBiK1Prsw="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.zst",
+      "hash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4="
     },
     "rust-overlay": {
       "type": "Git",
@@ -84,9 +84,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "f91010a5c1b6125b715eb78a84fb5dd8fb74a2b0",
-      "url": "https://github.com/oxalica/rust-overlay/archive/f91010a5c1b6125b715eb78a84fb5dd8fb74a2b0.tar.gz",
-      "hash": "sha256-HJ4TEF3j7HmLYeEP/PtqjeiBX/6TppXB2qY53HcrWbs="
+      "revision": "e90fafa71b440fabcd52dd7fb017ab2da81c781a",
+      "url": "https://github.com/oxalica/rust-overlay/archive/e90fafa71b440fabcd52dd7fb017ab2da81c781a.tar.gz",
+      "hash": "sha256-CVZXIDNw7HEwyD8X6q9Ln370Sc0ZqRlTzDRwOZ1hJMY="
     },
     "unpins": {
       "type": "Git",
