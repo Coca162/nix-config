@@ -50,23 +50,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8dacbdd507d8c00e2880cb008cf31d2d1edfd598",
-      "url": "https://git.lix.systems/lix-project/lix/archive/8dacbdd507d8c00e2880cb008cf31d2d1edfd598.tar.gz",
-      "hash": "sha256-EvqsAH+Mf3Ph1a/G7JRyHjdPDdtknQ4FZs5hxaEWslo="
-    },
-    "lix-module": {
-      "type": "Git",
-      "repository": {
-        "type": "Forgejo",
-        "server": "https://git.lix.systems/",
-        "owner": "lix-project",
-        "repo": "nixos-module"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "9311ca94aac0ff3378ab4eea887284d11de94158",
-      "url": "https://git.lix.systems/lix-project/nixos-module/archive/9311ca94aac0ff3378ab4eea887284d11de94158.tar.gz",
-      "hash": "sha256-7KBL8PF28zweSpAAb62Dxo1oznqGUiXLu4807aAFw4s="
+      "revision": "6c523a441856123fdd89beeec1b8cdacb82e9c14",
+      "url": "https://git.lix.systems/lix-project/lix/archive/6c523a441856123fdd89beeec1b8cdacb82e9c14.tar.gz",
+      "hash": "sha256-sdN2A7VKNmgCMsyT6et9GZ7iXnp+OEmbVkBx/Wl7qTY="
     },
     "nixpkgs": {
       "type": "Channel",

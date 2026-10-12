@@ -1,52 +1,38 @@
 let
   sources = import ./npins;
 
-  pkgs = let
-    inherit (pkgs.lib) getName teams licenses;
-    lix = sources.lix;
-    # lib = import (sources.nixpkgs + "/lib");
-    # lix-scope =
-    #   import "${sources.lix}/nix-support/build/inputs.nix"
-    #   {
-    #     inherit lib;
-    #     nixpkgs = null;
-    #     nix2container = null;
-    #     nixpkgs-regression = null;
-    #     nix_2_18 = null;
-    #     lixSrc = {
-    #       lastModifiedDate = "20260807";
-    #       shortRev = "09b373e";
-    #     };
-    #   };
-  in
-    import sources.nixpkgs {
-      overlays = [
-        # (lix-scope.overlayFor (p: p.clangStdenv))
-        (import "${sources.lix-module}/overlay.nix" {
-          inherit lix;
-          versionSuffix = "-${builtins.substring 0 7 lix.revision}";
-        })
-      ];
+  lib = import "${sources.nixpkgs}/lib";
+  inherit (lib) getName teams licenses;
 
-      config.allowUnfreePredicate = pkg:
-        builtins.elem (getName pkg) [
-          "nvidia-x11"
-          "osu-lazer-bin"
-          "bitwig-studio-unwrapped"
-          "bitwig-studio6"
-          "bitwig-studio6-6.0"
-          "aseprite" # Source available
-          "obsidian"
-          "reaper"
-          "steam"
-          "steam-unwrapped"
-        ]
-        || ((pkg.meta ? teams) && pkg.meta.teams == [teams.cuda]);
-      config.allowlistedLicenses = [licenses.nvidiaCuda];
-    };
+  pkgs = import sources.nixpkgs {
+    overlays = [
+      (import "${sources.lix}/nix-support/build/overlay.nix" {
+        inherit lib;
+        versionSuffix = "-${builtins.substring 0 7 sources.lix.revision}";
+        officialRelease = false;
+        nix_2_18 = null;
+      } (p: p.clangStdenv))
+    ];
+
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (getName pkg) [
+        "nvidia-x11"
+        "osu-lazer-bin"
+        "bitwig-studio-unwrapped"
+        "bitwig-studio6"
+        "bitwig-studio6-6.0"
+        "aseprite" # Source available
+        "obsidian"
+        "reaper"
+        "steam"
+        "steam-unwrapped"
+      ]
+      || ((pkg.meta ? teams) && pkg.meta.teams == [teams.cuda]);
+    config.allowlistedLicenses = [licenses.nvidiaCuda];
+  };
 
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
-  recursivelyImport = import ./recursivelyImport.nix {inherit (pkgs) lib;};
+  recursivelyImport = import ./recursivelyImport.nix {inherit lib;};
 
   mkWrappers = config:
     import ./wrappers {
