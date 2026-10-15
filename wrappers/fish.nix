@@ -24,7 +24,11 @@ _: {
       '';
       git-prs = ''
         function git-prs -a remote
-          git config "remote.$remote.fetch" "+refs/pull/*:refs/remotes/$remote/pull/*"
+          if git config "remote.$remote.url" > /dev/null
+            git config "remote.$remote.fetch" "+refs/pull/*:refs/remotes/$remote/pull/*"
+          else
+            echo "Remote does not exist"
+          end
         end
       '';
     };
