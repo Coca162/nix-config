@@ -32,7 +32,6 @@
       bitwarden-desktop
       obsidian
       reaper
-      audacity
       qpwgraph
       filezilla
       easyeffects
