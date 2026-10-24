@@ -47,7 +47,7 @@
       (qt6ct.overrideAttrs {
         patches = pkgs.fetchurl {
           url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
-          hash = "sha256-gXtwFPLT4e6Y3Y3NdEltOkSFj6cUOAZMqrqLxatR5Pk=";
+          hash = "sha256-uqsrcUrUkN46Eu3V1OwPYiPt7QNNZqaUmJ50a4bR9CA=";
         };
       })
     ]);
