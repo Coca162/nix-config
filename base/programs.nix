@@ -85,18 +85,18 @@
   environment.sessionVariables = {
     MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
 
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_STATE_HOME = "$HOME/.local/state";
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\${XDG_CONFIG_HOME}/java";
-    DOTNET_CLI_HOME = "$XDG_DATA_HOME/dotnet";
-    CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-    XCOMPOSECACHE = "$XDG_CACHE_HOME/X11/xcompose";
-    NUGET_PACKAGES = "$XDG_CACHE_HOME/NuGetPackages";
-    ANDROID_USER_HOME = "$XDG_DATA_HOME/android";
-    PARALLEL_HOME = "$XDG_CACHE_HOME/parallel";
-    GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
+    XDG_CACHE_HOME = "@{HOME}/.cache";
+    XDG_CONFIG_HOME = "@{HOME}/.config";
+    XDG_DATA_HOME = "@{HOME}/.local/share";
+    XDG_STATE_HOME = "@{HOME}/.local/state";
+    _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot=''${XDG_CONFIG_HOME}/java'';
+    DOTNET_CLI_HOME = ''''${XDG_DATA_HOME}/dotnet'';
+    CUDA_CACHE_PATH = ''''${XDG_CACHE_HOME}/nv'';
+    XCOMPOSECACHE = ''''${XDG_CACHE_HOME}/X11/xcompose'';
+    NUGET_PACKAGES = ''''${XDG_CACHE_HOME}/NuGetPackages'';
+    ANDROID_USER_HOME = ''''${XDG_DATA_HOME}/android'';
+    PARALLEL_HOME = ''''${XDG_CACHE_HOME}/parallel'';
+    GTK2_RC_FILES = ''''${XDG_CONFIG_HOME}/gtk-2.0/gtkrc'';
   };
 
   programs.ssh.startAgent = true;
