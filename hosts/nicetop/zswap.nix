@@ -28,4 +28,6 @@
       size = 32 * 1024;
     }
   ];
+
+  boot.resumeDevice = "/dev/mapper/luks-dbf06856-fcaa-40b3-afc0-81e97230354b";
 }
