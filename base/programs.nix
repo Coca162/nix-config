@@ -85,10 +85,10 @@
   environment.sessionVariables = {
     MANPAGER = "${lib.getExe pkgs.bat} --wrap=auto --language=man --plain --strip-ansi=auto";
 
-    XDG_CACHE_HOME = "@{HOME}/.cache";
-    XDG_CONFIG_HOME = "@{HOME}/.config";
-    XDG_DATA_HOME = "@{HOME}/.local/share";
-    XDG_STATE_HOME = "@{HOME}/.local/state";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
     _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot=''${XDG_CONFIG_HOME}/java'';
     DOTNET_CLI_HOME = ''''${XDG_DATA_HOME}/dotnet'';
     CUDA_CACHE_PATH = ''''${XDG_CACHE_HOME}/nv'';
