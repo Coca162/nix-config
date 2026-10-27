@@ -31,7 +31,6 @@
       wrappers.satty
     ]
     ++ (with pkgs.kdePackages; [
-      elisa
       gwenview
       okular
       dolphin
@@ -49,6 +48,9 @@
           url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
           hash = "sha256-uqsrcUrUkN46Eu3V1OwPYiPt7QNNZqaUmJ50a4bR9CA=";
         };
+      })
+      (kdePackages.callPackage ./_elisa.nix {
+        dragon-media-backend = pkgs.callPackage ./_dragon-media-backend.nix {};
       })
     ]);
 
