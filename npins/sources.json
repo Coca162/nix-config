@@ -50,16 +50,16 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "7229002d4991d0c8c3301cae156d357492c7e246",
-      "url": "https://git.lix.systems/lix-project/lix/archive/7229002d4991d0c8c3301cae156d357492c7e246.tar.gz",
-      "hash": "sha256-OrvfBi44Z6hOOuw4EpbOi7iLsClgIYgvYFYlcM6EBSw="
+      "revision": "d129457cb422ba14b0dbb50648560273d862f117",
+      "url": "https://git.lix.systems/lix-project/lix/archive/d129457cb422ba14b0dbb50648560273d862f117.tar.gz",
+      "hash": "sha256-EDUvYI6bLnNP/PbiN/Ghp9/xBX2ePD3k9TeJrrplgdk="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst",
-      "hash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst",
+      "hash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4="
     },
     "rust-overlay": {
       "type": "Git",
@@ -70,9 +70,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "fad80eb74614f7dc37c1c83df8caae64361eda22",
-      "url": "https://github.com/oxalica/rust-overlay/archive/fad80eb74614f7dc37c1c83df8caae64361eda22.tar.gz",
-      "hash": "sha256-wjoZGhxH/Yr+OsFRpNyV9DpMGQIdNEjjAOinfzQvadk="
+      "revision": "c7e9d512653a35ef4d5879c3df4d44d7b78d0e6d",
+      "url": "https://github.com/oxalica/rust-overlay/archive/c7e9d512653a35ef4d5879c3df4d44d7b78d0e6d.tar.gz",
+      "hash": "sha256-ObKS44vw4IIVpQ69YJzUGjZ0IwnpWoUlwjJSY7gefdo="
     },
     "unpins": {
       "type": "Git",
