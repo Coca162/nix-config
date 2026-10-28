@@ -32,6 +32,7 @@
       "todo!"
     ];
     "files.exclude"."**/.git" = false;
+    "workbench.experimental.modernUI" = false;
     "window.customTitleBarVisibility" = "auto";
     "workbench.colorTheme" = "Ayu One Dark";
     "editor.semanticTokenColorCustomizations"."[Ayu One Dark]" = {
