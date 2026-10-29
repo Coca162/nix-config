@@ -1,0 +1,405 @@
+From 32119293ab654a2a4ca9b2bd43b32947a9f3bba8 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Sat, 20 Jun 2026 20:22:46 +0300
+Subject: [PATCH 1/6] implement basic zswap monitoring
+
+---
+ src/btop_config.cpp        |  7 ++++++-
+ src/btop_draw.cpp          | 21 ++++++++++++++++++---
+ src/btop_menu.cpp          |  6 ++++++
+ src/btop_shared.hpp        | 20 +++++++++++++++++---
+ src/linux/btop_collect.cpp |  7 +++++++
+ 5 files changed, 54 insertions(+), 7 deletions(-)
+
+diff --git a/src/btop_config.cpp b/src/btop_config.cpp
+index 632ec4d7f..e83ab2f58 100644
+--- a/src/btop_config.cpp
++++ b/src/btop_config.cpp
+@@ -190,7 +190,9 @@ namespace Config {
+ 		{"zfs_arc_cached",		"#* Count ZFS ARC in cached and available memory."},
+ 
+ 		{"show_swap", 			"#* If swap memory should be shown in memory box."},
+-
++	#ifdef __linux__
++		{"show_zswap", 			"#* If zswap usage should be shown in memory box."},
++	#endif
+ 		{"swap_disk", 			"#* Show swap as a disk, ignores show_swap value above, inserts itself after first disk."},
+ 
+ 		{"show_disks", 			"#* If mem box should be split to also show disks info."},
+@@ -323,6 +325,9 @@ namespace Config {
+ 		{"mem_below_net", false},
+ 		{"zfs_arc_cached", true},
+ 		{"show_swap", true},
++	#ifdef __linux__
++		{"show_zswap", true},
++	#endif
+ 		{"swap_disk", true},
+ 		{"show_disks", true},
+ 		{"only_physical", true},
+diff --git a/src/btop_draw.cpp b/src/btop_draw.cpp
+index fbc99c022..01f2b66c1 100644
+--- a/src/btop_draw.cpp
++++ b/src/btop_draw.cpp
+@@ -1207,6 +1207,11 @@ namespace Mem {
+ 		if (Runner::stopping) return "";
+ 		if (force_redraw) redraw = true;
+ 		auto show_swap = Config::getB("show_swap");
++		#ifdef __linux__
++		auto show_zswap = Config::getB("show_zswap");
++		#else
++		auto show_zswap = false;
++		#endif
+ 		auto swap_disk = Config::getB("swap_disk");
+ 		auto show_disks = Config::getB("show_disks");
+ 		auto show_io_stat = Config::getB("show_io_stat");
+@@ -1239,10 +1244,14 @@ namespace Mem {
+ 			}
+ 			if (show_swap and has_swap) {
+ 				for (const auto& name : swap_names) {
++					auto color_gradient = name.substr(5);
++					if (color_gradient == "zswapped") {
++						color_gradient = "used";
++					}
+ 					if (use_graphs)
+-						mem_graphs[name] = Draw::Graph{mem_meter, graph_height, name.substr(5), safeVal(mem.percent, name), graph_symbol};
++						mem_graphs[name] = Draw::Graph{mem_meter, graph_height, color_gradient, safeVal(mem.percent, name), graph_symbol};
+ 					else
+-						mem_meters[name] = Draw::Meter{mem_meter, name.substr(5)};
++						mem_meters[name] = Draw::Meter{mem_meter, color_gradient};
+ 				}
+ 			}
+ 
+@@ -1333,7 +1342,13 @@ namespace Mem {
+ 				out += Mv::to(y+1+cy, x+1+cx) + Theme::c("title") + Fx::b + "Swap:" + rjust(floating_humanizer(safeVal(mem.stats, "swap_total"s)), mem_width - 8)
+ 					+ Theme::c("main_fg") + Fx::ub;
+ 				cy += 1;
+-				title = "Used";
++				title = show_zswap ? "Disk" : "Used";
++			}
++			else if (name == "swap_zswapped") {
++				if (!show_zswap) {
++					continue;
++				}
++				title = "Zswapped";
+ 			}
+ 			else if (name == "swap_free")
+ 				title = "Free";
+diff --git a/src/btop_menu.cpp b/src/btop_menu.cpp
+index bcb64bf7b..815fd48c3 100644
+--- a/src/btop_menu.cpp
++++ b/src/btop_menu.cpp
+@@ -687,6 +687,12 @@ namespace Menu {
+ 				"If swap memory should be shown in memory box.",
+ 				"",
+ 				"True or False."},
++		#ifdef __linux__
++			{"show_zswap",
++				"If zswap usage should be shown in memory box.",
++				"",
++				"True or False."},
++		#endif
+ 			{"swap_disk",
+ 				"Show swap as a disk.",
+ 				"",
+diff --git a/src/btop_shared.hpp b/src/btop_shared.hpp
+index dc891b66b..a66848052 100644
+--- a/src/btop_shared.hpp
++++ b/src/btop_shared.hpp
+@@ -267,7 +267,13 @@ namespace Mem {
+ 	extern int x, y, width, height, min_width, min_height;
+ 	extern bool has_swap, shown, redraw;
+ 	const array mem_names { "used"s, "available"s, "cached"s, "free"s };
+-	const array swap_names { "swap_used"s, "swap_free"s };
++	const array swap_names {
++		"swap_used"s,
++		#ifdef __linux__
++		"swap_zswapped"s,
++		#endif
++		"swap_free"s
++	};
+ 	extern int disk_ios;
+ 
+ 	struct disk_info {
+@@ -290,10 +296,18 @@ namespace Mem {
+ 	struct mem_info {
+ 		std::unordered_map<string, uint64_t> stats =
+ 			{{"used", 0}, {"available", 0}, {"cached", 0}, {"free", 0},
+-			{"swap_total", 0}, {"swap_used", 0}, {"swap_free", 0}};
++			{"swap_total", 0}, {"swap_used", 0},
++			#ifdef __linux__
++			{"swap_zswapped", 0},
++			#endif
++			{"swap_free", 0}};
+ 		std::unordered_map<string, deque<long long>> percent =
+ 			{{"used", {}}, {"available", {}}, {"cached", {}}, {"free", {}},
+-			{"swap_total", {}}, {"swap_used", {}}, {"swap_free", {}}};
++			{"swap_total", {}}, {"swap_used", {}},
++			#ifdef __linux__
++			{"swap_zswapped", {}},
++			#endif
++			{"swap_free", {}}};
+ 		std::unordered_map<string, disk_info> disks;
+ 		vector<string> disks_order;
+ 	};
+diff --git a/src/linux/btop_collect.cpp b/src/linux/btop_collect.cpp
+index fe4c8ba47..29c2d78ff 100644
+--- a/src/linux/btop_collect.cpp
++++ b/src/linux/btop_collect.cpp
+@@ -2333,6 +2333,7 @@ namespace Mem {
+ 	auto collect(bool no_update) -> mem_info& {
+ 		if (Runner::stopping or (no_update and not current_mem.percent.at("used").empty())) return current_mem;
+ 		auto show_swap = Config::getB("show_swap");
++		auto show_zswap = Config::getB("show_zswap");
+ 		auto swap_disk = Config::getB("swap_disk");
+ 		auto show_disks = Config::getB("show_disks");
+ 		auto zfs_arc_cached = Config::getB("zfs_arc_cached");
+@@ -2385,6 +2386,11 @@ namespace Mem {
+ 				else if (label == "SwapFree:") {
+ 					meminfo >> mem.stats.at("swap_free");
+ 					mem.stats.at("swap_free") <<= 10;
++					if (not show_zswap) break;
++				}
++				else if (label == "Zswapped:") {
++					meminfo >> mem.stats.at("swap_zswapped");
++					mem.stats.at("swap_zswapped") <<= 10;
+ 					break;
+ 				}
+ 				meminfo.ignore(SSmax, '\n');
+@@ -2399,6 +2405,7 @@ namespace Mem {
+ 			mem.stats.at("used") = totalMem - (mem.stats.at("available") <= totalMem ? mem.stats.at("available") : mem.stats.at("free"));
+ 
+ 			if (mem.stats.at("swap_total") > 0) mem.stats.at("swap_used") = mem.stats.at("swap_total") - mem.stats.at("swap_free");
++			if (show_zswap and mem.stats.at("swap_zswapped") > 0) mem.stats.at("swap_used") -= mem.stats.at("swap_zswapped");
+ 		}
+ 		else
+ 			throw std::runtime_error("Failed to read /proc/meminfo");
+
+From a0fa10d7c88969b2acfc685bfda708fa0543e4a9 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Sat, 20 Jun 2026 20:32:34 +0300
+Subject: [PATCH 2/6] warn if show_zswap is enabled but kernel does not support
+ zswap
+
+---
+ src/btop_draw.cpp          | 2 +-
+ src/linux/btop_collect.cpp | 6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/src/btop_draw.cpp b/src/btop_draw.cpp
+index 01f2b66c1..0bf8a0bc5 100644
+--- a/src/btop_draw.cpp
++++ b/src/btop_draw.cpp
+@@ -1345,7 +1345,7 @@ namespace Mem {
+ 				title = show_zswap ? "Disk" : "Used";
+ 			}
+ 			else if (name == "swap_zswapped") {
+-				if (!show_zswap) {
++				if (not show_zswap) {
+ 					continue;
+ 				}
+ 				title = "Zswapped";
+diff --git a/src/linux/btop_collect.cpp b/src/linux/btop_collect.cpp
+index 29c2d78ff..6e8234543 100644
+--- a/src/linux/btop_collect.cpp
++++ b/src/linux/btop_collect.cpp
+@@ -2303,6 +2303,7 @@ static auto convert_ascii_escapes(const std::string& input) -> std::string {
+ 
+ namespace Mem {
+ 	bool has_swap{};
++	bool has_zswap{};
+ 	vector<string> fstab;
+ 	fs::file_time_type fstab_time;
+ 	int disk_ios{};
+@@ -2391,6 +2392,7 @@ namespace Mem {
+ 				else if (label == "Zswapped:") {
+ 					meminfo >> mem.stats.at("swap_zswapped");
+ 					mem.stats.at("swap_zswapped") <<= 10;
++					has_zswap = true;
+ 					break;
+ 				}
+ 				meminfo.ignore(SSmax, '\n');
+@@ -2428,6 +2430,10 @@ namespace Mem {
+ 		else
+ 			has_swap = false;
+ 
++		if (show_zswap and not has_swap) {
++			Logger::warning("zswap support not present in kernel, but show_zswap is enabled.");
++		}
++
+ 		//? Get disks stats
+ 		if (show_disks) {
+ 			static vector<string> ignore_list;
+
+From 6a3a3382f7999a90f7c271dcdf9be8f10a7ca2b2 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Thu, 2 Jul 2026 16:12:41 +0300
+Subject: [PATCH 3/6] show compressed size instead of the original; fix the
+ naming
+
+---
+ src/btop_draw.cpp          |  8 ++++----
+ src/btop_shared.hpp        |  6 +++---
+ src/linux/btop_collect.cpp | 12 ++++++++----
+ 3 files changed, 15 insertions(+), 11 deletions(-)
+
+diff --git a/src/btop_draw.cpp b/src/btop_draw.cpp
+index 0bf8a0bc5..a147159a1 100644
+--- a/src/btop_draw.cpp
++++ b/src/btop_draw.cpp
+@@ -1246,7 +1246,7 @@ namespace Mem {
+ 				for (const auto& name : swap_names) {
+ 					auto color_gradient = name.substr(5);
+ 					if (color_gradient == "zswapped") {
+-						color_gradient = "used";
++						color_gradient = "cached";
+ 					}
+ 					if (use_graphs)
+ 						mem_graphs[name] = Draw::Graph{mem_meter, graph_height, color_gradient, safeVal(mem.percent, name), graph_symbol};
+@@ -1342,13 +1342,13 @@ namespace Mem {
+ 				out += Mv::to(y+1+cy, x+1+cx) + Theme::c("title") + Fx::b + "Swap:" + rjust(floating_humanizer(safeVal(mem.stats, "swap_total"s)), mem_width - 8)
+ 					+ Theme::c("main_fg") + Fx::ub;
+ 				cy += 1;
+-				title = show_zswap ? "Disk" : "Used";
++				title = "Used";
+ 			}
+-			else if (name == "swap_zswapped") {
++			else if (name == "swap_zswap_compressed") {
+ 				if (not show_zswap) {
+ 					continue;
+ 				}
+-				title = "Zswapped";
++				title = "Zswap";
+ 			}
+ 			else if (name == "swap_free")
+ 				title = "Free";
+diff --git a/src/btop_shared.hpp b/src/btop_shared.hpp
+index a66848052..bd0d73bb9 100644
+--- a/src/btop_shared.hpp
++++ b/src/btop_shared.hpp
+@@ -270,7 +270,7 @@ namespace Mem {
+ 	const array swap_names {
+ 		"swap_used"s,
+ 		#ifdef __linux__
+-		"swap_zswapped"s,
++		"swap_zswap_compressed"s,
+ 		#endif
+ 		"swap_free"s
+ 	};
+@@ -298,14 +298,14 @@ namespace Mem {
+ 			{{"used", 0}, {"available", 0}, {"cached", 0}, {"free", 0},
+ 			{"swap_total", 0}, {"swap_used", 0},
+ 			#ifdef __linux__
+-			{"swap_zswapped", 0},
++			{"swap_zswap_compressed", 0}, {"swap_zswap_original", 0},
+ 			#endif
+ 			{"swap_free", 0}};
+ 		std::unordered_map<string, deque<long long>> percent =
+ 			{{"used", {}}, {"available", {}}, {"cached", {}}, {"free", {}},
+ 			{"swap_total", {}}, {"swap_used", {}},
+ 			#ifdef __linux__
+-			{"swap_zswapped", {}},
++			{"swap_zswap_compressed", {}},
+ 			#endif
+ 			{"swap_free", {}}};
+ 		std::unordered_map<string, disk_info> disks;
+diff --git a/src/linux/btop_collect.cpp b/src/linux/btop_collect.cpp
+index 6e8234543..db49d1772 100644
+--- a/src/linux/btop_collect.cpp
++++ b/src/linux/btop_collect.cpp
+@@ -2389,10 +2389,14 @@ namespace Mem {
+ 					mem.stats.at("swap_free") <<= 10;
+ 					if (not show_zswap) break;
+ 				}
+-				else if (label == "Zswapped:") {
+-					meminfo >> mem.stats.at("swap_zswapped");
+-					mem.stats.at("swap_zswapped") <<= 10;
++				else if (label == "Zswap:") {
++					meminfo >> mem.stats.at("swap_zswap_compressed");
++					mem.stats.at("swap_zswap_compressed") <<= 10;
+ 					has_zswap = true;
++				}
++				else if (label == "Zswapped:") {
++					meminfo >> mem.stats.at("swap_zswap_original");
++					mem.stats.at("swap_zswap_original") <<= 10;
+ 					break;
+ 				}
+ 				meminfo.ignore(SSmax, '\n');
+@@ -2407,7 +2411,7 @@ namespace Mem {
+ 			mem.stats.at("used") = totalMem - (mem.stats.at("available") <= totalMem ? mem.stats.at("available") : mem.stats.at("free"));
+ 
+ 			if (mem.stats.at("swap_total") > 0) mem.stats.at("swap_used") = mem.stats.at("swap_total") - mem.stats.at("swap_free");
+-			if (show_zswap and mem.stats.at("swap_zswapped") > 0) mem.stats.at("swap_used") -= mem.stats.at("swap_zswapped");
++			if (show_zswap and mem.stats.at("swap_zswap_original") > 0) mem.stats.at("swap_used") -= mem.stats.at("swap_zswap_original");
+ 		}
+ 		else
+ 			throw std::runtime_error("Failed to read /proc/meminfo");
+
+From b2443233599bc2b7872384a0352ca9abb77260d5 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Thu, 2 Jul 2026 16:31:03 +0300
+Subject: [PATCH 4/6] clarify what zswap value means in the menu
+
+---
+ src/btop_menu.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/btop_menu.cpp b/src/btop_menu.cpp
+index 815fd48c3..3904faeee 100644
+--- a/src/btop_menu.cpp
++++ b/src/btop_menu.cpp
+@@ -690,6 +690,7 @@ namespace Menu {
+ 		#ifdef __linux__
+ 			{"show_zswap",
+ 				"If zswap usage should be shown in memory box.",
++				"Displays the compressed size stored in RAM.",
+ 				"",
+ 				"True or False."},
+ 		#endif
+
+From c1fdc7e92888623efe127aa966090fff9d18a274 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Sat, 5 Sep 2026 16:05:53 +0300
+Subject: [PATCH 5/6] fix: correct color gradient name for Zswap
+
+---
+ src/btop_draw.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/btop_draw.cpp b/src/btop_draw.cpp
+index e7f312cbe..a20e9d613 100644
+--- a/src/btop_draw.cpp
++++ b/src/btop_draw.cpp
+@@ -1276,8 +1276,8 @@ namespace Mem {
+ 			if (show_swap and has_swap) {
+ 				for (const auto& name : swap_names) {
+ 					auto color_gradient = name.substr(5);
+-					if (color_gradient == "zswapped") {
+-						color_gradient = "cached";
++					if (color_gradient == "zswap_compressed") {
++						color_gradient = "used";
+ 					}
+ 					if (use_graphs)
+ 						mem_graphs[name] = Draw::Graph{mem_meter, graph_height, color_gradient, safeVal(mem.percent, name), graph_symbol};
+
+From 1f4167ca22109494bfe892f3bed08da1fb956ad9 Mon Sep 17 00:00:00 2001
+From: David Cherednik <david.cherednik@gmail.com>
+Date: Sat, 5 Sep 2026 16:14:44 +0300
+Subject: [PATCH 6/6] use "cached" gradient for Zswap
+
+---
+ src/btop_draw.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/btop_draw.cpp b/src/btop_draw.cpp
+index a20e9d613..40fd1027c 100644
+--- a/src/btop_draw.cpp
++++ b/src/btop_draw.cpp
+@@ -1277,7 +1277,7 @@ namespace Mem {
+ 				for (const auto& name : swap_names) {
+ 					auto color_gradient = name.substr(5);
+ 					if (color_gradient == "zswap_compressed") {
+-						color_gradient = "used";
++						color_gradient = "cached";
+ 					}
+ 					if (use_graphs)
+ 						mem_graphs[name] = Draw::Graph{mem_meter, graph_height, color_gradient, safeVal(mem.percent, name), graph_symbol};

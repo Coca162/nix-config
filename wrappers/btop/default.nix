@@ -22,10 +22,10 @@
         })
   .overrideAttrs {
           patches = [
-            (pkgs.fetchpatch {
-              url = "https://github.com/aristocratos/btop/pull/1739.patch";
-              hash = "sha256-Cxq4MdXGnNFIHI8EXnJufSWA8PgM0b9GZa/NRMQPdak=";
-            })
+            # from https://github.com/NotAShelf/nyxexprs, EUPLv1.2
+            ./normalize_processes.patch
+            # https://github.com/aristocratos/btop/pull/1739
+            ./zswap.patch
           ];
           # cmakeBuildType = "Debug";
         });
