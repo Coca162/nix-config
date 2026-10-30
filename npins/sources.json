@@ -30,8 +30,8 @@
       "type": "MutableUrl",
       "update_url": "https://coca.codes/plural-delta/patches/latest/persistent-pk-overriding.patch",
       "unpack": false,
-      "url": "https://coca.codes/plural-delta/patches/2026-10-29/persistent-pk-overriding.patch",
-      "hash": "sha256-cyciNz60LluNfRBynYuGAjh7gHqHsJfUIfnqhLLwTd0="
+      "url": "https://coca.codes/plural-delta/patches/2026-10-30/persistent-pk-overriding.patch",
+      "hash": "sha256-zaz/DeFpWyre1eTB9AVYtTPg+hEqQFcizb2nbIhbwxo="
     },
     "delta-remove-override-tilde.patch": {
       "type": "MutableUrl",
@@ -65,15 +65,8 @@
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst",
-      "hash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4="
-    },
-    "nixpkgs-unstable": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1104102.e62746b0b472/nixexprs.tar.zst",
-      "hash": "sha256-GYpArmwi/iMuX2ov31oCBhAXRMJdNX9kOl2LZHCuR6M="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst",
+      "hash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc="
     },
     "rust-overlay": {
       "type": "Git",
@@ -84,9 +77,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "afcefd09c71e63663a46e4ce5e09968584f2c709",
-      "url": "https://github.com/oxalica/rust-overlay/archive/afcefd09c71e63663a46e4ce5e09968584f2c709.tar.gz",
-      "hash": "sha256-fAvtOccUXHVAH5wXK+ABYUUC47W2qTb9T9EefLcS9ME="
+      "revision": "96a0986b0486341fbc163fa2fabc6d3b44cdcbf1",
+      "url": "https://github.com/oxalica/rust-overlay/archive/96a0986b0486341fbc163fa2fabc6d3b44cdcbf1.tar.gz",
+      "hash": "sha256-qv+P8z2xS5Xdws5Kigvr/WKJiaJSa6Ke8iH7ozmO53w="
     },
     "unpins": {
       "type": "Git",

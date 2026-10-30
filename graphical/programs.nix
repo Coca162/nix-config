@@ -36,7 +36,7 @@
       filezilla
       easyeffects
       alsa-utils
-      ((import (sources.nixpkgs-unstable {inherit pkgs;}) {}).deltachat-desktop.overrideAttrs {
+      (deltachat-desktop.overrideAttrs {
         patches = [
           (sources."delta-remove-override-tilde.patch" {inherit pkgs;})
           (sources."delta-text-override-name.patch" {inherit pkgs;})
