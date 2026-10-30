@@ -11,16 +11,13 @@
       adios-wrappers
       (adios.lib.importModules {directory = ./modules;})
       (adios.lib.importModules {directory = ./.;})
+      {
+        nixpkgs.options.pkgs.default = pkgs;
+        config.options = builtins.mapAttrs (_: value: {default = value;}) config;
+      }
     ];
   };
 
-  wrapperModules = adios root {
-    options = {
-      "/nixpkgs" = {
-        inherit pkgs;
-      };
-      "/config" = config;
-    };
-  };
+  tree = adios.eval {inherit root;};
 in
-  builtins.mapAttrs (_: module: module {}) wrapperModules.modules
+  builtins.mapAttrs (_: module: module {}) tree.modules

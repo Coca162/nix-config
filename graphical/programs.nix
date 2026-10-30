@@ -36,10 +36,11 @@
       filezilla
       easyeffects
       alsa-utils
-      (deltachat-desktop.overrideAttrs {
+      ((import (sources.nixpkgs-unstable {inherit pkgs;}) {}).deltachat-desktop.overrideAttrs {
         patches = [
           (sources."delta-no-override-tilde.patch" {inherit pkgs;})
           (sources."delta-override-name.patch" {inherit pkgs;})
+          (sources."delta-persistent-pk-overriding.patch" {inherit pkgs;})
         ];
       })
       ss14-launcher
