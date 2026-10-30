@@ -26,26 +26,26 @@
       "url": "https://github.com/llakala/adios-wrappers/archive/d6d6355bc63e8b62074804176f4dbf3ff8a84281.tar.gz",
       "hash": "sha256-cwxOQtY97D60ORldGFO2Ia9qVkXXQ4e0SZNKCOHAVgI="
     },
-    "delta-no-override-tilde.patch": {
-      "type": "MutableUrl",
-      "update_url": "https://coca.codes/plural-delta/patches/latest/no-override-tilde.patch",
-      "unpack": false,
-      "url": "https://coca.codes/plural-delta/patches/2026-10-29/no-override-tilde.patch",
-      "hash": "sha256-dchTJS6XrxVvEdi66DRId8l+0OKrWB0sKZ6VQx9+xYY="
-    },
-    "delta-override-name.patch": {
-      "type": "MutableUrl",
-      "update_url": "https://coca.codes/plural-delta/patches/latest/override-name.patch",
-      "unpack": false,
-      "url": "https://coca.codes/plural-delta/patches/2026-10-29/override-name.patch",
-      "hash": "sha256-GAzqrTOycB3jgt+CzKuSsu0Cu+3ku8Z2YEelfVbEiEE="
-    },
     "delta-persistent-pk-overriding.patch": {
       "type": "MutableUrl",
       "update_url": "https://coca.codes/plural-delta/patches/latest/persistent-pk-overriding.patch",
       "unpack": false,
       "url": "https://coca.codes/plural-delta/patches/2026-10-29/persistent-pk-overriding.patch",
       "hash": "sha256-cyciNz60LluNfRBynYuGAjh7gHqHsJfUIfnqhLLwTd0="
+    },
+    "delta-remove-override-tilde.patch": {
+      "type": "MutableUrl",
+      "update_url": "https://coca.codes/plural-delta/patches/latest/remove-override-tilde.patch",
+      "unpack": false,
+      "url": "https://coca.codes/plural-delta/patches/2026-10-30/remove-override-tilde.patch",
+      "hash": "sha256-4cz7vZ8Kj8wvuJvSGYLKoXEOeVVzCp+D+scB92GhB/w="
+    },
+    "delta-text-override-name.patch": {
+      "type": "MutableUrl",
+      "update_url": "https://coca.codes/plural-delta/patches/latest/text-override-name.patch",
+      "unpack": false,
+      "url": "https://coca.codes/plural-delta/patches/2026-10-30/text-override-name.patch",
+      "hash": "sha256-A22+x9BrSY0uCRmHCQQH7kO52QYt+TwY0PKgu3Q47TA="
     },
     "lix": {
       "type": "Git",

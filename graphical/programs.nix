@@ -38,8 +38,8 @@
       alsa-utils
       ((import (sources.nixpkgs-unstable {inherit pkgs;}) {}).deltachat-desktop.overrideAttrs {
         patches = [
-          (sources."delta-no-override-tilde.patch" {inherit pkgs;})
-          (sources."delta-override-name.patch" {inherit pkgs;})
+          (sources."delta-remove-override-tilde.patch" {inherit pkgs;})
+          (sources."delta-text-override-name.patch" {inherit pkgs;})
           (sources."delta-persistent-pk-overriding.patch" {inherit pkgs;})
         ];
       })
