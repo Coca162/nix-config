@@ -8,7 +8,7 @@ let
     overlays = [
       (import "${sources.lix}/nix-support/build/overlay.nix" {
         inherit lib;
-        versionSuffix = "-${builtins.substring 0 7 sources.lix.revision}";
+        versionSuffix = builtins.substring 0 7 sources.lix.revision;
         officialRelease = false;
         nix_2_18 = null;
       } (p: p.clangStdenv))
