@@ -12,17 +12,18 @@
   libcdio,
   pipewire,
   libpulseaudio,
+  gitUpdater,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "dragon-media-backend";
-  version = "0.83.0";
+  version = "0.90.0";
 
   src = fetchFromGitLab {
     domain = "invent.kde.org";
     owner = "libraries";
     repo = "dragon-media-backend";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-F0uIjNJtDAbAaKfFfdZMc66zlS+PiZVVl4Bn2poGlJI=";
+    hash = "sha256-ZLCv1Z9WyOopo3BVFqRzQCyguOg5zXOMAWU9MDSgpyo=";
   };
 
   nativeBuildInputs = [
@@ -47,9 +48,28 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   dontWrapQtApps = true;
+  strictDeps = true;
+  __structuredAttrs = true;
+
+  passthru.updateScript = gitUpdater {rev-prefix = "v";};
 
   meta = {
+    description = "Qt C++ library intended for desktop music players";
+    homepage = "https://invent.kde.org/libraries/dragon-media-backend";
+    donationPage = "https://kde.org/donate/";
+    platforms = lib.platforms.linux;
     maintainers = [lib.maintainers.coca];
-    platforms = with lib.platforms; linux;
+    # Licenses referenced from pkgs/kde/lib/mk-kde-derivation.nix and reuse lint
+    license = with lib.licenses; [
+      bsd3
+      cc-by-30
+      cc-by-sa-40
+      cc0
+      lgpl21Only
+      lgpl3Only
+      lgpl3Plus
+      mit
+      zlib
+    ];
   };
 })
