@@ -34,21 +34,11 @@
       gwenview
       okular
       dolphin
-      breeze
       ark
-      breeze-icons
       breeze-gtk
       ocean-sound-theme
-      qqc2-breeze-style
-      qqc2-desktop-style
       plasma-integration
       kservice
-      (qt6ct.overrideAttrs {
-        patches = pkgs.fetchurl {
-          url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
-          hash = "sha256-uqsrcUrUkN46Eu3V1OwPYiPt7QNNZqaUmJ50a4bR9CA=";
-        };
-      })
       (kdePackages.callPackage ./_elisa.nix {
         dragon-media-backend = pkgs.callPackage ./_dragon-media-backend.nix {};
       })
@@ -63,11 +53,6 @@
       "niri-flake-polkit.service"
       "vellum.service"
     ];
-  };
-
-  environment.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-    QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
   };
 
   environment.etc."/xdg/menus/applications.menu".source = ./applications.xml;
