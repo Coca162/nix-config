@@ -13,20 +13,19 @@
     swap_disk = false;
   };
 
-  options.package.default =
-    promise ({inputs}: let
-        pkgs = inputs.nixpkgs.pkgs;
-      in
-        (pkgs.btop.override {
-          cudaSupport = inputs.config.nvidia;
-        })
-  .overrideAttrs {
-          patches = [
-            # from https://github.com/NotAShelf/nyxexprs, EUPLv1.2
-            ./normalize_processes.patch
-            # https://github.com/aristocratos/btop/pull/1739
-            ./zswap.patch
-          ];
-          # cmakeBuildType = "Debug";
-        });
+  options.package.default = promise ({inputs}: let
+    pkgs = inputs.nixpkgs.pkgs;
+  in
+    (pkgs.btop.override {
+      cudaSupport = inputs.config.nvidia;
+    })
+    .overrideAttrs {
+      patches = [
+        # from https://github.com/NotAShelf/nyxexprs, EUPLv1.2
+        ./normalize_processes.patch
+        # https://github.com/aristocratos/btop/pull/1739
+        ./zswap.patch
+      ];
+      # cmakeBuildType = "Debug";
+    });
 }
