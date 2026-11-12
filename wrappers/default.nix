@@ -18,6 +18,6 @@
     ];
   };
 
-  tree = adios.eval {inherit root;};
+  tree = adios root {};
 in
   builtins.mapAttrs (_: module: module {}) tree.modules
