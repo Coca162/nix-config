@@ -2,18 +2,21 @@
   mkKdeDerivation,
   fetchFromGitLab,
   dragon-media-backend,
-}:
-mkKdeDerivation {
-  pname = "elisa";
+}: let
+  version = "26.11.80";
+in
+  mkKdeDerivation {
+    pname = "elisa";
+    inherit version;
 
-  src = fetchFromGitLab {
-    domain = "invent.kde.org";
-    owner = "multimedia";
-    repo = "elisa";
-    rev = "778a7c79029be0e6d863673ca76975512396af9c";
-    hash = "sha256-PKJY5YnpWrmFXJOStt2X3wIXJEME3MbBxI+8x+xZ/xw=";
-  };
+    src = fetchFromGitLab {
+      domain = "invent.kde.org";
+      owner = "multimedia";
+      repo = "elisa";
+      tag = "v${version}";
+      hash = "sha256-p1ka+y6Zb82uIqiEVc3CJLIER/YgjQhzwF8+NcE/urg=";
+    };
 
-  extraBuildInputs = [dragon-media-backend];
-  meta.mainProgram = "elisa";
-}
+    extraBuildInputs = [dragon-media-backend];
+    meta.mainProgram = "elisa";
+  }
