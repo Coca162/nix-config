@@ -3,8 +3,8 @@
   lib,
   ...
 }: let
-  version = "7.3.4";
-  suffix = "zen2";
+  version = "7.3.5";
+  suffix = "zen1";
   kernel = pkgs.linuxKernel.manualConfig {
     inherit version;
     pname = "linux-zen";
@@ -17,7 +17,7 @@
       owner = "zen-kernel";
       repo = "zen-kernel";
       rev = "v${version}-${suffix}";
-      hash = "sha256-k1tbY69qU0RRlX5xY+GwH548meeIQ9r3HBnX1ByFT+w=";
+      hash = "sha256-UoViqThpBKfBpJ57AV29NG9zdIFJKa/SAZfeSQctya4=";
     };
 
     extraMakeFlags = [

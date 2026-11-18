@@ -62,11 +62,17 @@
       "hash": "sha256-AP48p2XFv3cZsqxUfKQK3r/7RyjCxSqrENQugQ52ypg="
     },
     "nixpkgs": {
-      "type": "Channel",
-      "name": "nixos-unstable",
-      "artifact": "nixexprs.tar.zst",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1119549.d5cc68339997/nixexprs.tar.zst",
-      "hash": "sha256-bTKSclXJAmo9qdxPedTBHUGr8awPr4BrbOoOutJsYIc="
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable",
+      "submodules": false,
+      "revision": "6959d82b502ff5523f0e7d9d6e2e875f7e4cd48f",
+      "url": "https://github.com/NixOS/nixpkgs/archive/6959d82b502ff5523f0e7d9d6e2e875f7e4cd48f.tar.gz",
+      "hash": "sha256-3sUa5LQDMzIoMQkDF9hcfyiYRfI6sEAC4Av+GJAbqWA="
     },
     "rust-overlay": {
       "type": "Git",
