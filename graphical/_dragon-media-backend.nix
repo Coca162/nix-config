@@ -16,14 +16,14 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "dragon-media-backend";
-  version = "0.90.0";
+  version = "0.90.1";
 
   src = fetchFromGitLab {
     domain = "invent.kde.org";
     owner = "libraries";
     repo = "dragon-media-backend";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ZLCv1Z9WyOopo3BVFqRzQCyguOg5zXOMAWU9MDSgpyo=";
+    hash = "sha256-V//h2YnTZSzNtgTyJu2+IWlvB30dPA0Ar3A5jBcNDIY=";
   };
 
   nativeBuildInputs = [
@@ -62,7 +62,7 @@ stdenv.mkDerivation (finalAttrs: {
     # Licenses referenced from pkgs/kde/lib/mk-kde-derivation.nix and reuse lint
     license = with lib.licenses; [
       bsd3
-      cc-by-30
+      cc-by-40
       cc-by-sa-40
       cc0
       lgpl21Only
