@@ -16,6 +16,11 @@
       screenshot-format = "png";
       volume = 40;
       volume-max = 150;
+
+      gui = {
+        profile-cond = ''p["player-operation-mode"]=="pseudo-gui"'';
+        idle = "once";
+      };
     };
 
     keybinds.default = {
@@ -35,6 +40,8 @@
       "0" = "add volume 4";
       "(" = "add volume -10";
       ")" = "add volume 10";
+      MBTN_RIGHT = "cycle pause";
+      "Shift+MBTN_RIGHT" = "script-binding select/context-menu";
     };
   };
 }
